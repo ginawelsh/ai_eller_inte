@@ -10,8 +10,7 @@ const QUESTIONS = [
     type: "Thesis abstract",
   },
   {
-    text: "Fråga: Snus marknadsförs i USA - kommer det funka den här gången?  \
-    Kommentaren: kommenterade lite med en snubbe om just camel snus, han var inte så förtjust, men varför inte? med alla sluta röka på offentliga platser lagar så.",
+    text: "Fråga: Snus marknadsförs i USA - kommer det funka den här gången? Kommentaren: kommenterade lite med en snubbe om just camel snus, han var inte så förtjust, men varför inte? med alla sluta röka på offentliga platser lagar så.",
     isHuman: true,
     type: "Comment",
   },
