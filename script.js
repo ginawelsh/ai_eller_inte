@@ -5,9 +5,45 @@
 // - type (optional): label such as "Thesis abstract", "Comment", etc.
 const QUESTIONS = [
   {
-    text: "This is a placeholder thesis abstract. Replace this text with a real or AI-generated abstract relevant to your study.",
+    text: "En stor del av Sveriges bebyggelse har byggts mellan 1965 och 1974 eftersom det rådde stor bostadsbrist i Sverige. Regeringen beslutade att en miljon bostäder skulle uppföras under denna tid, det s.k. miljonprogrammet. Det byggdes bostäder i varierande former och storlekar för att bygga bort bostadsbristen. Storskaligheten och en stor grad av upprepning av identiska hus är kännetecken för miljonprogrammets bebyggelser. Nu är det dags att renovera dessa byggnader. I och med att dessa byggnader är av allmänt intresse då de speglar en del av Sveriges arkitekturhistoria ställer kommunerna vissa krav vid renovering av dem. Det kommunala företaget Gavlegårdarna i Gävle tar initiativ till att utveckla bygglovsprocessen för sådana bebyggelser. Detta görs för att reducera tiden för framställande av ett godkänt bygglov samt effektivisera och underlätta kommunikationen med kommunen under hela projektet. För att kunna bevara dessa byggnader i högsta möjliga mån har Gavlegårdarna utarbetat en effektiviseringsprocess genom att hyra in en extern bevarandeexpert för att fungera som en bro mellan företaget och kommunen samt för att kunna dela med sig av sina erfarenheter gällande bevarandet av det eventuella området. Dessutom har Gavlegårdarna låtit kommunen vara med från ett tidigt skede, d.v.s. redan från den första presentationen av förslaget. Därmed har kommunen fått vara med och medverka i förslaget, redan innan bygglovsansökan.",
     isHuman: true,
     type: "Thesis abstract",
+  },
+  {
+    text: "Fråga: Snus marknadsförs i USA - kommer det funka den här gången?  \
+    Kommentaren: kommenterade lite med en snubbe om just camel snus, han var inte så förtjust, men varför inte? med alla sluta röka på offentliga platser lagar så.",
+    isHuman: true,
+    type: "Comment",
+  },
+  {
+    text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
+    isHuman: false,
+    type: "Comment",
+  },
+  {
+    text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
+    isHuman: false,
+    type: "Comment",
+  },
+  {
+    text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
+    isHuman: false,
+    type: "Comment",
+  },
+  {
+    text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
+    isHuman: false,
+    type: "Comment",
+  },
+  {
+    text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
+    isHuman: false,
+    type: "Comment",
+  },
+  {
+    text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
+    isHuman: false,
+    type: "Comment",
   },
   {
     text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
