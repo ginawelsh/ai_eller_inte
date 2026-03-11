@@ -45,8 +45,8 @@ body {
 
 .app-shell {
   width: 100%;
-  max-width: 960px;
-  background: linear-gradient(145deg, #020617 0%, #020617 55%, #020617 100%);
+  max-width: 1200px; /* previously 960px */
+  background: linear-gradient(145deg, #0f1d5f 0%, #020617 55%, #020617 100%);
   border-radius: 28px;
   border: 1px solid rgba(148, 163, 184, 0.4);
   box-shadow: var(--shadow-soft);
