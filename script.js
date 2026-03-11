@@ -96,17 +96,17 @@ function renderQuestion() {
   const total = effectiveQuestions.length;
   const questionNumber = currentIndex + 1;
 
-  els.questionLabel.textContent = `Question ${questionNumber}`;
+  els.questionLabel.textContent = `Fråga ${questionNumber}`;
   els.questionText.textContent = q.text;
   els.questionTag.textContent = q.type || "Item";
 
-  els.progressText.textContent = `Question ${questionNumber} of ${total}`;
+  els.progressText.textContent = `Fråga ${questionNumber} av ${total}`;
   const progressRatio = total > 0 ? questionNumber / total : 0;
   els.progressBarInner.style.width = `${Math.round(progressRatio * 100)}%`;
 
   els.btnPrev.disabled = currentIndex === 0;
   els.btnNext.disabled = !answers[currentIndex] && currentIndex !== total - 1;
-  els.btnNext.textContent = currentIndex === total - 1 ? "Finish" : "Next ▶";
+  els.btnNext.textContent = currentIndex === total - 1 ? "Klara" : "Nästa ▶";
 
   resetChoiceStyles();
   applyAnswerStyles();
@@ -146,11 +146,11 @@ function renderFeedback() {
 
   const isCorrect = answer.choiceIsHuman === q.isHuman;
   if (isCorrect) {
-    els.feedback.textContent = "Correct! Your classification matches the ground truth.";
+    els.feedback.textContent = 'Du har rätt!';
     els.feedback.classList.add("correct");
   } else {
-    const actualLabel = q.isHuman ? "human-written" : "AI-generated";
-    els.feedback.textContent = `Incorrect. This item was ${actualLabel}.`;
+    const actualLabel = q.isHuman ? "skrivet av en människa" : "skrivet av en AI";
+    els.feedback.textContent = `Inte korrekt. Det var ${actualLabel}.`;
     els.feedback.classList.add("incorrect");
   }
 }
@@ -192,7 +192,7 @@ function handleNext() {
           );
 
     alert(
-      `Survey complete.\n\nYou answered ${numCorrect} out of ${numAnswered} answered items correctly (${percent}%).`
+      `Ansökning klar.\n\nDu svarade ${numCorrect} av ${numAnswered} svarade frågor korrekt(${percent}%).`
     );
     return;
   }
