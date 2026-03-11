@@ -7,47 +7,47 @@ const QUESTIONS = [
   {
     text: "En stor del av Sveriges bebyggelse har byggts mellan 1965 och 1974 eftersom det rådde stor bostadsbrist i Sverige. Regeringen beslutade att en miljon bostäder skulle uppföras under denna tid, det s.k. miljonprogrammet. Det byggdes bostäder i varierande former och storlekar för att bygga bort bostadsbristen. Storskaligheten och en stor grad av upprepning av identiska hus är kännetecken för miljonprogrammets bebyggelser. Nu är det dags att renovera dessa byggnader. I och med att dessa byggnader är av allmänt intresse då de speglar en del av Sveriges arkitekturhistoria ställer kommunerna vissa krav vid renovering av dem. Det kommunala företaget Gavlegårdarna i Gävle tar initiativ till att utveckla bygglovsprocessen för sådana bebyggelser. Detta görs för att reducera tiden för framställande av ett godkänt bygglov samt effektivisera och underlätta kommunikationen med kommunen under hela projektet. För att kunna bevara dessa byggnader i högsta möjliga mån har Gavlegårdarna utarbetat en effektiviseringsprocess genom att hyra in en extern bevarandeexpert för att fungera som en bro mellan företaget och kommunen samt för att kunna dela med sig av sina erfarenheter gällande bevarandet av det eventuella området. Dessutom har Gavlegårdarna låtit kommunen vara med från ett tidigt skede, d.v.s. redan från den första presentationen av förslaget. Därmed har kommunen fått vara med och medverka i förslaget, redan innan bygglovsansökan.",
     isHuman: true,
-    type: "Thesis abstract",
+    type: "Kandidatuppsats abstrakt",
   },
   {
-    text: "Fråga: Snus marknadsförs i USA - kommer det funka den här gången? Kommentaren: kommenterade lite med en snubbe om just camel snus, han var inte så förtjust, men varför inte? med alla sluta röka på offentliga platser lagar så.",
-    isHuman: true,
-    type: "Comment",
+    text: "Denna uppsats undersöker Paulus förståelse av lagen, ett av de mest omstridda fälten inom paulusforskningen. Frågan om hur Paulus förhåller sig till lagen är så avgörande för helhetstolkningen av hans teologi att den som vill tolka Paulus och hans brev behöver ta ställning i ämnet. Litteraturen är omfattande och debatten tycks fortfarande vara långt ifrån avgjord. Samtidigt kräver en sådan problematik tydliga avgränsningar för att kunna hanteras inom ramen för en kortare studie. Därför avgränsas undersökningen till en specifik perikop i ett av Paulus brev där temat står i centrum. Uppsatsens huvudfråga formuleras så: Vad avser Paulus med uttrycket ”lagen” i Rom 3:21–31?",
+    isHuman: false,
+    type: "Kandidatuppsats abstrakt",
+  },
+  {
+    text: "Denna studie behandlar teologiska tolkningar av två kungar som tillskrevs gudomlig status i det forntida Mesopotamien: den gammalakkadiske Naram-Sin (ca 2254–2218 f.Kr.) och den nysumeriske Shulgi (ca 2094–2047 f.Kr.). Perspektiven analyseras genom en induktivt orienterad historisk genomgång som tar sin utgångspunkt i tidigare forskning om ämnet. Eftersom arbetet är en c-uppsats och tillgången till primärmaterial (såsom arkeologiska fynd och källtexter på originalspråk) har varit begränsad, baseras undersökningen helt på sekundärlitteratur. Framställningen är uppdelad i tre avsnitt: två där respektive kung behandlas separat utifrån forskningsläget, och ett tredje där resultaten ställs mot varandra i en jämförande analys. Metoden har varit att först sammanställa vad forskare faktiskt hävdar om de teologiska föreställningarna kring monarkerna, därefter dela upp materialet i återkommande delteman och sortera utsagorna efter dessa. På grundval av detta försöker studien teckna en övergripande bild av perspektivens karaktär och deras huvudsakliga inriktningar. Tyngdpunkten ligger på att identifiera mönster i de religiösa idéerna och vilka motiv de främst kretsar kring. Resultatet visar att tolkningarna är mångfacetterade och delvis motstridiga, men att både skillnader och överlappningar kan urskiljas mellan kungarna. Två motiv som återkommer särskilt ofta är fruktbarhet och föreställningar kopplade till himlen.",
+    isHuman: false,
+    type: "Kandidatuppsats abstrakt",
   },
   {
     text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
     isHuman: false,
-    type: "Comment",
+    type: "Kandidatuppsats abstrakt",
   },
   {
     text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
     isHuman: false,
-    type: "Comment",
+    type: "Kandidatuppsats abstrakt",
   },
   {
     text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
     isHuman: false,
-    type: "Comment",
+    type: "Kandidatuppsats abstrakt",
   },
   {
     text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
     isHuman: false,
-    type: "Comment",
+    type: "Kandidatuppsats abstrakt",
   },
   {
     text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
     isHuman: false,
-    type: "Comment",
+    type: "Kandidatuppsats abstrakt",
   },
   {
     text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
     isHuman: false,
-    type: "Comment",
-  },
-  {
-    text: "In this comment, the author discusses the implications of large language models for academic writing and peer review processes.",
-    isHuman: false,
-    type: "Comment",
+    type: "Kandidatuppsats abstrakt",
   },
   // Add up to 48 more questions here as needed.
 ];
