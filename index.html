@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Real or AI? Survey</title>
+    <title>AI eller inte? En spel</title>
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="app-shell">
       <header class="app-header">
         <div class="app-title-group">
-          <h1 class="app-title">Real or AI?</h1>
+          <h1 class="app-title">AI eller inte?</h1>
           <p class="app-subtitle">
             Läs abstraktet och avgör om det är skrivet av en människa eller AI.
           </p>
@@ -26,21 +26,21 @@
       <main class="app-main">
         <section class="question-card">
           <header class="question-header">
-            <h2 id="question-label">Question 1</h2>
-            <span id="question-tag" class="question-tag">Thesis abstract</span>
+            <h2 id="question-label">Fråga 1</h2>
+            <span id="question-tag" class="question-tag">Kandidatuppsats abstrakt</span>
           </header>
           <article id="question-text" class="question-text">det
-            Loading question...
+            Laddar fråga...
           </article>
         </section>
 
         <section class="controls">
           <div class="choice-buttons">
             <button id="btn-human" class="choice-button choice-human" type="button">
-              Human-written
+              Skrivet av människa
             </button>
             <button id="btn-ai" class="choice-button choice-ai" type="button">
-              AI-generated
+              Skrivet av AI
             </button>
           </div>
 
@@ -48,10 +48,10 @@
 
           <div class="nav-row">
             <button id="btn-prev" class="nav-button" type="button" disabled>
-              ◀ Previous
+              ◀ Tidigare
             </button>
             <button id="btn-next" class="nav-button primary" type="button" disabled>
-              Next ▶
+              Nästa ▶
             </button>
           </div>
         </section>
@@ -59,7 +59,7 @@
 
       <footer class="app-footer">
         <div id="score-summary" class="score-summary">
-          Score: <span id="score-correct">0</span> / <span id="score-total">0</span>
+          Poäng: <span id="score-correct">0</span> / <span id="score-total">0</span>
         </div>
       </footer>
     </div>
