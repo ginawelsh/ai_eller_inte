@@ -49,7 +49,33 @@ const QUESTIONS = [
     isHuman: false,
     type: "Kandidatuppsats abstrakt",
   },
-  // Add up to 48 more questions here as needed.
+// Add up to 48 more questions here as needed.
+];
+
+// Thread-style Reddit-like discussions
+// Each thread has a question and a list of comments
+const THREADS = [
+  {
+    questionText: "Vad tycker ni om AI-genererade uppsatser i akademiska sammanhang?",
+    comments: [
+      {
+        text: "Jag tycker det kan vara ett bra stöd, men studenten måste fortfarande stå för analysen.",
+        isHuman: true,
+      },
+      {
+        text: "Large language models enable unprecedented efficiency in knowledge production and assessment workflows.",
+        isHuman: false,
+      },
+      {
+        text: "Som handledare märker jag snabbt när en text inte låter som studenten själv.",
+        isHuman: true,
+      },
+      {
+        text: "It is empirically demonstrated that generative models always produce higher quality text than humans.",
+        isHuman: false,
+      },
+    ],
+  },
 ];
 
 if (QUESTIONS.length === 0) {
@@ -63,10 +89,18 @@ if (QUESTIONS.length > MAX_QUESTIONS) {
 
 const effectiveQuestions = QUESTIONS.slice(0, MAX_QUESTIONS);
 
+// mode can be "reddit", "transition" or "abstracts"
+let mode = "reddit";
+
 let currentIndex = 0;
 let hasAnsweredCurrent = false;
 let numCorrect = 0;
 let numAnswered = 0;
+
+// State for reddit threads
+let currentThreadIndex = 0;
+let currentCommentIndex = 0;
+let lastChoiceIsHuman = null;
 
 const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwvYPJXwmkRLlQqg3CIAd_7x82G_bsqhuNCUgljyF78nvbbPONRN2RZMoPvNMhRaEhODw/exec";
 const PARTICIPANT_ID = `${Date.now()}-${Math.floor(Math.random() * 1e6)}`;
@@ -75,6 +109,8 @@ const els = {
   questionLabel: document.getElementById("question-label"),
   questionTag: document.getElementById("question-tag"),
   questionText: document.getElementById("question-text"),
+  commentsContainer: document.getElementById("comments-container"),
+  subtitle: document.querySelector(".app-subtitle"),
   progressText: document.getElementById("progress-text"),
   progressBarInner: document.getElementById("progress-bar-inner"),
   btnHuman: document.getElementById("btn-human"),
@@ -88,30 +124,59 @@ const els = {
 
 const answers = new Array(effectiveQuestions.length).fill(null);
 
-async function sendAnswerEvent(questionIndex) {
-  const q = effectiveQuestions[questionIndex];
-  const answer = answers[questionIndex];
+async function sendAnswerEvent() {
+  let q;
+  let choiceIsHuman;
+  let extra = {};
 
-  if (!q || !answer) return;
+  if (mode === "abstracts") {
+    q = effectiveQuestions[currentIndex];
+    const answer = answers[currentIndex];
+    if (!q || !answer) return;
+    choiceIsHuman = answer.choiceIsHuman;
 
-  const isCorrect = answer.choiceIsHuman === q.isHuman;
+    const isCorrect = choiceIsHuman === q.isHuman;
 
-  const totalAnswered = answers.filter(Boolean).length;
-  const totalCorrect = answers.reduce((acc, a, idx) => {
-    if (!a) return acc;
-    return acc + (a.choiceIsHuman === effectiveQuestions[idx].isHuman ? 1 : 0);
-  }, 0);
+    const totalAnswered = answers.filter(Boolean).length;
+    const totalCorrect = answers.reduce((acc, a, idx) => {
+      if (!a) return acc;
+      return acc + (a.choiceIsHuman === effectiveQuestions[idx].isHuman ? 1 : 0);
+    }, 0);
+
+    extra = {
+      mode: "abstracts",
+      questionIndex: currentIndex,
+      isCorrect,
+      totalCorrectSoFar: totalCorrect,
+      totalAnsweredSoFar: totalAnswered,
+    };
+  } else if (mode === "reddit") {
+    const thread = THREADS[currentThreadIndex];
+    const comment = thread.comments[currentCommentIndex];
+    if (!thread || !comment || lastChoiceIsHuman === null) return;
+    q = { text: comment.text, isHuman: comment.isHuman };
+    choiceIsHuman = lastChoiceIsHuman;
+
+    const isCorrect = choiceIsHuman === q.isHuman;
+
+    extra = {
+      mode: "reddit",
+      threadIndex: currentThreadIndex,
+      commentIndex: currentCommentIndex,
+      threadQuestionText: thread.questionText,
+      isCorrect,
+    };
+  } else {
+    return;
+  }
 
   const payload = {
     participantId: PARTICIPANT_ID,
     response: {
-      questionIndex,
       questionText: q.text,
       isHumanLabel: q.isHuman,
-      userGuessIsHuman: answer.choiceIsHuman,
-      isCorrect,
-      totalCorrectSoFar: totalCorrect,
-      totalAnsweredSoFar: totalAnswered,
+      userGuessIsHuman: choiceIsHuman,
+      ...extra,
     },
   };
 
@@ -153,6 +218,85 @@ function renderQuestion() {
   applyAnswerStyles();
   renderFeedback();
   updateScoreSummary();
+}
+
+function renderThread() {
+  const thread = THREADS[currentThreadIndex];
+  const comment = thread.comments[currentCommentIndex];
+
+  if (!thread || !comment) return;
+
+  if (els.subtitle) {
+    els.subtitle.textContent =
+      "Läs kommentaren i tråden och avgör om den är skriven av en människa eller AI.";
+  }
+
+  els.questionLabel.textContent = `Tråd ${currentThreadIndex + 1}`;
+  els.questionTag.textContent = "Kommentars-tråd";
+  els.questionText.textContent = thread.questionText;
+
+  if (els.commentsContainer) {
+    els.commentsContainer.innerHTML = "";
+    const commentEl = document.createElement("div");
+    commentEl.className = "comment";
+    commentEl.textContent = comment.text;
+    els.commentsContainer.appendChild(commentEl);
+  }
+
+  const totalComments = thread.comments.length;
+  const commentNumber = currentCommentIndex + 1;
+  els.progressText.textContent = `Kommentar ${commentNumber} av ${totalComments}`;
+  const progressRatio = totalComments > 0 ? commentNumber / totalComments : 0;
+  els.progressBarInner.style.width = `${Math.round(progressRatio * 100)}%`;
+
+  els.btnPrev.disabled = currentThreadIndex === 0 && currentCommentIndex === 0;
+  els.btnNext.disabled = false;
+  const isLastThread = currentThreadIndex === THREADS.length - 1;
+  const isLastComment = commentNumber === totalComments;
+  els.btnNext.textContent = isLastThread && isLastComment
+    ? "Nästa del ▶"
+    : "Nästa kommentar ▶";
+
+  resetChoiceStyles();
+  els.feedback.textContent = "";
+  els.feedback.classList.remove("correct", "incorrect");
+}
+
+function renderTransition() {
+  if (els.subtitle) {
+    els.subtitle.textContent =
+      "Nu börjar nästa del: bedöm uppsatsabstrakt. Läs noggrant och avgör om texten är skriven av en människa eller AI.";
+  }
+
+  els.questionLabel.textContent = "Nästa del";
+  els.questionTag.textContent = "Instruktion";
+  els.questionText.textContent =
+    "Du har nu bedömt kommentarer i en diskussionstråd. I nästa del får du läsa uppsatsabstrakt ett i taget och avgöra om de är skrivna av en människa eller av en AI.";
+
+  if (els.commentsContainer) {
+    els.commentsContainer.innerHTML = "";
+  }
+
+  els.progressText.textContent = "";
+  els.progressBarInner.style.width = "0%";
+
+  resetChoiceStyles();
+  els.feedback.textContent = "";
+  els.feedback.classList.remove("correct", "incorrect");
+
+  els.btnPrev.disabled = true;
+  els.btnNext.disabled = false;
+  els.btnNext.textContent = "Starta abstrakt-delen ▶";
+}
+
+function renderCurrent() {
+  if (mode === "reddit") {
+    renderThread();
+  } else if (mode === "transition") {
+    renderTransition();
+  } else {
+    renderQuestion();
+  }
 }
 
 function resetChoiceStyles() {
@@ -211,20 +355,60 @@ function updateScoreSummary() {
 }
 
 function recordAnswer(choiceIsHuman) {
-  const existing = answers[currentIndex];
-  if (existing) {
-    existing.choiceIsHuman = choiceIsHuman;
-  } else {
-    answers[currentIndex] = { choiceIsHuman };
+  if (mode === "abstracts") {
+    const existing = answers[currentIndex];
+    if (existing) {
+      existing.choiceIsHuman = choiceIsHuman;
+    } else {
+      answers[currentIndex] = { choiceIsHuman };
+    }
+    hasAnsweredCurrent = true;
+  } else if (mode === "reddit") {
+    lastChoiceIsHuman = choiceIsHuman;
   }
-  hasAnsweredCurrent = true;
 
-  sendAnswerEvent(currentIndex);
+  sendAnswerEvent();
 
-  renderQuestion();
+  renderCurrent();
 }
 
 function handleNext() {
+  if (mode === "reddit") {
+    const thread = THREADS[currentThreadIndex];
+    const totalComments = thread.comments.length;
+
+    if (currentCommentIndex < totalComments - 1) {
+      currentCommentIndex += 1;
+      renderThread();
+      return;
+    }
+
+    if (currentThreadIndex < THREADS.length - 1) {
+      currentThreadIndex += 1;
+      currentCommentIndex = 0;
+      renderThread();
+      return;
+    }
+
+    // Finished all reddit threads, go to transition screen
+    mode = "transition";
+    renderTransition();
+    return;
+  }
+
+  if (mode === "transition") {
+    // Start abstracts part
+    mode = "abstracts";
+    currentIndex = 0;
+    hasAnsweredCurrent = !!answers[currentIndex];
+    if (els.subtitle) {
+      els.subtitle.textContent =
+        "Läs abstraktet och avgör om det är skrivet av en människa eller AI.";
+    }
+    renderQuestion();
+    return;
+  }
+
   const lastIndex = effectiveQuestions.length - 1;
 
   if (currentIndex === lastIndex) {
@@ -247,9 +431,27 @@ function handleNext() {
 }
 
 function handlePrev() {
-  currentIndex = clampIndex(currentIndex - 1);
-  hasAnsweredCurrent = !!answers[currentIndex];
-  renderQuestion();
+  if (mode === "reddit") {
+    if (currentThreadIndex === 0 && currentCommentIndex === 0) return;
+
+    if (currentCommentIndex > 0) {
+      currentCommentIndex -= 1;
+      renderThread();
+      return;
+    }
+
+    if (currentThreadIndex > 0) {
+      currentThreadIndex -= 1;
+      const thread = THREADS[currentThreadIndex];
+      currentCommentIndex = thread.comments.length - 1;
+      renderThread();
+      return;
+    }
+  } else if (mode === "abstracts") {
+    currentIndex = clampIndex(currentIndex - 1);
+    hasAnsweredCurrent = !!answers[currentIndex];
+    renderQuestion();
+  }
 }
 
 function handleKeydown(event) {
@@ -261,10 +463,18 @@ function handleKeydown(event) {
     if (!els.btnNext.disabled) handleNext();
   } else if (event.key.toLowerCase() === "h") {
     event.preventDefault();
-    if (!answers[currentIndex]) recordAnswer(true);
+    if (mode === "abstracts" && !answers[currentIndex]) {
+      recordAnswer(true);
+    } else if (mode === "reddit") {
+      recordAnswer(true);
+    }
   } else if (event.key.toLowerCase() === "a") {
     event.preventDefault();
-    if (!answers[currentIndex]) recordAnswer(false);
+    if (mode === "abstracts" && !answers[currentIndex]) {
+      recordAnswer(false);
+    } else if (mode === "reddit") {
+      recordAnswer(false);
+    }
   }
 }
 
@@ -291,7 +501,7 @@ function init() {
 
   document.addEventListener("keydown", handleKeydown);
 
-  renderQuestion();
+  renderCurrent();
 }
 
 window.addEventListener("DOMContentLoaded", init);
