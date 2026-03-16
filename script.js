@@ -118,6 +118,7 @@ async function sendAnswerEvent(questionIndex) {
   try {
     await fetch(RESULTS_ENDPOINT, {
       method: "POST",
+      mode: "no-cors",          // <— important: avoid CORS preflight
       headers: {
         "Content-Type": "application/json",
       },
@@ -126,8 +127,8 @@ async function sendAnswerEvent(questionIndex) {
   } catch (err) {
     console.error("Failed to send answer event", err);
   }
-}
 
+  
 function clampIndex(index) {
   if (index < 0) return 0;
   if (index >= effectiveQuestions.length) return effectiveQuestions.length - 1;
