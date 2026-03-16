@@ -165,7 +165,7 @@ body {
   font-size: 0.95rem;
   line-height: 1.6;
   color: #e5e7eb;
-  max-height: 320px;
+  max-height: 220px;
   overflow-y: auto;
   padding-right: 4px;
 }
@@ -177,6 +177,49 @@ body {
 .question-text::-webkit-scrollbar-thumb {
   background: rgba(148, 163, 184, 0.7);
   border-radius: 999px;
+}
+
+.comments-container {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 260px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.comments-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.comments-container::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.7);
+  border-radius: 999px;
+}
+
+.comment-row {
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(31, 41, 55, 0.8);
+}
+
+.comment-row--active {
+  border-color: rgba(129, 140, 248, 0.95);
+  box-shadow: 0 0 14px rgba(79, 70, 229, 0.6);
+}
+
+.comment-meta {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.comment-body {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #e5e7eb;
 }
 
 .controls {

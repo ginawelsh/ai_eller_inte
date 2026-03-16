@@ -101,6 +101,7 @@ let numAnswered = 0;
 let currentThreadIndex = 0;
 let currentCommentIndex = 0;
 let lastChoiceIsHuman = null;
+let globalQuestionIndex = 0; // increments for every judgment (comment or abstract)
 
 const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwvYPJXwmkRLlQqg3CIAd_7x82G_bsqhuNCUgljyF78nvbbPONRN2RZMoPvNMhRaEhODw/exec";
 const PARTICIPANT_ID = `${Date.now()}-${Math.floor(Math.random() * 1e6)}`;
@@ -128,6 +129,7 @@ async function sendAnswerEvent() {
   let q;
   let choiceIsHuman;
   let extra = {};
+  let questionType = "";
 
   if (mode === "abstracts") {
     q = effectiveQuestions[currentIndex];
@@ -145,11 +147,11 @@ async function sendAnswerEvent() {
 
     extra = {
       mode: "abstracts",
-      questionIndex: currentIndex,
       isCorrect,
       totalCorrectSoFar: totalCorrect,
       totalAnsweredSoFar: totalAnswered,
     };
+    questionType = "abstract";
   } else if (mode === "reddit") {
     const thread = THREADS[currentThreadIndex];
     const comment = thread.comments[currentCommentIndex];
@@ -166,6 +168,7 @@ async function sendAnswerEvent() {
       threadQuestionText: thread.questionText,
       isCorrect,
     };
+    questionType = "comment";
   } else {
     return;
   }
@@ -173,6 +176,8 @@ async function sendAnswerEvent() {
   const payload = {
     participantId: PARTICIPANT_ID,
     response: {
+      questionIndex: globalQuestionIndex,
+      questionType,
       questionText: q.text,
       isHumanLabel: q.isHuman,
       userGuessIsHuman: choiceIsHuman,
@@ -222,9 +227,7 @@ function renderQuestion() {
 
 function renderThread() {
   const thread = THREADS[currentThreadIndex];
-  const comment = thread.comments[currentCommentIndex];
-
-  if (!thread || !comment) return;
+  if (!thread) return;
 
   if (els.subtitle) {
     els.subtitle.textContent =
@@ -237,10 +240,24 @@ function renderThread() {
 
   if (els.commentsContainer) {
     els.commentsContainer.innerHTML = "";
-    const commentEl = document.createElement("div");
-    commentEl.className = "comment";
-    commentEl.textContent = comment.text;
-    els.commentsContainer.appendChild(commentEl);
+
+    thread.comments.forEach((comment, idx) => {
+      const row = document.createElement("div");
+      row.className =
+        "comment-row" + (idx === currentCommentIndex ? " comment-row--active" : "");
+
+      const meta = document.createElement("div");
+      meta.className = "comment-meta";
+      meta.textContent = `Kommentar ${idx + 1}`;
+
+      const body = document.createElement("div");
+      body.className = "comment-body";
+      body.textContent = comment.text;
+
+      row.appendChild(meta);
+      row.appendChild(body);
+      els.commentsContainer.appendChild(row);
+    });
   }
 
   const totalComments = thread.comments.length;
@@ -367,6 +384,7 @@ function recordAnswer(choiceIsHuman) {
     lastChoiceIsHuman = choiceIsHuman;
   }
 
+  globalQuestionIndex += 1;
   sendAnswerEvent();
 
   renderCurrent();
@@ -485,13 +503,17 @@ function init() {
   }
 
   els.btnHuman.addEventListener("click", () => {
-    if (!answers[currentIndex]) {
+    if (mode === "abstracts" && !answers[currentIndex]) {
+      recordAnswer(true);
+    } else if (mode === "reddit") {
       recordAnswer(true);
     }
   });
 
   els.btnAi.addEventListener("click", () => {
-    if (!answers[currentIndex]) {
+    if (mode === "abstracts" && !answers[currentIndex]) {
+      recordAnswer(false);
+    } else if (mode === "reddit") {
       recordAnswer(false);
     }
   });
