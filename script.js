@@ -102,6 +102,10 @@ let currentThreadIndex = 0;
 let currentCommentIndex = 0;
 let lastChoiceIsHuman = null;
 let globalQuestionIndex = 0; // increments for every judgment (comment or abstract)
+// Per-thread, per-comment answers: redditAnswers[threadIndex][commentIndex] = { choiceIsHuman }
+let redditAnswers = [];
+// When true, we're showing correct/incorrect for the current thread after user finished all comments
+let redditShowingFeedback = false;
 
 
 const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbxAdn0Nk-FQVlgM8OyKfNw9HP7ugIv9xac50-duNwgcNLd6tlYN2VxY_NdwLiu0_gMb/exec";
@@ -112,6 +116,7 @@ const els = {
   questionTag: document.getElementById("question-tag"),
   questionText: document.getElementById("question-text"),
   commentsContainer: document.getElementById("comments-container"),
+  controlsSection: document.querySelector(".controls"),
   subtitle: document.querySelector(".app-subtitle"),
   progressText: document.getElementById("progress-text"),
   progressBarInner: document.getElementById("progress-bar-inner"),
@@ -155,10 +160,11 @@ async function sendAnswerEvent() {
     questionType = "abstract";
   } else if (mode === "reddit") {
     const thread = THREADS[currentThreadIndex];
-    const comment = thread.comments[currentCommentIndex];
-    if (!thread || !comment || lastChoiceIsHuman === null) return;
+    const comment = thread && thread.comments[currentCommentIndex];
+    const stored = redditAnswers[currentThreadIndex] && redditAnswers[currentThreadIndex][currentCommentIndex];
+    if (!thread || !comment || !stored) return;
     q = { text: comment.text, isHuman: comment.isHuman };
-    choiceIsHuman = lastChoiceIsHuman;
+    choiceIsHuman = stored.choiceIsHuman;
 
     const isCorrect = choiceIsHuman === q.isHuman;
 
@@ -204,6 +210,7 @@ function clampIndex(index) {
 }
 
 function renderQuestion() {
+  if (els.controlsSection) els.controlsSection.classList.remove("controls--no-choices");
   const q = effectiveQuestions[currentIndex];
   const total = effectiveQuestions.length;
   const questionNumber = currentIndex + 1;
@@ -229,6 +236,12 @@ function renderQuestion() {
 function renderThread() {
   const thread = THREADS[currentThreadIndex];
   if (!thread) return;
+  if (els.controlsSection) els.controlsSection.classList.remove("controls--no-choices");
+
+  if (!redditAnswers[currentThreadIndex]) {
+    redditAnswers[currentThreadIndex] = thread.comments.map(() => null);
+  }
+  const threadAnswers = redditAnswers[currentThreadIndex];
 
   if (els.subtitle) {
     els.subtitle.textContent =
@@ -244,18 +257,32 @@ function renderThread() {
 
     thread.comments.forEach((comment, idx) => {
       const row = document.createElement("div");
-      row.className =
-        "comment-row" + (idx === currentCommentIndex ? " comment-row--active" : "");
+      let rowClass = "comment-row";
+      if (redditShowingFeedback) {
+        const ans = threadAnswers[idx];
+        const isCorrect = ans && ans.choiceIsHuman === comment.isHuman;
+        rowClass += isCorrect ? " comment-row--correct" : " comment-row--incorrect";
+      } else if (idx === currentCommentIndex) {
+        rowClass += " comment-row--active";
+      }
+
+      row.className = rowClass;
 
       const meta = document.createElement("div");
       meta.className = "comment-meta";
       meta.textContent = `Kommentar ${idx + 1}`;
+      if (redditShowingFeedback && threadAnswers[idx]) {
+        const ans = threadAnswers[idx];
+        const isCorrect = ans.choiceIsHuman === comment.isHuman;
+        const guess = ans.choiceIsHuman ? "Människa" : "AI";
+        const actual = comment.isHuman ? "Människa" : "AI";
+        meta.textContent += ` · Din bedömning: ${guess}. ${isCorrect ? "Rätt!" : "Rätt svar: " + actual + "."}`;
+      }
+      row.appendChild(meta);
 
       const body = document.createElement("div");
       body.className = "comment-body";
       body.textContent = comment.text;
-
-      row.appendChild(meta);
       row.appendChild(body);
       els.commentsContainer.appendChild(row);
     });
@@ -263,17 +290,38 @@ function renderThread() {
 
   const totalComments = thread.comments.length;
   const commentNumber = currentCommentIndex + 1;
-  els.progressText.textContent = `Kommentar ${commentNumber} av ${totalComments}`;
-  const progressRatio = totalComments > 0 ? commentNumber / totalComments : 0;
+  els.progressText.textContent = redditShowingFeedback
+    ? `Resultat · Tråd ${currentThreadIndex + 1}`
+    : `Kommentar ${commentNumber} av ${totalComments}`;
+  const progressRatio = totalComments > 0 ? (redditShowingFeedback ? 1 : commentNumber / totalComments) : 0;
   els.progressBarInner.style.width = `${Math.round(progressRatio * 100)}%`;
 
-  els.btnPrev.disabled = currentThreadIndex === 0 && currentCommentIndex === 0;
-  els.btnNext.disabled = false;
-  const isLastThread = currentThreadIndex === THREADS.length - 1;
-  const isLastComment = commentNumber === totalComments;
-  els.btnNext.textContent = isLastThread && isLastComment
-    ? "Nästa del ▶"
-    : "Nästa kommentar ▶";
+  if (redditShowingFeedback) {
+    els.btnPrev.disabled = true;
+    els.btnNext.disabled = false;
+    els.btnNext.textContent = currentThreadIndex === THREADS.length - 1 ? "Nästa del ▶" : "Nästa tråd ▶";
+    resetChoiceStyles();
+    els.feedback.textContent = "";
+    els.feedback.classList.remove("correct", "incorrect");
+    els.btnHuman.classList.add("disabled");
+    els.btnAi.classList.add("disabled");
+  } else {
+    const currentAnswered = !!threadAnswers[currentCommentIndex];
+    els.btnPrev.disabled = currentThreadIndex === 0 && currentCommentIndex === 0;
+    els.btnNext.disabled = !currentAnswered;
+    const isLastThread = currentThreadIndex === THREADS.length - 1;
+    const isLastComment = commentNumber === totalComments;
+    els.btnNext.textContent = isLastThread && isLastComment ? "Nästa del ▶" : "Nästa kommentar ▶";
+    resetChoiceStyles();
+    els.feedback.textContent = "";
+    els.feedback.classList.remove("correct", "incorrect");
+    if (currentAnswered) {
+      const choice = threadAnswers[currentCommentIndex].choiceIsHuman;
+      const btn = choice ? els.btnHuman : els.btnAi;
+      btn.classList.add("selected", "disabled");
+      (choice ? els.btnAi : els.btnHuman).classList.add("disabled");
+    }
+  }
 }
 
 function renderTransition() {
@@ -298,6 +346,8 @@ function renderTransition() {
   els.feedback.textContent = "";
   els.feedback.classList.remove("correct", "incorrect");
 
+  // Hide AI/human choice buttons on instruction screen
+  if (els.controlsSection) els.controlsSection.classList.add("controls--no-choices");
   els.btnPrev.disabled = true;
   els.btnNext.disabled = false;
   els.btnNext.textContent = "Starta abstrakt-delen ▶";
@@ -377,34 +427,20 @@ function recordAnswer(choiceIsHuman) {
       answers[currentIndex] = { choiceIsHuman };
     }
     hasAnsweredCurrent = true;
-  } else if (mode === "reddit") {
-    lastChoiceIsHuman = choiceIsHuman;
-
-    // Show immediate feedback for reddit mode
-    const thread = THREADS[currentThreadIndex];
-    const comment = thread && thread.comments[currentCommentIndex];
-    if (comment) {
-      const isCorrect = choiceIsHuman === comment.isHuman;
-      resetChoiceStyles();
-      const selectedButton = choiceIsHuman ? els.btnHuman : els.btnAi;
-      selectedButton.classList.add(
-        isCorrect ? "selected-correct" : "selected-incorrect"
-      );
-      [els.btnHuman, els.btnAi].forEach((btn) => btn.classList.add("disabled"));
-
-      els.feedback.textContent = isCorrect
-        ? "Du har rätt!"
-        : `Inte korrekt. Kommentaren var ${comment.isHuman ? "skriven av en människa" : "skriven av en AI"}.`;
-      els.feedback.classList.remove("correct", "incorrect");
-      els.feedback.classList.add(isCorrect ? "correct" : "incorrect");
-    }
-  }
-
-  globalQuestionIndex += 1;
-  sendAnswerEvent();
-
-  if (mode === "abstracts") {
+    globalQuestionIndex += 1;
+    sendAnswerEvent();
     renderCurrent();
+    return;
+  }
+  if (mode === "reddit" && !redditShowingFeedback) {
+    if (!redditAnswers[currentThreadIndex]) {
+      redditAnswers[currentThreadIndex] = THREADS[currentThreadIndex].comments.map(() => null);
+    }
+    redditAnswers[currentThreadIndex][currentCommentIndex] = { choiceIsHuman };
+    lastChoiceIsHuman = choiceIsHuman;
+    globalQuestionIndex += 1;
+    sendAnswerEvent();
+    renderThread();
   }
 }
 
@@ -413,8 +449,32 @@ function handleNext() {
     const thread = THREADS[currentThreadIndex];
     const totalComments = thread.comments.length;
 
+    if (redditShowingFeedback) {
+      redditShowingFeedback = false;
+      if (currentThreadIndex < THREADS.length - 1) {
+        currentThreadIndex += 1;
+        currentCommentIndex = 0;
+        renderThread();
+        return;
+      }
+      mode = "transition";
+      renderTransition();
+      return;
+    }
+
     if (currentCommentIndex < totalComments - 1) {
       currentCommentIndex += 1;
+      lastChoiceIsHuman = (redditAnswers[currentThreadIndex] && redditAnswers[currentThreadIndex][currentCommentIndex])
+        ? redditAnswers[currentThreadIndex][currentCommentIndex].choiceIsHuman
+        : null;
+      renderThread();
+      return;
+    }
+
+    // On last comment: show feedback for this thread
+    const lastAnswered = redditAnswers[currentThreadIndex] && redditAnswers[currentThreadIndex][totalComments - 1];
+    if (lastAnswered) {
+      redditShowingFeedback = true;
       renderThread();
       return;
     }
@@ -426,7 +486,6 @@ function handleNext() {
       return;
     }
 
-    // Finished all reddit threads, go to transition screen
     mode = "transition";
     renderTransition();
     return;
@@ -467,11 +526,13 @@ function handleNext() {
 }
 
 function handlePrev() {
-  if (mode === "reddit") {
+  if (mode === "reddit" && !redditShowingFeedback) {
     if (currentThreadIndex === 0 && currentCommentIndex === 0) return;
 
     if (currentCommentIndex > 0) {
       currentCommentIndex -= 1;
+      const prevAns = redditAnswers[currentThreadIndex] && redditAnswers[currentThreadIndex][currentCommentIndex];
+      lastChoiceIsHuman = prevAns ? prevAns.choiceIsHuman : null;
       renderThread();
       return;
     }
@@ -480,6 +541,8 @@ function handlePrev() {
       currentThreadIndex -= 1;
       const thread = THREADS[currentThreadIndex];
       currentCommentIndex = thread.comments.length - 1;
+      const prevAns = redditAnswers[currentThreadIndex] && redditAnswers[currentThreadIndex][currentCommentIndex];
+      lastChoiceIsHuman = prevAns ? prevAns.choiceIsHuman : null;
       renderThread();
       return;
     }
@@ -501,14 +564,14 @@ function handleKeydown(event) {
     event.preventDefault();
     if (mode === "abstracts" && !answers[currentIndex]) {
       recordAnswer(true);
-    } else if (mode === "reddit") {
+    } else if (mode === "reddit" && !redditShowingFeedback) {
       recordAnswer(true);
     }
   } else if (event.key.toLowerCase() === "a") {
     event.preventDefault();
     if (mode === "abstracts" && !answers[currentIndex]) {
       recordAnswer(false);
-    } else if (mode === "reddit") {
+    } else if (mode === "reddit" && !redditShowingFeedback) {
       recordAnswer(false);
     }
   }
@@ -523,7 +586,7 @@ function init() {
   els.btnHuman.addEventListener("click", () => {
     if (mode === "abstracts" && !answers[currentIndex]) {
       recordAnswer(true);
-    } else if (mode === "reddit") {
+    } else if (mode === "reddit" && !redditShowingFeedback) {
       recordAnswer(true);
     }
   });
@@ -531,7 +594,7 @@ function init() {
   els.btnAi.addEventListener("click", () => {
     if (mode === "abstracts" && !answers[currentIndex]) {
       recordAnswer(false);
-    } else if (mode === "reddit") {
+    } else if (mode === "reddit" && !redditShowingFeedback) {
       recordAnswer(false);
     }
   });
