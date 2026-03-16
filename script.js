@@ -68,6 +68,9 @@ let hasAnsweredCurrent = false;
 let numCorrect = 0;
 let numAnswered = 0;
 
+const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwvYPJXwmkRLlQqg3CIAd_7x82G_bsqhuNCUgljyF78nvbbPONRN2RZMoPvNMhRaEhODw/exec";
+const PARTICIPANT_ID = `${Date.now()}-${Math.floor(Math.random() * 1e6)}`;
+
 const els = {
   questionLabel: document.getElementById("question-label"),
   questionTag: document.getElementById("question-tag"),
@@ -84,6 +87,46 @@ const els = {
 };
 
 const answers = new Array(effectiveQuestions.length).fill(null);
+
+async function sendAnswerEvent(questionIndex) {
+  const q = effectiveQuestions[questionIndex];
+  const answer = answers[questionIndex];
+
+  if (!q || !answer) return;
+
+  const isCorrect = answer.choiceIsHuman === q.isHuman;
+
+  const totalAnswered = answers.filter(Boolean).length;
+  const totalCorrect = answers.reduce((acc, a, idx) => {
+    if (!a) return acc;
+    return acc + (a.choiceIsHuman === effectiveQuestions[idx].isHuman ? 1 : 0);
+  }, 0);
+
+  const payload = {
+    participantId: PARTICIPANT_ID,
+    response: {
+      questionIndex,
+      questionText: q.text,
+      isHumanLabel: q.isHuman,
+      userGuessIsHuman: answer.choiceIsHuman,
+      isCorrect,
+      totalCorrectSoFar: totalCorrect,
+      totalAnsweredSoFar: totalAnswered,
+    },
+  };
+
+  try {
+    await fetch(RESULTS_ENDPOINT, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (err) {
+    console.error("Failed to send answer event", err);
+  }
+}
 
 function clampIndex(index) {
   if (index < 0) return 0;
@@ -177,6 +220,9 @@ function recordAnswer(choiceIsHuman) {
     answers[currentIndex] = { choiceIsHuman };
   }
   hasAnsweredCurrent = true;
+
+  sendAnswerEvent(currentIndex);
+
   renderQuestion();
 }
 
