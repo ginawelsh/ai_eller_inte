@@ -103,7 +103,8 @@ let currentCommentIndex = 0;
 let lastChoiceIsHuman = null;
 let globalQuestionIndex = 0; // increments for every judgment (comment or abstract)
 
-const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwvYPJXwmkRLlQqg3CIAd_7x82G_bsqhuNCUgljyF78nvbbPONRN2RZMoPvNMhRaEhODw/exec";
+
+const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbxAdn0Nk-FQVlgM8OyKfNw9HP7ugIv9xac50-duNwgcNLd6tlYN2VxY_NdwLiu0_gMb/exec";
 const PARTICIPANT_ID = `${Date.now()}-${Math.floor(Math.random() * 1e6)}`;
 
 const els = {
@@ -273,10 +274,6 @@ function renderThread() {
   els.btnNext.textContent = isLastThread && isLastComment
     ? "Nästa del ▶"
     : "Nästa kommentar ▶";
-
-  resetChoiceStyles();
-  els.feedback.textContent = "";
-  els.feedback.classList.remove("correct", "incorrect");
 }
 
 function renderTransition() {
@@ -382,12 +379,33 @@ function recordAnswer(choiceIsHuman) {
     hasAnsweredCurrent = true;
   } else if (mode === "reddit") {
     lastChoiceIsHuman = choiceIsHuman;
+
+    // Show immediate feedback for reddit mode
+    const thread = THREADS[currentThreadIndex];
+    const comment = thread && thread.comments[currentCommentIndex];
+    if (comment) {
+      const isCorrect = choiceIsHuman === comment.isHuman;
+      resetChoiceStyles();
+      const selectedButton = choiceIsHuman ? els.btnHuman : els.btnAi;
+      selectedButton.classList.add(
+        isCorrect ? "selected-correct" : "selected-incorrect"
+      );
+      [els.btnHuman, els.btnAi].forEach((btn) => btn.classList.add("disabled"));
+
+      els.feedback.textContent = isCorrect
+        ? "Du har rätt!"
+        : `Inte korrekt. Kommentaren var ${comment.isHuman ? "skriven av en människa" : "skriven av en AI"}.`;
+      els.feedback.classList.remove("correct", "incorrect");
+      els.feedback.classList.add(isCorrect ? "correct" : "incorrect");
+    }
   }
 
   globalQuestionIndex += 1;
   sendAnswerEvent();
 
-  renderCurrent();
+  if (mode === "abstracts") {
+    renderCurrent();
+  }
 }
 
 function handleNext() {
