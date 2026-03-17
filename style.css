@@ -368,6 +368,17 @@ body {
   box-shadow: 0 12px 30px rgba(55, 65, 81, 0.9);
 }
 
+.nav-button.danger {
+  border-color: rgba(248, 113, 113, 0.65);
+  color: rgba(248, 113, 113, 0.95);
+}
+
+.nav-button.danger:hover:not(:disabled) {
+  background: rgba(127, 29, 29, 0.4);
+  color: #fecaca;
+  border-color: rgba(248, 113, 113, 0.9);
+}
+
 .nav-button:hover:not(:disabled) {
   background: rgba(30, 64, 175, 0.6);
   color: #e5e7eb;

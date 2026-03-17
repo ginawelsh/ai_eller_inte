@@ -89,8 +89,8 @@ if (QUESTIONS.length > MAX_QUESTIONS) {
 
 const effectiveQuestions = QUESTIONS.slice(0, MAX_QUESTIONS);
 
-// mode can be "reddit", "transition" or "abstracts"
-let mode = "reddit";
+// mode can be "intro", "reddit", "transition", "abstracts", "outro"
+let mode = "intro";
 
 let currentIndex = 0;
 let hasAnsweredCurrent = false;
@@ -123,6 +123,7 @@ const els = {
   btnHuman: document.getElementById("btn-human"),
   btnAi: document.getElementById("btn-ai"),
   btnPrev: document.getElementById("btn-prev"),
+  btnExit: document.getElementById("btn-exit"),
   btnNext: document.getElementById("btn-next"),
   feedback: document.getElementById("feedback"),
   scoreCorrect: document.getElementById("score-correct"),
@@ -203,14 +204,48 @@ async function sendAnswerEvent() {
   }
 }
 
+function hideChoices(hide) {
+  if (!els.controlsSection) return;
+  if (hide) els.controlsSection.classList.add("controls--no-choices");
+  else els.controlsSection.classList.remove("controls--no-choices");
+}
+
 function clampIndex(index) {
   if (index < 0) return 0;
   if (index >= effectiveQuestions.length) return effectiveQuestions.length - 1;
   return index;
 }
 
+function renderIntro() {
+  hideChoices(true);
+
+  if (els.subtitle) {
+    els.subtitle.textContent = "Du kan svara på så många frågor du vill, och du kan avsluta när som helst.";
+  }
+
+  els.questionLabel.textContent = "Välkommen!";
+  els.questionTag.textContent = "Information";
+  els.questionText.textContent =
+    "Tack för att du deltar.\n\n" +
+    "Upplägg:\n" +
+    "1) Först får du bedöma kommentarer i en forumtråd (likt Reddit).\n" +
+    "2) Därefter får du bedöma abstrakt från kandidatuppsatser.\n\n" +
+    "För varje text ska du avgöra om den är skriven av en människa eller av en AI.\n\n" +
+    "Ingen identifierande information om dig sparas i resultatet (t.ex. namn, e-post eller IP-adress).\n\n" +
+    "Du kan när som helst klicka på \"Avsluta\" för att gå direkt till avslutningssidan.";
+
+  if (els.commentsContainer) els.commentsContainer.innerHTML = "";
+
+  els.progressText.textContent = "";
+  els.progressBarInner.style.width = "0%";
+
+  els.btnPrev.disabled = true;
+  els.btnNext.disabled = false;
+  els.btnNext.textContent = "Starta ▶";
+}
+
 function renderQuestion() {
-  if (els.controlsSection) els.controlsSection.classList.remove("controls--no-choices");
+  hideChoices(false);
   const q = effectiveQuestions[currentIndex];
   const total = effectiveQuestions.length;
   const questionNumber = currentIndex + 1;
@@ -236,7 +271,7 @@ function renderQuestion() {
 function renderThread() {
   const thread = THREADS[currentThreadIndex];
   if (!thread) return;
-  if (els.controlsSection) els.controlsSection.classList.remove("controls--no-choices");
+  hideChoices(false);
 
   if (!redditAnswers[currentThreadIndex]) {
     redditAnswers[currentThreadIndex] = thread.comments.map(() => null);
@@ -346,18 +381,44 @@ function renderTransition() {
   els.feedback.textContent = "";
   els.feedback.classList.remove("correct", "incorrect");
 
-  // Hide AI/human choice buttons on instruction screen
-  if (els.controlsSection) els.controlsSection.classList.add("controls--no-choices");
+  hideChoices(true);
   els.btnPrev.disabled = true;
   els.btnNext.disabled = false;
   els.btnNext.textContent = "Starta abstrakt-delen ▶";
 }
 
+function renderOutro() {
+  hideChoices(true);
+
+  if (els.subtitle) {
+    els.subtitle.textContent = "Tack för att du deltog!";
+  }
+
+  els.questionLabel.textContent = "Klart";
+  els.questionTag.textContent = "Tack";
+  els.questionText.textContent =
+    "Tack för att du har genomfört undersökningen.\n\n" +
+    "Du kan nu stänga sidan. Om du vill kan du också starta om och svara igen.";
+
+  if (els.commentsContainer) els.commentsContainer.innerHTML = "";
+
+  els.progressText.textContent = "";
+  els.progressBarInner.style.width = "0%";
+
+  els.btnPrev.disabled = true;
+  els.btnNext.disabled = false;
+  els.btnNext.textContent = "Starta om ▶";
+}
+
 function renderCurrent() {
-  if (mode === "reddit") {
+  if (mode === "intro") {
+    renderIntro();
+  } else if (mode === "reddit") {
     renderThread();
   } else if (mode === "transition") {
     renderTransition();
+  } else if (mode === "outro") {
+    renderOutro();
   } else {
     renderQuestion();
   }
@@ -445,6 +506,14 @@ function recordAnswer(choiceIsHuman) {
 }
 
 function handleNext() {
+  if (mode === "intro") {
+    mode = "reddit";
+    currentThreadIndex = 0;
+    currentCommentIndex = 0;
+    redditShowingFeedback = false;
+    renderThread();
+    return;
+  }
   if (mode === "reddit") {
     const thread = THREADS[currentThreadIndex];
     const totalComments = thread.comments.length;
@@ -504,6 +573,23 @@ function handleNext() {
     return;
   }
 
+  if (mode === "outro") {
+    // restart
+    mode = "intro";
+    currentIndex = 0;
+    currentThreadIndex = 0;
+    currentCommentIndex = 0;
+    hasAnsweredCurrent = false;
+    numCorrect = 0;
+    numAnswered = 0;
+    globalQuestionIndex = 0;
+    redditAnswers = [];
+    redditShowingFeedback = false;
+    lastChoiceIsHuman = null;
+    renderCurrent();
+    return;
+  }
+
   const lastIndex = effectiveQuestions.length - 1;
 
   if (currentIndex === lastIndex) {
@@ -514,9 +600,8 @@ function handleNext() {
             (numCorrect / Math.max(1, answers.filter(Boolean).length)) * 100
           );
 
-    alert(
-      `Ansökning klar.\n\nDu svarade ${numCorrect} av ${numAnswered} svarade frågor korrekt(${percent}%).`
-    );
+    mode = "outro";
+    renderOutro();
     return;
   }
 
@@ -578,6 +663,12 @@ function handleKeydown(event) {
 }
 
 function init() {
+  if (els.btnExit) {
+    els.btnExit.addEventListener("click", () => {
+      mode = "outro";
+      renderOutro();
+    });
+  }
   if (!els.btnHuman || !els.btnAi) {
     console.error("Required DOM elements not found. Check index.html structure.");
     return;
