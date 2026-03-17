@@ -232,6 +232,38 @@ body {
   color: #e5e7eb;
 }
 
+.outro-box {
+  padding: 12px;
+  border-radius: 14px;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px solid rgba(31, 41, 55, 0.8);
+}
+
+.outro-textarea {
+  width: 100%;
+  resize: vertical;
+  min-height: 120px;
+  border-radius: 12px;
+  padding: 10px 12px;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  background: rgba(2, 6, 23, 0.7);
+  color: var(--text);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  outline: none;
+}
+
+.outro-textarea:focus {
+  border-color: rgba(129, 140, 248, 0.85);
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.18);
+}
+
+.outro-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
 .controls {
   display: flex;
   flex-direction: column;

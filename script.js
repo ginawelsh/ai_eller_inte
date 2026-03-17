@@ -161,6 +161,35 @@ function computeTotalScoreSoFar() {
   };
 }
 
+function computeSectionScores() {
+  const abstractAnswered = answers.filter(Boolean).length;
+  const abstractCorrect = answers.reduce((acc, a, idx) => {
+    if (!a) return acc;
+    return acc + (a.choiceIsHuman === effectiveQuestions[idx].isHuman ? 1 : 0);
+  }, 0);
+
+  let commentAnswered = 0;
+  let commentCorrect = 0;
+  for (let t = 0; t < THREADS.length; t += 1) {
+    const thread = THREADS[t];
+    const threadAnswers = redditAnswers[t];
+    if (!thread || !threadAnswers) continue;
+    for (let c = 0; c < thread.comments.length; c += 1) {
+      const ans = threadAnswers[c];
+      if (!ans) continue;
+      commentAnswered += 1;
+      if (ans.choiceIsHuman === thread.comments[c].isHuman) {
+        commentCorrect += 1;
+      }
+    }
+  }
+
+  return {
+    comments: { answered: commentAnswered, correct: commentCorrect },
+    abstracts: { answered: abstractAnswered, correct: abstractCorrect },
+  };
+}
+
 async function sendAnswerEvent() {
   let q;
   let choiceIsHuman;
@@ -386,7 +415,11 @@ function renderThread() {
     }
   }
 
-  updateScoreSummary();
+  // Don't update the visible score while the user is still answering comments.
+  // Update when we reveal the thread feedback (end of the thread).
+  if (redditShowingFeedback) {
+    updateScoreSummary();
+  }
 }
 
 function renderTransition() {
@@ -415,6 +448,8 @@ function renderTransition() {
   els.btnPrev.disabled = true;
   els.btnNext.disabled = false;
   els.btnNext.textContent = "Starta abstrakt-delen ▶";
+
+  updateScoreSummary();
 }
 
 function renderOutro() {
@@ -426,11 +461,70 @@ function renderOutro() {
 
   els.questionLabel.textContent = "Klart";
   els.questionTag.textContent = "Tack";
+  const sections = computeSectionScores();
+  const totals = computeTotalScoreSoFar();
   els.questionText.textContent =
     "Tack för att du har genomfört undersökningen.\n\n" +
-    "Du kan nu stänga sidan. Om du vill kan du också starta om och svara igen.";
+    `Resultat (kommentarer): ${sections.comments.correct} / ${sections.comments.answered}\n` +
+    `Resultat (abstrakt): ${sections.abstracts.correct} / ${sections.abstracts.answered}\n` +
+    `Totalt: ${totals.correct} / ${totals.answered}\n\n` +
+    "Om du vill kan du skriva en kort motivering/reflektion nedan (frivilligt).";
 
-  if (els.commentsContainer) els.commentsContainer.innerHTML = "";
+  if (els.commentsContainer) {
+    els.commentsContainer.innerHTML = "";
+
+    const box = document.createElement("div");
+    box.className = "outro-box";
+
+    const textarea = document.createElement("textarea");
+    textarea.className = "outro-textarea";
+    textarea.placeholder = "Skriv valfri motivering här...";
+    textarea.rows = 5;
+
+    const actions = document.createElement("div");
+    actions.className = "outro-actions";
+
+    const submit = document.createElement("button");
+    submit.type = "button";
+    submit.className = "nav-button primary";
+    submit.textContent = "Skicka (frivilligt)";
+
+    submit.addEventListener("click", async () => {
+      const text = textarea.value.trim();
+      if (!text) return;
+
+      // Send as a separate row to the sheet
+      globalQuestionIndex += 1;
+      const payload = {
+        participantId: PARTICIPANT_ID,
+        response: {
+          questionIndex: globalQuestionIndex,
+          questionType: "reasoning",
+          questionText: text,
+          isHumanLabel: "",
+          userGuessIsHuman: "",
+          isCorrect: "",
+          totalCorrectSoFar: totals.correct,
+          totalAnsweredSoFar: totals.answered,
+          mode: "outro",
+        },
+      };
+
+      try {
+        await fetch(RESULTS_ENDPOINT, { method: "POST", body: JSON.stringify(payload) });
+        textarea.value = "";
+        submit.textContent = "Skickat!";
+        submit.disabled = true;
+      } catch (err) {
+        console.error("Failed to send reasoning", err);
+      }
+    });
+
+    actions.appendChild(submit);
+    box.appendChild(textarea);
+    box.appendChild(actions);
+    els.commentsContainer.appendChild(box);
+  }
 
   els.progressText.textContent = "";
   els.progressBarInner.style.width = "0%";
@@ -438,6 +532,8 @@ function renderOutro() {
   els.btnPrev.disabled = true;
   els.btnNext.disabled = false;
   els.btnNext.textContent = "Starta om ▶";
+
+  updateScoreSummary();
 }
 
 function renderCurrent() {
