@@ -45,7 +45,7 @@ body {
 
 .app-shell {
   width: 100%;
-  max-width: 1200px; /* previously 960px */
+  max-width: 1040px;
   background: linear-gradient(145deg, #0f1d5f 0%, #020617 55%, #020617 100%);
   border-radius: 28px;
   border: 1px solid rgba(148, 163, 184, 0.4);
@@ -55,6 +55,42 @@ body {
   flex-direction: column;
   gap: 16px;
   backdrop-filter: blur(22px);
+}
+
+.app-shell.theme-comments {
+  background: linear-gradient(145deg, #0b3a3d 0%, #020617 55%, #020617 100%);
+}
+
+.app-shell.theme-abstracts {
+  background: linear-gradient(145deg, #2a175f 0%, #020617 55%, #020617 100%);
+}
+
+.app-shell.theme-comments .question-tag {
+  background: radial-gradient(circle at 0 0, #0ea5e9, #14b8a6);
+  border-color: rgba(153, 246, 228, 0.55);
+}
+
+.app-shell.theme-abstracts .question-tag {
+  background: radial-gradient(circle at 0 0, #7c3aed, #a855f7);
+  border-color: rgba(216, 180, 254, 0.55);
+}
+
+.app-shell.theme-comments .progress-bar-inner {
+  background: linear-gradient(90deg, #0ea5e9, #14b8a6, #22c55e);
+  box-shadow: 0 0 14px rgba(20, 184, 166, 0.65);
+}
+
+.app-shell.theme-abstracts .progress-bar-inner {
+  background: linear-gradient(90deg, #7c3aed, #a855f7, #22d3ee);
+  box-shadow: 0 0 14px rgba(168, 85, 247, 0.65);
+}
+
+.question-title {
+  margin: 2px 0 10px;
+  font-size: 0.92rem;
+  color: rgba(229, 231, 235, 0.92);
+  font-weight: 600;
+  letter-spacing: -0.01em;
 }
 
 .app-header {

@@ -114,6 +114,7 @@ const PARTICIPANT_ID = `${Date.now()}-${Math.floor(Math.random() * 1e6)}`;
 const els = {
   questionLabel: document.getElementById("question-label"),
   questionTag: document.getElementById("question-tag"),
+  questionTitle: document.getElementById("question-title"),
   questionText: document.getElementById("question-text"),
   commentsContainer: document.getElementById("comments-container"),
   controlsSection: document.querySelector(".controls"),
@@ -275,6 +276,7 @@ function clampIndex(index) {
 
 function renderIntro() {
   hideChoices(true);
+  if (els.questionTitle) els.questionTitle.hidden = true;
 
   if (els.subtitle) {
     els.subtitle.textContent = "Du kan svara på så många frågor du vill, och du kan avsluta när som helst.";
@@ -308,6 +310,11 @@ function renderQuestion() {
   const questionNumber = currentIndex + 1;
 
   els.questionLabel.textContent = `Fråga ${questionNumber}`;
+  if (els.questionTitle) {
+    const title = q.title ? q.title.trim() : "";
+    els.questionTitle.hidden = title.length === 0;
+    els.questionTitle.textContent = title;
+  }
   els.questionText.textContent = q.text;
   els.questionTag.textContent = q.type || "Item";
 
@@ -329,6 +336,7 @@ function renderThread() {
   const thread = THREADS[currentThreadIndex];
   if (!thread) return;
   hideChoices(false);
+  if (els.questionTitle) els.questionTitle.hidden = true;
 
   if (!redditAnswers[currentThreadIndex]) {
     redditAnswers[currentThreadIndex] = thread.comments.map(() => null);
@@ -427,6 +435,7 @@ function renderTransition() {
     els.subtitle.textContent =
       "Nu börjar nästa del: bedöm uppsatsabstrakt. Läs noggrant och avgör om texten är skriven av en människa eller AI.";
   }
+  if (els.questionTitle) els.questionTitle.hidden = true;
 
   els.questionLabel.textContent = "Nästa del";
   els.questionTag.textContent = "Instruktion";
@@ -454,6 +463,7 @@ function renderTransition() {
 
 function renderOutro() {
   hideChoices(true);
+  if (els.questionTitle) els.questionTitle.hidden = true;
 
   if (els.subtitle) {
     els.subtitle.textContent = "Tack för att du deltog!";
@@ -537,6 +547,11 @@ function renderOutro() {
 }
 
 function renderCurrent() {
+  const shell = document.querySelector(".app-shell");
+  if (shell) {
+    shell.classList.toggle("theme-comments", mode === "reddit");
+    shell.classList.toggle("theme-abstracts", mode === "abstracts");
+  }
   if (mode === "intro") {
     renderIntro();
   } else if (mode === "reddit") {
@@ -760,6 +775,16 @@ function handlePrev() {
 }
 
 function handleKeydown(event) {
+  const target = event.target;
+  const tagName = target && target.tagName ? target.tagName.toLowerCase() : "";
+  const isTypingField =
+    tagName === "textarea" ||
+    tagName === "input" ||
+    (target && target.isContentEditable);
+
+  // Don't steal keystrokes while the user is typing
+  if (isTypingField) return;
+
   if (event.key === "ArrowLeft") {
     event.preventDefault();
     if (!els.btnPrev.disabled) handlePrev();
