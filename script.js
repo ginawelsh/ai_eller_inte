@@ -132,6 +132,35 @@ const els = {
 
 const answers = new Array(effectiveQuestions.length).fill(null);
 
+function computeTotalScoreSoFar() {
+  const abstractAnswered = answers.filter(Boolean).length;
+  const abstractCorrect = answers.reduce((acc, a, idx) => {
+    if (!a) return acc;
+    return acc + (a.choiceIsHuman === effectiveQuestions[idx].isHuman ? 1 : 0);
+  }, 0);
+
+  let commentAnswered = 0;
+  let commentCorrect = 0;
+  for (let t = 0; t < THREADS.length; t += 1) {
+    const thread = THREADS[t];
+    const threadAnswers = redditAnswers[t];
+    if (!thread || !threadAnswers) continue;
+    for (let c = 0; c < thread.comments.length; c += 1) {
+      const ans = threadAnswers[c];
+      if (!ans) continue;
+      commentAnswered += 1;
+      if (ans.choiceIsHuman === thread.comments[c].isHuman) {
+        commentCorrect += 1;
+      }
+    }
+  }
+
+  return {
+    answered: abstractAnswered + commentAnswered,
+    correct: abstractCorrect + commentCorrect,
+  };
+}
+
 async function sendAnswerEvent() {
   let q;
   let choiceIsHuman;
@@ -146,17 +175,13 @@ async function sendAnswerEvent() {
 
     const isCorrect = choiceIsHuman === q.isHuman;
 
-    const totalAnswered = answers.filter(Boolean).length;
-    const totalCorrect = answers.reduce((acc, a, idx) => {
-      if (!a) return acc;
-      return acc + (a.choiceIsHuman === effectiveQuestions[idx].isHuman ? 1 : 0);
-    }, 0);
+    const totals = computeTotalScoreSoFar();
 
     extra = {
       mode: "abstracts",
       isCorrect,
-      totalCorrectSoFar: totalCorrect,
-      totalAnsweredSoFar: totalAnswered,
+      totalCorrectSoFar: totals.correct,
+      totalAnsweredSoFar: totals.answered,
     };
     questionType = "abstract";
   } else if (mode === "reddit") {
@@ -168,6 +193,7 @@ async function sendAnswerEvent() {
     choiceIsHuman = stored.choiceIsHuman;
 
     const isCorrect = choiceIsHuman === q.isHuman;
+    const totals = computeTotalScoreSoFar();
 
     extra = {
       mode: "reddit",
@@ -175,6 +201,8 @@ async function sendAnswerEvent() {
       commentIndex: currentCommentIndex,
       threadQuestionText: thread.questionText,
       isCorrect,
+      totalCorrectSoFar: totals.correct,
+      totalAnsweredSoFar: totals.answered,
     };
     questionType = "comment";
   } else {
@@ -357,6 +385,8 @@ function renderThread() {
       (choice ? els.btnAi : els.btnHuman).classList.add("disabled");
     }
   }
+
+  updateScoreSummary();
 }
 
 function renderTransition() {
@@ -466,14 +496,9 @@ function renderFeedback() {
 }
 
 function updateScoreSummary() {
-  const totalAnswered = answers.filter(Boolean).length;
-  const totalCorrect = answers.reduce((acc, a, idx) => {
-    if (!a) return acc;
-    return acc + (a.choiceIsHuman === effectiveQuestions[idx].isHuman ? 1 : 0);
-  }, 0);
-
-  numAnswered = totalAnswered;
-  numCorrect = totalCorrect;
+  const totals = computeTotalScoreSoFar();
+  numAnswered = totals.answered;
+  numCorrect = totals.correct;
 
   els.scoreCorrect.textContent = numCorrect.toString();
   els.scoreTotal.textContent = numAnswered.toString();
