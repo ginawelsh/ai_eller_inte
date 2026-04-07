@@ -126,7 +126,7 @@ const THREADS = [
     questionText: "Snus marknadsförs i USA – kommer det funka den här gången?",
     comments: [
       {
-        text: "Det blir intressant att se! Amerikanerna är ju lite skeptiska mot tobaksprodukter, men snus har ju ändå sin charm. Kanske får det fäste den här gången? 🧐",
+        text: "Det blir intressant att se! Amerikanerna är ju lite skeptiska mot tobaksprodukter, men snus har ju ändå sin charm. Kanske får det fäste den här gången?",
         isHuman: false,
       },
       {
@@ -138,7 +138,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Hmm, svårt att säga! Snus har ju sin charm, men amerikanerna kanske inte är lika snabba på att hoppa på trenden. Vi får se! 🍂😄",
+        text: "Hmm, svårt att säga! Snus har ju sin charm, men amerikanerna kanske inte är lika snabba på att hoppa på trenden. Vi får se!",
         isHuman: false,
       },
     ],
@@ -174,7 +174,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Självklart! Kolla in Håkan Hellström eller Veronica Maggio, de är grymma! 🎶",
+        text: "Självklart! Kolla in Håkan Hellström eller Veronica Maggio, de är grymma!",
         isHuman: false,
       },
       {
@@ -218,7 +218,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Absolut! Kolla in Akademibokhandeln vid Nordstan, de har en skön atmosfär och café också! Perfekt för en lugn stund med en bok och kaffe. 😊📚",
+        text: "Absolut! Kolla in Akademibokhandeln vid Nordstan, de har en skön atmosfär och café också! Perfekt för en lugn stund med en bok och kaffe.",
         isHuman: false,
       },
       {
@@ -226,7 +226,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Kolla in Linnébokhandeln! Mysig atmosfär och de har bra kaffe också. Perfekt för att slappa och bläddra. ☕📚",
+        text: "Kolla in Linnébokhandeln! Mysig atmosfär och de har bra kaffe också. Perfekt för att slappa och bläddra.",
         isHuman: false,
       },
     ],
@@ -310,11 +310,11 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Haha, ja, det kändes som en bra idé! Kanske dags att någon tar tag i det och gör det till en grej igen? Skulle vara kul att träffas! 😄",
+        text: "Haha, ja, det kändes som en bra idé! Kanske dags att någon tar tag i det och gör det till en grej igen? Skulle vara kul att träffas!",
         isHuman: false,
       },
       {
-        text: "Ja, jag minns att det brukade vara kul! Kanske dags för någon att ta initiativet igen? 😄✌️",
+        text: "Ja, jag minns att det brukade vara kul! Kanske dags för någon att ta initiativet igen?",
         isHuman: false,
       },
     ],
