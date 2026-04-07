@@ -99,23 +99,222 @@ const QUESTIONS = [
 // Thread-style Reddit-like discussions
 // Each thread has a question and a list of comments
 const THREADS = [
+  // --- Thread 1: Lumpen (9lfs5) ---
   {
-    questionText: "Vad tycker ni om AI-genererade uppsatser i akademiska sammanhang?",
+    questionText: "Lumpen – har ni gjort den? Jag tycker att vi måste blåsa lite liv i denna reddit, så jag föreslår att vi börjar snacka om det. Gjorde själv inte militärtjänst, var upptagen med andra dumma saker vid den åldern. Dock ångrar jag det väldigt mycket, tror att den hade varit en upplevelse. Åsikter/erfarenheter?",
     comments: [
       {
-        text: "Jag tycker det kan vara ett bra stöd, men studenten måste fortfarande stå för analysen.",
-        isHuman: true,
-      },
-      {
-        text: "Large language models enable unprecedented efficiency in knowledge production and assessment workflows.",
+        text: "Jag gjorde lumpen och det var verkligen en blandning av svett och skratt! Tycker nog att det gav mig mycket, både disciplin och roliga minnen. Men jag förstår att det inte är för alla. Kul att se fler som vill snacka om det! 😄",
         isHuman: false,
       },
       {
-        text: "Som handledare märker jag snabbt när en text inte låter som studenten själv.",
+        text: "Jag gjorde inte lumpen, och jag ångrar det inte. Inledningsvis blev jag placerad som civilpliktig i Porjus vattenkraftverk, men min tjänst drogs in. Valde att plugga, resa och jobba det året istället. Bra med lumpen: självdisciplin, ledaregenskaper, möte med folk från hela landet. Dåligt: tar död på kreativitet, och ett år av ditt liv går mer eller mindre till spillo.",
         isHuman: true,
       },
       {
-        text: "It is empirically demonstrated that generative models always produce higher quality text than humans.",
+        text: "Jag gjorde lumpen och det var verkligen en blandning av upplevelser! Lärde mig mycket om mig själv och fick några grymma kompisar på köpet. Visst var det tufft ibland, men det är väl det som gör det minnesvärt, eller hur?",
+        isHuman: false,
+      },
+      {
+        text: "Känns ibland som jag är en av de sista som hunnit med tre repövningar utöver originallumpen vid 42 års ålder. Fick ett sorgkantat brev från ÖB för ett par år sedan där han beklagade att det inte fanns någon plats för mig längre. Måste erkänna att jag hade görskoj 80% av tjänstgöringen faktiskt.",
+        isHuman: true,
+      },
+    ],
+  },
+  // --- Thread 2: Snus i USA (9n218) ---
+  {
+    questionText: "Snus marknadsförs i USA – kommer det funka den här gången?",
+    comments: [
+      {
+        text: "Det blir intressant att se! Amerikanerna är ju lite skeptiska mot tobaksprodukter, men snus har ju ändå sin charm. Kanske får det fäste den här gången? 🧐",
+        isHuman: false,
+      },
+      {
+        text: "Försökte snusa lite Copenhagen och Camel snus när jag bodde i Seattle, men det är verkligen inte samma grej som hemma. Påsarna är alldeles för stora och materialet är lite off också. Tror för övrigt inte att konceptet är så slagkraftigt när det inte är en del av kulturen som det är i Sverige.",
+        isHuman: true,
+      },
+      {
+        text: "Kommenterade lite med en kille om just Camel snus, han var inte så förtjust. Men varför inte testa med tanke på alla lagar mot rökning på offentliga platser?",
+        isHuman: true,
+      },
+      {
+        text: "Hmm, svårt att säga! Snus har ju sin charm, men amerikanerna kanske inte är lika snabba på att hoppa på trenden. Vi får se! 🍂😄",
+        isHuman: false,
+      },
+    ],
+  },
+  // --- Thread 3: Sverige jämställt? (b4cce) ---
+  {
+    questionText: "Är Sverige mer jämställt? Som svensk kvinna känner jag mig ofta förvirrad på reddit. T.ex. att män ska ta initiativ i dating – min erfarenhet är att tjejer tar initiativ lika mycket som killar. Känner ni igen er i de könsroller som ofta beskrivs på reddit?",
+    comments: [
+      {
+        text: "Jag håller med, det känns som att många av de här könsrollerna är aningen föråldrade. Här i Sverige är det mycket mer vanligt att vi båda tar initiativ i olika sammanhang, och det där med dateringen är verkligen inte så stel, åtminstone i min bekantskapskrets.",
+        isHuman: false,
+      },
+      {
+        text: "Reddit är från Amerika och tjejer där är ingenting som svenska tjejer, och det gör mig ledsen.",
+        isHuman: true,
+      },
+      {
+        text: "Jag förstår vad du menar! Här hemma känns det som att vi har kommit långt i jämställdheten, och många av de gamla könsrollerna stämmer inte längre. Känns som att vi är ganska öppna och att det är mer fritt fram för både tjejer och killar att ta initiativ nu för tiden.",
+        isHuman: false,
+      },
+      {
+        text: "Hellre instängda än diskriminerande.",
+        isHuman: true,
+      },
+    ],
+  },
+  // --- Thread 4: Svensk musik (cnl4a) ---
+  {
+    questionText: "Kan någon rekommendera bra svensk musik sjungen på svenska?",
+    comments: [
+      {
+        text: "Florence Valentin och Movits, sjukt bra!",
+        isHuman: true,
+      },
+      {
+        text: "Självklart! Kolla in Håkan Hellström eller Veronica Maggio, de är grymma! 🎶",
+        isHuman: false,
+      },
+      {
+        text: "Thåström, Ebba Grön, Tommy Körberg. Finns massor :)",
+        isHuman: true,
+      },
+      {
+        text: "Kolla in Håkan Hellström, han har grymma texter och härlig musik! 🎶",
+        isHuman: false,
+      },
+    ],
+  },
+  // --- Thread 5: IKEA kundservice (cns6g) ---
+  {
+    questionText: "Har IKEA dålig kundservice i Sverige också? Eller bara i Amerika? Mycket dålig erfarenhet. Hemskt kundservice.",
+    comments: [
+      {
+        text: "Jag har också haft blandade erfarenheter, ibland funkar det bra och ibland är det rena katastrofen. Typisk IKEA-upplevelse ändå! 😅",
+        isHuman: false,
+      },
+      {
+        text: "Ajdå, där hade ni otur. Jag tänker inte försvara IKEA det minsta men ditt språk är lite förvirrande. Är det ok om jag korrigerar lite? \"Den största delen till vår soffa var defekt. De ville inte skicka en ny del, utan vi fick köra långt. Vi reklamerade soffan istället. Personalen var mycket oförskämd och ville inte hjälpa oss.\" Har jag förstått dig rätt? :)",
+        isHuman: true,
+      },
+      {
+        text: "Tyvärr verkar det vara lite av en dragning överallt, jag har också haft sådana upplevelser. Hoppas de kan förbättra sig snart!",
+        isHuman: false,
+      },
+      {
+        text: "Ledsen för det! Jag lär mig svenska och är inte så bra ännu. Ja, du har historien korrekt. :D",
+        isHuman: true,
+      },
+    ],
+  },
+  // --- Thread 6: Bokhandlar i Göteborg (cryrl) ---
+  {
+    questionText: "Bokhandlar i Göteborg? Kan någon rekommendera en bra bokhandel med läsvänlig atmosfär? Letar efter någonstans att spendera några timmar i helgen över en kopp kaffe, utan att vara tvungen att köpa.",
+    comments: [
+      {
+        text: "Det finns tydligen en sån i Götet också, så det är ju ett alternativ. Men Pocket med mera lät ju bättre.",
+        isHuman: true,
+      },
+      {
+        text: "Absolut! Kolla in Akademibokhandeln vid Nordstan, de har en skön atmosfär och café också! Perfekt för en lugn stund med en bok och kaffe. 😊📚",
+        isHuman: false,
+      },
+      {
+        text: "Båda uttrycken är väl accepterade numera, men att boklådor inte skulle vara ett aktuellt uttryck kan jag verkligen inte hålla med om. Vi skulle kunna skicka en fråga till Språket på P1, de gillar att reda ut sånt här.",
+        isHuman: true,
+      },
+      {
+        text: "Kolla in Linnébokhandeln! Mysig atmosfär och de har bra kaffe också. Perfekt för att slappa och bläddra. ☕📚",
+        isHuman: false,
+      },
+    ],
+  },
+  // --- Thread 7: Personförlusten i valet (dgab6) ---
+  {
+    questionText: "Största personförlusten i valet?",
+    comments: [
+      {
+        text: "Svårt att säga, men känns som att många saknar förtroendet för partierna nu. Kanske dags för en nystart!",
+        isHuman: false,
+      },
+      {
+        text: "Alice Åström (V) ryker visst också. Jag kan inte säga att jag gillar något av blocken eller partierna, men hon var riktigt bra i FRA-debatten; det här lär vara en förlust.",
+        isHuman: true,
+      },
+      {
+        text: "Karl Sigfrid från M försvinner också. Två av de få borgerliga röster som hade något vettigt att säga i integritetsfrågor försvinner. Förskräckligt.",
+        isHuman: true,
+      },
+      {
+        text: "För mig är det nog alltid tufft att se bra politiker försvinna, men kanske särskilt när det handlar om såna som verkligen ville göra skillnad. Trist!",
+        isHuman: false,
+      },
+    ],
+  },
+  // --- Thread 8: Sverigedemokraterna (dgtri) ---
+  {
+    questionText: "Vad är egentligen Sverigedemokraterna? En slaggprodukt från marknadsliberalismen – likt Danskt Folkeparti, franska Front National eller holländska Frihetspartiet?",
+    comments: [
+      {
+        text: "De första två frågorna där kommer vi inte bli överens om. Frågan \"varför just nu\" är såklart intressant men det kommer bli en lååång diskussion, hitta en bra utgångspunkt och lägg upp den separat så ska jag vara med och klura på det.",
+        isHuman: true,
+      },
+      {
+        text: "Sverigedemokraterna? En blandning av rädsla och populism, typ. 🤷‍♂️",
+        isHuman: false,
+      },
+      {
+        text: "Fan, efter bara en timme ångrar jag redan att jag drog till med ett kraftuttryck. Men du skulle också blivit förbannad om du känt dig beskylld för att gilla SD pga vilket block du röstar på. Förlåt. Bemöt resten så pratar vi vidare!",
+        isHuman: true,
+      },
+      {
+        text: "Sverigedemokraterna – en blandning av rädslor och populism, som många liknande partier i Europa. I slutändan handlar det om brist på trygghet och en längtan efter enklare svar.",
+        isHuman: false,
+      },
+    ],
+  },
+  // --- Thread 9: SD in i riksdagen (dg2sv) ---
+  {
+    questionText: "SD in i riksdagen. Tankar?",
+    comments: [
+      {
+        text: "Var lite av en chock, men det känns som att det är mycket som behöver diskuteras nu framöver. Spännande tider, för både politik och debatt!",
+        isHuman: false,
+      },
+      {
+        text: "Inte oväntat egentligen. Det var väl bara en tidsfråga med tanke på hur opinionsläget sett ut de senaste åren.",
+        isHuman: true,
+      },
+      {
+        text: "Det är ju en intressant tid vi lever i. Hoppas bara att samtalet kan hållas öppet och respektfullt, oavsett åsikter.",
+        isHuman: false,
+      },
+      {
+        text: "Det känns som en intressant tid framöver. Många åsikter på bordet! Hoppas de kan fokusera på det viktiga istället för att bara skriva debattinlägg.",
+        isHuman: false,
+      },
+    ],
+  },
+  // --- Thread 10: Reddit Meetup Day (dg3ms) ---
+  {
+    questionText: "Vad hände med Reddit Meetup Day? Det var ju under vår nationaldag har jag för mig. Tycker att det borde styras upp ifall det inte blev något.",
+    comments: [
+      {
+        text: "Haha, ja det känns som att Reddit Meetup Day har blivit lite av en bortglömd tradition! Kanske dags att väcka liv i den igen? Vore kul att träffa alla! :D",
+        isHuman: false,
+      },
+      {
+        text: "Vi försökte ordna en i Göteborg förra sommaren men fick inte ihop folk. Kanske Stockholm är lättare att samla folk i?",
+        isHuman: true,
+      },
+      {
+        text: "Haha, ja, det kändes som en bra idé! Kanske dags att någon tar tag i det och gör det till en grej igen? Skulle vara kul att träffas! 😄",
+        isHuman: false,
+      },
+      {
+        text: "Ja, jag minns att det brukade vara kul! Kanske dags för någon att ta initiativet igen? 😄✌️",
         isHuman: false,
       },
     ],
