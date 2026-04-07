@@ -581,7 +581,9 @@ function renderQuestion() {
 function renderThread() {
   const thread = THREADS[currentThreadIndex];
   if (!thread) return;
-  hideChoices(false);
+
+  // All interaction is via per-comment inline buttons — hide global choice buttons
+  hideChoices(true);
   if (els.questionTitle) els.questionTitle.hidden = true;
 
   if (!redditAnswers[currentThreadIndex]) {
@@ -591,10 +593,10 @@ function renderThread() {
 
   if (els.subtitle) {
     els.subtitle.textContent =
-      "Läs kommentaren i tråden och avgör om den är skriven av en människa eller AI.";
+      "Läs kommentarerna och avgör för varje om den är skriven av en människa eller AI.";
   }
 
-  els.questionLabel.textContent = `Tråd ${currentThreadIndex + 1}`;
+  els.questionLabel.textContent = `Tråd ${currentThreadIndex + 1} av ${THREADS.length}`;
   els.questionTag.textContent = "Kommentars-tråd";
   els.questionText.textContent = thread.questionText;
 
@@ -602,27 +604,29 @@ function renderThread() {
     els.commentsContainer.innerHTML = "";
 
     thread.comments.forEach((comment, idx) => {
+      const ans = threadAnswers[idx];
       const row = document.createElement("div");
       let rowClass = "comment-row";
-      if (redditShowingFeedback) {
-        const ans = threadAnswers[idx];
-        const isCorrect = ans && ans.choiceIsHuman === comment.isHuman;
+
+      if (redditShowingFeedback && ans) {
+        const isCorrect = ans.choiceIsHuman === comment.isHuman;
         rowClass += isCorrect ? " comment-row--correct" : " comment-row--incorrect";
-      } else if (idx === currentCommentIndex) {
-        rowClass += " comment-row--active";
+      } else if (!redditShowingFeedback && ans !== null) {
+        rowClass += ans.choiceIsHuman ? " comment-row--picked-human" : " comment-row--picked-ai";
       }
 
       row.className = rowClass;
 
       const meta = document.createElement("div");
       meta.className = "comment-meta";
-      meta.textContent = `Kommentar ${idx + 1}`;
-      if (redditShowingFeedback && threadAnswers[idx]) {
-        const ans = threadAnswers[idx];
+
+      if (redditShowingFeedback && ans) {
         const isCorrect = ans.choiceIsHuman === comment.isHuman;
         const guess = ans.choiceIsHuman ? "Människa" : "AI";
         const actual = comment.isHuman ? "Människa" : "AI";
-        meta.textContent += ` · Din bedömning: ${guess}. ${isCorrect ? "Rätt!" : "Rätt svar: " + actual + "."}`;
+        meta.textContent = `Kommentar ${idx + 1} · Din bedömning: ${guess}. ${isCorrect ? "✓ Rätt!" : "✗ Rätt svar: " + actual + "."}`;
+      } else {
+        meta.textContent = `Kommentar ${idx + 1}`;
       }
       row.appendChild(meta);
 
@@ -630,50 +634,64 @@ function renderThread() {
       body.className = "comment-body";
       body.textContent = comment.text;
       row.appendChild(body);
+
+      // Inline choice buttons — shown while answering, hidden after submit
+      if (!redditShowingFeedback) {
+        const btnRow = document.createElement("div");
+        btnRow.className = "comment-choice-buttons";
+
+        const btnH = document.createElement("button");
+        btnH.type = "button";
+        btnH.className = "comment-choice-btn comment-choice-human" + (ans && ans.choiceIsHuman === true ? " selected" : "");
+        btnH.textContent = 'Människa';
+        btnH.addEventListener("click", () => inlineRecordAnswer(idx, true));
+
+        const btnA = document.createElement("button");
+        btnA.type = "button";
+        btnA.className = "comment-choice-btn comment-choice-ai" + (ans && ans.choiceIsHuman === false ? " selected" : "");
+        btnA.textContent = 'AI';
+        btnA.addEventListener("click", () => inlineRecordAnswer(idx, false));
+
+        btnRow.appendChild(btnH);
+        btnRow.appendChild(btnA);
+        row.appendChild(btnRow);
+      }
+
       els.commentsContainer.appendChild(row);
     });
   }
 
-  const totalComments = thread.comments.length;
-  const commentNumber = currentCommentIndex + 1;
-  els.progressText.textContent = redditShowingFeedback
-    ? `Resultat · Tråd ${currentThreadIndex + 1}`
-    : `Kommentar ${commentNumber} av ${totalComments}`;
-  const progressRatio = totalComments > 0 ? (redditShowingFeedback ? 1 : commentNumber / totalComments) : 0;
-  els.progressBarInner.style.width = `${Math.round(progressRatio * 100)}%`;
+  const answeredCount = threadAnswers.filter(a => a !== null).length;
+  const allAnswered = answeredCount === thread.comments.length;
 
   if (redditShowingFeedback) {
-    els.btnPrev.disabled = false;
+    els.progressText.textContent = `Resultat · Tråd ${currentThreadIndex + 1} av ${THREADS.length}`;
+    els.progressBarInner.style.width = "100%";
+    els.btnPrev.disabled = currentThreadIndex === 0;
     els.btnNext.disabled = false;
     els.btnNext.textContent = currentThreadIndex === THREADS.length - 1 ? "Nästa del ▶" : "Nästa tråd ▶";
-    resetChoiceStyles();
     els.feedback.textContent = "";
     els.feedback.classList.remove("correct", "incorrect");
-    els.btnHuman.classList.add("disabled");
-    els.btnAi.classList.add("disabled");
-  } else {
-    const currentAnswered = !!threadAnswers[currentCommentIndex];
-    els.btnPrev.disabled = currentThreadIndex === 0 && currentCommentIndex === 0;
-    els.btnNext.disabled = !currentAnswered;
-    const isLastThread = currentThreadIndex === THREADS.length - 1;
-    const isLastComment = commentNumber === totalComments;
-    els.btnNext.textContent = isLastThread && isLastComment ? "Nästa del ▶" : "Nästa kommentar ▶";
-    resetChoiceStyles();
-    els.feedback.textContent = "";
-    els.feedback.classList.remove("correct", "incorrect");
-    if (currentAnswered) {
-      const choice = threadAnswers[currentCommentIndex].choiceIsHuman;
-      const btn = choice ? els.btnHuman : els.btnAi;
-      btn.classList.add("selected", "disabled");
-      (choice ? els.btnAi : els.btnHuman).classList.add("disabled");
-    }
-  }
-
-  // Don't update the visible score while the user is still answering comments.
-  // Update when we reveal the thread feedback (end of the thread).
-  if (redditShowingFeedback) {
     updateScoreSummary();
+  } else {
+    els.progressText.textContent = `Tråd ${currentThreadIndex + 1} av ${THREADS.length} · ${answeredCount}/${thread.comments.length} bedömda`;
+    const progressRatio = thread.comments.length > 0 ? answeredCount / thread.comments.length : 0;
+    els.progressBarInner.style.width = `${Math.round(progressRatio * 100)}%`;
+    els.btnPrev.disabled = currentThreadIndex === 0;
+    els.btnNext.disabled = !allAnswered;
+    els.btnNext.textContent = "Skicka svar ▶";
+    els.feedback.textContent = "";
+    els.feedback.classList.remove("correct", "incorrect");
   }
+}
+
+function inlineRecordAnswer(commentIdx, choiceIsHuman) {
+  if (redditShowingFeedback) return;
+  if (!redditAnswers[currentThreadIndex]) {
+    redditAnswers[currentThreadIndex] = THREADS[currentThreadIndex].comments.map(() => null);
+  }
+  redditAnswers[currentThreadIndex][commentIdx] = { choiceIsHuman };
+  renderThread();
 }
 
 function renderTransition() {
@@ -897,14 +915,10 @@ function handleNext() {
     return;
   }
   if (mode === "reddit") {
-    const thread = THREADS[currentThreadIndex];
-    const totalComments = thread.comments.length;
-
     if (redditShowingFeedback) {
       redditShowingFeedback = false;
       if (currentThreadIndex < THREADS.length - 1) {
         currentThreadIndex += 1;
-        currentCommentIndex = 0;
         renderThread();
         return;
       }
@@ -913,32 +927,19 @@ function handleNext() {
       return;
     }
 
-    if (currentCommentIndex < totalComments - 1) {
-      currentCommentIndex += 1;
-      lastChoiceIsHuman = (redditAnswers[currentThreadIndex] && redditAnswers[currentThreadIndex][currentCommentIndex])
-        ? redditAnswers[currentThreadIndex][currentCommentIndex].choiceIsHuman
-        : null;
-      renderThread();
-      return;
+    // Submit all answers for this thread at once, then show feedback
+    const thread = THREADS[currentThreadIndex];
+    const threadAnswers = redditAnswers[currentThreadIndex] || [];
+    for (let c = 0; c < thread.comments.length; c++) {
+      if (threadAnswers[c]) {
+        globalQuestionIndex += 1;
+        currentCommentIndex = c;
+        lastChoiceIsHuman = threadAnswers[c].choiceIsHuman;
+        sendAnswerEvent();
+      }
     }
-
-    // On last comment: show feedback for this thread
-    const lastAnswered = redditAnswers[currentThreadIndex] && redditAnswers[currentThreadIndex][totalComments - 1];
-    if (lastAnswered) {
-      redditShowingFeedback = true;
-      renderThread();
-      return;
-    }
-
-    if (currentThreadIndex < THREADS.length - 1) {
-      currentThreadIndex += 1;
-      currentCommentIndex = 0;
-      renderThread();
-      return;
-    }
-
-    mode = "transition";
-    renderTransition();
+    redditShowingFeedback = true;
+    renderThread();
     return;
   }
 
@@ -995,44 +996,21 @@ function handleNext() {
 function handlePrev() {
   if (mode === "reddit") {
     if (redditShowingFeedback) {
-      // Dismiss feedback and return to the last comment of this thread
+      // Dismiss feedback, stay on current thread so user can review before moving on
       redditShowingFeedback = false;
-      const thread = THREADS[currentThreadIndex];
-      currentCommentIndex = thread.comments.length - 1;
-      const prevAns = redditAnswers[currentThreadIndex] && redditAnswers[currentThreadIndex][currentCommentIndex];
-      lastChoiceIsHuman = prevAns ? prevAns.choiceIsHuman : null;
-      renderThread();
-      return;
-    }
-
-    if (currentThreadIndex === 0 && currentCommentIndex === 0) return;
-
-    if (currentCommentIndex > 0) {
-      currentCommentIndex -= 1;
-      const prevAns = redditAnswers[currentThreadIndex] && redditAnswers[currentThreadIndex][currentCommentIndex];
-      lastChoiceIsHuman = prevAns ? prevAns.choiceIsHuman : null;
       renderThread();
       return;
     }
 
     if (currentThreadIndex > 0) {
       currentThreadIndex -= 1;
-      const thread = THREADS[currentThreadIndex];
-      currentCommentIndex = thread.comments.length - 1;
-      const prevAns = redditAnswers[currentThreadIndex] && redditAnswers[currentThreadIndex][currentCommentIndex];
-      lastChoiceIsHuman = prevAns ? prevAns.choiceIsHuman : null;
       renderThread();
       return;
     }
   } else if (mode === "transition") {
-    // Go back to the last comment of the last reddit thread
     mode = "reddit";
     currentThreadIndex = THREADS.length - 1;
-    const thread = THREADS[currentThreadIndex];
-    currentCommentIndex = thread.comments.length - 1;
-    const prevAns = redditAnswers[currentThreadIndex] && redditAnswers[currentThreadIndex][currentCommentIndex];
-    lastChoiceIsHuman = prevAns ? prevAns.choiceIsHuman : null;
-    redditShowingFeedback = false;
+    redditShowingFeedback = true; // show the feedback of the last thread
     renderThread();
   } else if (mode === "abstracts") {
     if (currentIndex === 0) {
@@ -1074,14 +1052,10 @@ function handleKeydown(event) {
     event.preventDefault();
     if (mode === "abstracts" && !answers[currentIndex]) {
       recordAnswer(true);
-    } else if (mode === "reddit" && !redditShowingFeedback) {
-      recordAnswer(true);
     }
   } else if (event.key.toLowerCase() === "a") {
     event.preventDefault();
     if (mode === "abstracts" && !answers[currentIndex]) {
-      recordAnswer(false);
-    } else if (mode === "reddit" && !redditShowingFeedback) {
       recordAnswer(false);
     }
   }

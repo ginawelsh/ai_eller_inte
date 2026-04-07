@@ -22,11 +22,19 @@
   box-sizing: border-box;
 }
 
+html {
+  /* Prevent the page from ever being narrower than 320px —
+     below this, a phone is too small to usefully render anything */
+  min-width: 320px;
+}
+
 html,
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  /* Let the body grow taller than the viewport so the shell can scroll on
+     very short windows instead of collapsing */
+  min-height: 100%;
 }
 
 body {
@@ -35,22 +43,24 @@ body {
   background: var(--bg);
   color: var(--text);
   display: flex;
-  align-items: center;
+  align-items: flex-start;   /* top-align so the shell isn't squashed on short viewports */
   justify-content: center;
-  padding: 16px;
+  padding: clamp(8px, 3vw, 20px);
 }
 
 .app-shell {
   width: 100%;
   max-width: 1040px;
+  /* Never shrink below a width where text becomes unreadable */
+  min-width: 0;
   background: var(--bg-elevated);
-  border-radius: 28px;
+  border-radius: clamp(16px, 3vw, 28px);
   border: 1px solid rgba(249, 115, 22, 0.25);
   box-shadow: var(--shadow-soft);
-  padding: 22px 24px 20px;
+  padding: clamp(14px, 3vw, 22px) clamp(14px, 3.5vw, 24px) clamp(12px, 2.5vw, 20px);
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: clamp(10px, 2vw, 16px);
 }
 
 .app-shell.theme-comments {
@@ -81,51 +91,50 @@ body {
   box-shadow: 0 0 10px rgba(194, 65, 12, 0.4);
 }
 
-.question-title {
-  margin: 2px 0 10px;
-  font-size: 0.92rem;
-  color: var(--text);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
+/* ── Header ─────────────────────────────────────────────── */
 
 .app-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: clamp(8px, 2vw, 14px);
   text-align: center;
 }
 
 .app-title-group {
   max-width: 540px;
+  width: 100%;
 }
 
 .app-title {
   margin: 0 0 4px;
-  font-size: 1.65rem;
+  font-size: clamp(1.2rem, 4vw, 1.65rem);
   letter-spacing: -0.03em;
   color: var(--accent);
 }
 
 .app-subtitle {
   margin: 0;
-  font-size: 0.92rem;
+  font-size: clamp(0.8rem, 2.2vw, 0.92rem);
   color: var(--text-muted);
 }
+
+/* ── Progress bar ───────────────────────────────────────── */
 
 .progress-container {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
   max-width: 420px;
 }
 
 .progress-text {
-  font-size: 0.85rem;
+  font-size: clamp(0.75rem, 2vw, 0.85rem);
   color: var(--text-muted);
   text-align: center;
+  /* Allow long progress strings to wrap rather than overflow */
+  overflow-wrap: break-word;
 }
 
 .progress-bar-outer {
@@ -146,57 +155,75 @@ body {
   transition: width 180ms ease-out;
 }
 
+/* ── Main layout ────────────────────────────────────────── */
+
 .app-main {
   display: grid;
-  grid-template-columns: minmax(0, 3fr);
-  gap: 18px;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(12px, 2vw, 18px);
 }
+
+/* ── Question card ──────────────────────────────────────── */
 
 .question-card {
   background: #fff7f0;
   border-radius: var(--radius-lg);
-  padding: 18px 18px 16px;
+  padding: clamp(12px, 2.5vw, 18px) clamp(12px, 2.5vw, 18px) clamp(10px, 2vw, 16px);
   border: 1px solid rgba(249, 115, 22, 0.2);
   box-shadow: 0 2px 12px rgba(249, 115, 22, 0.07);
+  /* Prevent the card from ever having zero height */
+  min-height: 0;
 }
 
 .question-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
+  gap: 8px;
   margin-bottom: 10px;
+  flex-wrap: wrap;
 }
 
 .question-header h2 {
   margin: 0;
-  font-size: 1.05rem;
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
   color: var(--text);
+  min-width: 0;
 }
 
 .question-tag {
-  font-size: 0.75rem;
+  font-size: clamp(0.68rem, 1.8vw, 0.75rem);
   color: #ffffff;
   background: var(--accent);
-  padding: 4px 10px;
+  padding: 3px 9px;
   border-radius: 999px;
   box-shadow: var(--shadow-chip);
   border: 1px solid rgba(249, 115, 22, 0.4);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.question-title {
+  margin: 2px 0 10px;
+  font-size: clamp(0.82rem, 2.2vw, 0.92rem);
+  color: var(--text);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  overflow-wrap: break-word;
 }
 
 .question-text {
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2.3vw, 0.95rem);
   line-height: 1.6;
   color: var(--text);
-  max-height: 220px;
+  /* Fluid max-height: tall on large screens, shorter on small ones */
+  max-height: clamp(140px, 30vh, 220px);
   overflow-y: auto;
   padding-right: 4px;
+  overflow-wrap: break-word;
 }
 
-.question-text::-webkit-scrollbar {
-  width: 6px;
-}
-
+.question-text::-webkit-scrollbar { width: 6px; }
 .question-text::-webkit-scrollbar-thumb {
   background: rgba(249, 115, 22, 0.3);
   border-radius: 999px;
@@ -207,53 +234,53 @@ body {
   overflow-y: visible;
 }
 
-.question-text--intro p {
-  margin: 0 0 0.6em;
-}
+.question-text--intro p  { margin: 0 0 0.6em; }
+.question-text--intro ol { margin: 0.2em 0 0.8em; padding-left: 1.6em; }
+.question-text--intro ol li { margin-bottom: 0.3em; }
 
-.question-text--intro ol {
-  margin: 0.2em 0 0.8em;
-  padding-left: 1.6em;
-}
-
-.question-text--intro ol li {
-  margin-bottom: 0.3em;
-}
+/* ── Comments container ─────────────────────────────────── */
 
 .comments-container {
-  margin-top: 16px;
+  margin-top: 14px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-height: 260px;
+  gap: 8px;
+  /* Fluid: never so tall it pushes controls off-screen, never so short
+     that comments are hidden; scroll within the container */
+  max-height: clamp(240px, 48vh, 520px);
   overflow-y: auto;
   padding-right: 4px;
 }
 
-.comments-container::-webkit-scrollbar {
-  width: 6px;
-}
-
+.comments-container::-webkit-scrollbar { width: 6px; }
 .comments-container::-webkit-scrollbar-thumb {
   background: rgba(249, 115, 22, 0.3);
   border-radius: 999px;
 }
 
+/* ── Comment rows ───────────────────────────────────────── */
+
 .comment-row {
-  padding: 8px 10px;
+  padding: clamp(8px, 1.8vw, 10px) clamp(10px, 2vw, 12px);
   border-radius: 12px;
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.10);
+  transition: border-color var(--transition-fast), background var(--transition-fast);
 }
 
-.comment-row--active {
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+.comment-row--picked-human {
+  border-color: rgba(99, 102, 241, 0.45);
+  background: rgba(99, 102, 241, 0.05);
+}
+
+.comment-row--picked-ai {
+  border-color: rgba(14, 165, 233, 0.45);
+  background: rgba(14, 165, 233, 0.05);
 }
 
 .comment-row--correct {
   border-color: rgba(22, 163, 74, 0.5);
-  background: rgba(22, 163, 74, 0.06);
+  background: rgba(22, 163, 74, 0.07);
 }
 
 .comment-row--incorrect {
@@ -262,16 +289,71 @@ body {
 }
 
 .comment-meta {
-  font-size: 0.78rem;
+  font-size: clamp(0.7rem, 1.8vw, 0.78rem);
   color: var(--text-muted);
   margin-bottom: 4px;
+  overflow-wrap: break-word;
 }
 
 .comment-body {
-  font-size: 0.9rem;
+  font-size: clamp(0.82rem, 2.2vw, 0.9rem);
   line-height: 1.5;
   color: var(--text);
+  overflow-wrap: break-word;
 }
+
+/* ── Inline comment choice buttons ─────────────────────── */
+
+.comment-choice-buttons {
+  display: flex;
+  gap: 6px;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.comment-choice-btn {
+  flex: 1 1 80px;
+  min-width: 72px;
+  border-radius: var(--radius-pill);
+  padding: 5px 10px;
+  border: 1px solid var(--border-subtle);
+  background: #f9f9f8;
+  color: var(--text-muted);
+  font-size: clamp(0.75rem, 2vw, 0.82rem);
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.comment-choice-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.comment-choice-human.selected {
+  background: rgba(99, 102, 241, 0.12);
+  border-color: rgba(99, 102, 241, 0.7);
+  color: #4338ca;
+  font-weight: 700;
+}
+
+.comment-choice-ai.selected {
+  background: rgba(14, 165, 233, 0.12);
+  border-color: rgba(14, 165, 233, 0.7);
+  color: #0369a1;
+  font-weight: 700;
+}
+
+/* ── Outro ──────────────────────────────────────────────── */
 
 .outro-box {
   padding: 12px;
@@ -283,13 +365,13 @@ body {
 .outro-textarea {
   width: 100%;
   resize: vertical;
-  min-height: 120px;
+  min-height: 100px;
   border-radius: 12px;
   padding: 10px 12px;
   border: 1px solid rgba(0, 0, 0, 0.18);
   background: #ffffff;
   color: var(--text);
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2.2vw, 0.95rem);
   line-height: 1.4;
   outline: none;
 }
@@ -305,11 +387,13 @@ body {
   margin-top: 10px;
 }
 
+/* ── Controls ───────────────────────────────────────────── */
+
 .controls {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 6px;
+  gap: 8px;
+  margin-top: 4px;
 }
 
 .controls--no-choices .choice-buttons,
@@ -324,13 +408,14 @@ body {
 }
 
 .choice-button {
-  flex: 1 1 180px;
+  flex: 1 1 140px;
+  min-width: 120px;
   border-radius: var(--radius-pill);
-  padding: 11px 16px;
+  padding: clamp(8px, 2vw, 11px) clamp(12px, 2.5vw, 16px);
   border: 1px solid var(--border-subtle);
   background: #ffffff;
   color: var(--text);
-  font-size: 0.95rem;
+  font-size: clamp(0.85rem, 2.3vw, 0.95rem);
   font-weight: 500;
   cursor: pointer;
   display: inline-flex;
@@ -353,15 +438,11 @@ body {
   height: 7px;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.25);
+  flex-shrink: 0;
 }
 
-.choice-human::before {
-  background: linear-gradient(135deg, #16a34a, #4ade80);
-}
-
-.choice-ai::before {
-  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
-}
+.choice-human::before { background: linear-gradient(135deg, #16a34a, #4ade80); }
+.choice-ai::before    { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); }
 
 .choice-button:hover:not(:disabled) {
   transform: translateY(-1px);
@@ -373,58 +454,44 @@ body {
   transform: translateY(0px) scale(0.99);
 }
 
-.choice-button.selected {
-  border-color: var(--border-subtle);
-  background: #f5f5f4;
-}
+.choice-button.selected           { border-color: var(--border-subtle); background: #f5f5f4; }
+.choice-button.selected-correct   { border-color: rgba(22, 163, 74, 0.8); background: rgba(22, 163, 74, 0.08); }
+.choice-button.selected-incorrect { border-color: rgba(220, 38, 38, 0.8); background: rgba(220, 38, 38, 0.08); }
+.choice-button.disabled           { opacity: 0.38; cursor: default; }
 
-.choice-button.selected-correct {
-  border-color: rgba(22, 163, 74, 0.8);
-  background: rgba(22, 163, 74, 0.08);
-}
-
-.choice-button.selected-incorrect {
-  border-color: rgba(220, 38, 38, 0.8);
-  background: rgba(220, 38, 38, 0.08);
-}
-
-.choice-button.disabled {
-  opacity: 0.38;
-  cursor: default;
-}
+/* ── Feedback line ──────────────────────────────────────── */
 
 .feedback {
-  min-height: 24px;
-  font-size: 0.9rem;
+  min-height: 20px;
+  font-size: clamp(0.82rem, 2.2vw, 0.9rem);
 }
 
-.feedback.correct {
-  color: var(--success);
-}
+.feedback.correct   { color: var(--success); }
+.feedback.incorrect { color: var(--danger); }
 
-.feedback.incorrect {
-  color: var(--danger);
-}
+/* ── Nav row ────────────────────────────────────────────── */
 
 .nav-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin-top: 2px;
+  flex-wrap: wrap;
 }
 
 .nav-button {
   border-radius: var(--radius-pill);
-  padding: 8px 16px;
-  font-size: 0.85rem;
+  padding: clamp(6px, 1.5vw, 8px) clamp(10px, 2.5vw, 16px);
+  font-size: clamp(0.78rem, 2vw, 0.85rem);
   border: 1px solid rgba(0, 0, 0, 0.18);
   background: #ffffff;
   color: var(--text-muted);
   cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
+  white-space: nowrap;
   transition:
     background var(--transition-fast),
     color var(--transition-fast),
@@ -470,15 +537,17 @@ body {
   box-shadow: none;
 }
 
+/* ── Footer ─────────────────────────────────────────────── */
+
 .app-footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  margin-top: 4px;
+  margin-top: 2px;
 }
 
 .score-summary {
-  font-size: 0.85rem;
+  font-size: clamp(0.78rem, 2vw, 0.85rem);
   color: var(--text-muted);
   padding: 4px 11px;
   border-radius: var(--radius-pill);
@@ -491,17 +560,49 @@ body {
   color: var(--accent-dark);
 }
 
-@media (max-width: 720px) {
+/* ── Narrow phones (≤ 480px) ────────────────────────────── */
+
+@media (max-width: 480px) {
+  body {
+    padding: 8px;
+  }
+
   .app-shell {
-    border-radius: 24px;
-    padding: 16px 14px 14px;
+    border-radius: 16px;
+    padding: 12px 12px 10px;
+    gap: 10px;
   }
 
-  .question-card {
-    padding: 14px 14px 12px;
+  .question-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
 
+  /* Stack nav buttons on very narrow screens */
+  .nav-row {
+    gap: 6px;
+  }
+
+  .nav-button {
+    padding: 7px 10px;
+    font-size: 0.78rem;
+  }
+
+  /* Let comment choice buttons stack if they don't fit side-by-side */
+  .comment-choice-buttons {
+    gap: 5px;
+  }
+}
+
+/* ── Very short viewports (landscape phone, small tablet) ── */
+
+@media (max-height: 500px) {
   .question-text {
-    max-height: 260px;
+    max-height: 100px;
+  }
+
+  .comments-container {
+    max-height: 200px;
   }
 }
