@@ -535,8 +535,7 @@ function renderIntro() {
     "<li>Först får du bedöma kommentarer i en forumtråd (likt Reddit).</li>" +
     "<li>Därefter får du bedöma abstrakt från kandidatuppsatser.</li>" +
     "</ol>" +
-    "<p>För varje text ska du avgöra om den är skriven av en människa eller av en AI. Ingen identifierande information om dig sparas i resultatet (t.ex. namn, e-post eller IP-adress).</p>" +
-    "<p>Du kan när som helst klicka på \"Avsluta\" för att gå direkt till avslutningssidan.</p>";
+    "<p>För varje text ska du avgöra om den är skriven av en människa eller av en AI. Ingen identifierande information om dig sparas i resultatet (t.ex. namn, e-post eller IP-adress).</p>";
 
   if (els.commentsContainer) els.commentsContainer.innerHTML = "";
 
@@ -549,6 +548,8 @@ function renderIntro() {
 }
 
 function renderQuestion() {
+  els.btnExit.hidden = false;
+  els.btnExit.style.display = "";
   hideChoices(false);
   els.questionText.classList.remove("question-text--intro");
   const q = effectiveQuestions[currentIndex];
@@ -585,6 +586,10 @@ function renderThread() {
   // All interaction is via per-comment inline buttons — hide global choice buttons
   hideChoices(true);
   if (els.questionTitle) els.questionTitle.hidden = true;
+
+  // Ensure Avsluta is always visible during the survey (may have been hidden on intro screen)
+  els.btnExit.hidden = false;
+  els.btnExit.style.display = "";
 
   if (!redditAnswers[currentThreadIndex]) {
     redditAnswers[currentThreadIndex] = thread.comments.map(() => null);
@@ -695,6 +700,9 @@ function inlineRecordAnswer(commentIdx, choiceIsHuman) {
 }
 
 function renderTransition() {
+  els.btnExit.hidden = false;
+  els.btnExit.style.display = "";
+
   if (els.subtitle) {
     els.subtitle.textContent =
       "Nu börjar nästa del: bedöm uppsatsabstrakt. Läs noggrant och avgör om texten är skriven av en människa eller AI.";
@@ -725,6 +733,32 @@ function renderTransition() {
   updateScoreSummary();
 }
 
+function makeScoreBar(label, correct, answered) {
+  const pct = answered > 0 ? Math.round((correct / answered) * 100) : 0;
+  const wrap = document.createElement("div");
+  wrap.className = "outro-score-block";
+
+  const labelRow = document.createElement("div");
+  labelRow.className = "outro-score-label";
+  labelRow.innerHTML = `<span>${label}</span><span class="outro-score-fraction">${correct} / ${answered} (${pct}%)</span>`;
+  wrap.appendChild(labelRow);
+
+  const barOuter = document.createElement("div");
+  barOuter.className = "outro-bar-outer";
+  const barInner = document.createElement("div");
+  barInner.className = "outro-bar-inner";
+  barInner.style.width = "0%";
+  barOuter.appendChild(barInner);
+  wrap.appendChild(barOuter);
+
+  // Animate bar after paint
+  requestAnimationFrame(() => requestAnimationFrame(() => {
+    barInner.style.width = `${pct}%`;
+  }));
+
+  return wrap;
+}
+
 function renderOutro() {
   hideChoices(true);
   if (els.questionTitle) els.questionTitle.hidden = true;
@@ -735,25 +769,40 @@ function renderOutro() {
 
   els.questionLabel.textContent = "Klart";
   els.questionTag.textContent = "Tack";
+
   const sections = computeSectionScores();
   const totals = computeTotalScoreSoFar();
-  els.questionText.textContent =
-    "Tack för att du har genomfört undersökningen.\n\n" +
-    `Resultat (kommentarer): ${sections.comments.correct} / ${sections.comments.answered}\n` +
-    `Resultat (abstrakt): ${sections.abstracts.correct} / ${sections.abstracts.answered}\n` +
-    `Totalt: ${totals.correct} / ${totals.answered}\n\n` +
-    "Om du vill kan du skriva en kort motivering/reflektion nedan (frivilligt).";
+
+  els.questionText.classList.add("question-text--intro");
+  els.questionText.innerHTML =
+    "<p>Tack för att du har genomfört undersökningen.</p>" +
+    "<p>Nedan ser du dina resultat för varje del.</p>";
 
   if (els.commentsContainer) {
     els.commentsContainer.innerHTML = "";
 
+    // Score bars
+    const scoresWrap = document.createElement("div");
+    scoresWrap.className = "outro-scores";
+    scoresWrap.appendChild(makeScoreBar("Kommentarer", sections.comments.correct, sections.comments.answered));
+    scoresWrap.appendChild(makeScoreBar("Abstrakt", sections.abstracts.correct, sections.abstracts.answered));
+    scoresWrap.appendChild(makeScoreBar("Totalt", totals.correct, totals.answered));
+    els.commentsContainer.appendChild(scoresWrap);
+
+    // Reflection box
     const box = document.createElement("div");
     box.className = "outro-box";
+
+    const reflLabel = document.createElement("p");
+    reflLabel.className = "outro-refl-label";
+    reflLabel.textContent = "Vill du skriva en kort reflektion? (frivilligt)";
+    box.appendChild(reflLabel);
 
     const textarea = document.createElement("textarea");
     textarea.className = "outro-textarea";
     textarea.placeholder = "Skriv valfri motivering här...";
-    textarea.rows = 5;
+    textarea.rows = 4;
+    box.appendChild(textarea);
 
     const actions = document.createElement("div");
     actions.className = "outro-actions";
@@ -761,13 +810,12 @@ function renderOutro() {
     const submit = document.createElement("button");
     submit.type = "button";
     submit.className = "nav-button primary";
-    submit.textContent = "Skicka (frivilligt)";
+    submit.textContent = "Skicka reflektion";
 
     submit.addEventListener("click", async () => {
       const text = textarea.value.trim();
       if (!text) return;
 
-      // Send as a separate row to the sheet
       globalQuestionIndex += 1;
       const payload = {
         participantId: PARTICIPANT_ID,
@@ -787,15 +835,17 @@ function renderOutro() {
       try {
         await fetch(RESULTS_ENDPOINT, { method: "POST", body: JSON.stringify(payload) });
         textarea.value = "";
-        submit.textContent = "Skickat!";
+        textarea.disabled = true;
+        submit.textContent = "Tack för att du svarade!";
         submit.disabled = true;
       } catch (err) {
         console.error("Failed to send reasoning", err);
+        submit.textContent = "Tack för att du svarade!";
+        submit.disabled = true;
       }
     });
 
     actions.appendChild(submit);
-    box.appendChild(textarea);
     box.appendChild(actions);
     els.commentsContainer.appendChild(box);
   }
@@ -803,14 +853,27 @@ function renderOutro() {
   els.progressText.textContent = "";
   els.progressBarInner.style.width = "0%";
 
-  els.btnPrev.disabled = false;
-  els.btnNext.disabled = false;
-  els.btnNext.textContent = "Starta om ▶";
+  // Hide Nästa on the outro screen (renderCurrent already handles Tidigare and Avsluta)
+  els.btnNext.hidden = true;
+  els.btnNext.style.display = "none";
 
   updateScoreSummary();
 }
 
 function renderCurrent() {
+  // Tidigare: always hidden on every screen
+  els.btnPrev.hidden = true;
+  els.btnPrev.style.display = "none";
+
+  // Avsluta: visible on all screens except intro and outro
+  const showExit = mode !== "intro" && mode !== "outro";
+  els.btnExit.hidden = !showExit;
+  els.btnExit.style.display = showExit ? "" : "none";
+
+  // Nästa: always visible (individual render functions set disabled state)
+  els.btnNext.hidden = false;
+  els.btnNext.style.display = "";
+
   const shell = document.querySelector(".app-shell");
   if (shell) {
     shell.classList.toggle("theme-comments", mode === "reddit");

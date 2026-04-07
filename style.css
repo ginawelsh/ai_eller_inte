@@ -355,6 +355,59 @@ body {
 
 /* ── Outro ──────────────────────────────────────────────── */
 
+.outro-scores {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.outro-score-block {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.outro-score-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: clamp(0.82rem, 2.2vw, 0.9rem);
+  font-weight: 600;
+  color: var(--text);
+  gap: 8px;
+}
+
+.outro-score-fraction {
+  font-weight: 500;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.outro-bar-outer {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.outro-bar-inner {
+  height: 100%;
+  width: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #fb923c, var(--accent));
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.35);
+  transition: width 600ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.outro-refl-label {
+  margin: 0 0 8px;
+  font-size: clamp(0.82rem, 2.2vw, 0.9rem);
+  color: var(--text-muted);
+}
+
 .outro-box {
   padding: 12px;
   border-radius: 14px;
@@ -473,9 +526,9 @@ body {
 
 .nav-row {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  gap: 8px;
+  gap: 12px;
   margin-top: 2px;
   flex-wrap: wrap;
 }
