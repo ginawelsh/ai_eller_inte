@@ -104,11 +104,11 @@ const THREADS = [
     questionText: "Lumpen – har ni gjort den? Jag tycker att vi måste blåsa lite liv i denna reddit, så jag föreslår att vi börjar snacka om det. Gjorde själv inte militärtjänst, var upptagen med andra dumma saker vid den åldern. Dock ångrar jag det väldigt mycket, tror att den hade varit en upplevelse. Åsikter/erfarenheter?",
     comments: [
       {
-        text: "Jag gjorde lumpen och det var verkligen en blandning av svett och skratt! Tycker nog att det gav mig mycket, både disciplin och roliga minnen. Men jag förstår att det inte är för alla. Kul att se fler som vill snacka om det! 😄",
+        text: "Jag gjorde lumpen och det var en galen tid! Mycket skratt, några tuffa stunder, men jag skulle inte vilja vara utan den upplevelsen. En del av att växa upp, typ! 😊",
         isHuman: false,
       },
       {
-        text: "Jag gjorde inte lumpen, och jag ångrar det inte. Inledningsvis blev jag placerad som civilpliktig i Porjus vattenkraftverk, men min tjänst drogs in. Valde att plugga, resa och jobba det året istället. Bra med lumpen: självdisciplin, ledaregenskaper, möte med folk från hela landet. Dåligt: tar död på kreativitet, och ett år av ditt liv går mer eller mindre till spillo.",
+        text: "Jag gjorde inte lumpen, och jag ångrar det inte. Inledningsvis blev jag placerad som civilpliktig i Porjus vattenkraftverk, och det hade säkert varit intressant med tanke på min senare utbildning och mitt nuvarande jobb, men det hade varit 11 långa månader i en liten by i Norrland. Min tjänst drogs in, och jag valde att plugga, resa och jobba det året istället, och känner att den tiden gav mer.",
         isHuman: true,
       },
       {
@@ -130,11 +130,11 @@ const THREADS = [
         isHuman: false,
       },
       {
-        text: "Försökte snusa lite Copenhagen och Camel snus när jag bodde i Seattle, men det är verkligen inte samma grej som hemma. Påsarna är alldeles för stora och materialet är lite off också. Tror för övrigt inte att konceptet är så slagkraftigt när det inte är en del av kulturen som det är i Sverige.",
+        text: "forsokte snusa lite Copenhagen och Camel snus nar jag bodde i Seattle, men det ar verkligen inte samma grej som hemma. Pasarna ar alldeles for stora och, som robeph skriver, sa ar materialet lite off ocksa. Tror for ovrigt inte att konceptet ar sa slaende nar det inte ar en del av kulturen som den ar i Sverige.",
         isHuman: true,
       },
       {
-        text: "Kommenterade lite med en kille om just Camel snus, han var inte så förtjust. Men varför inte testa med tanke på alla lagar mot rökning på offentliga platser?",
+        text: "kommenterade lite med en snubbe om just camel snus, han var inte så förtjust, men varför inte? med alla sluta röka på offentliga platser lagar så.",
         isHuman: true,
       },
       {
@@ -522,20 +522,23 @@ function renderIntro() {
   if (els.questionTitle) els.questionTitle.hidden = true;
 
   if (els.subtitle) {
-    els.subtitle.textContent = "Du kan svara på så många frågor du vill, och du kan avsluta när som helst.";
+    els.subtitle.textContent = "En studie om AI-genererad svenska";
   }
 
   els.questionLabel.textContent = "Välkommen!";
   els.questionTag.textContent = "Information";
   els.questionText.classList.add("question-text--intro");
   els.questionText.innerHTML =
-    "<p>Tack för att du deltar.</p>" +
+  
+    "<p>Tack för att du deltar!</p>" +
     "<p><strong>Upplägg:</strong></p>" +
     "<ol>" +
+    "<li> För varje text ska du avgöra om den är skriven av <strong>en människa</strong> eller av <strong> en AI. </strong></li>" +
     "<li>Först får du bedöma kommentarer i en forumtråd (likt Reddit).</li>" +
     "<li>Därefter får du bedöma abstrakt från kandidatuppsatser.</li>" +
     "</ol>" +
-    "<p>För varje text ska du avgöra om den är skriven av en människa eller av en AI. Ingen identifierande information om dig sparas i resultatet (t.ex. namn, e-post eller IP-adress).</p>";
+    "<p>Du kan svara på så många frågor du vill, och du kan avsluta när som helst.</p>" +
+    "<p>Ingen identifierande information om dig sparas i resultatet (t.ex. namn, e-post eller IP-adress).</p>";
 
   if (els.commentsContainer) els.commentsContainer.innerHTML = "";
 
