@@ -99,12 +99,12 @@ const QUESTIONS = [
 // Thread-style Reddit-like discussions
 // Each thread has a question and a list of comments
 const THREADS = [
-  // --- Thread 1: Lumpen (9lfs5) ---
+  // --- Thread 1: Lumpen (9lfs5) REVISED ---
   {
     questionText: "Lumpen – har ni gjort den? Jag tycker att vi måste blåsa lite liv i denna reddit, så jag föreslår att vi börjar snacka om det. Gjorde själv inte militärtjänst, var upptagen med andra dumma saker vid den åldern. Dock ångrar jag det väldigt mycket, tror att den hade varit en upplevelse. Åsikter/erfarenheter?",
     comments: [
       {
-        text: "Jag gjorde lumpen och det var en galen tid! Mycket skratt, några tuffa stunder, men jag skulle inte vilja vara utan den upplevelsen. En del av att växa upp, typ! 😊",
+        text: "Jag gjorde lumpen och det var en galen tid! Mycket skratt, några tuffa stunder, men jag skulle inte vilja vara utan den upplevelsen. En del av att växa upp, typ!",
         isHuman: false,
       },
       {
@@ -121,7 +121,7 @@ const THREADS = [
       },
     ],
   },
-  // --- Thread 2: Snus i USA (9n218) ---
+  // --- Thread 2: Snus i USA (9n218) REVISED ---
   {
     questionText: "Snus marknadsförs i USA – kommer det funka den här gången?",
     comments: [
@@ -143,112 +143,112 @@ const THREADS = [
       },
     ],
   },
-  // --- Thread 3: Sverige jämställt? (b4cce) ---
+  // --- Thread 3: Sverige jämställt? (b4cce) ----- REVISED ---
   {
-    questionText: "Är Sverige mer jämställt? Som svensk kvinna känner jag mig ofta förvirrad på reddit. T.ex. att män ska ta initiativ i dating – min erfarenhet är att tjejer tar initiativ lika mycket som killar. Känner ni igen er i de könsroller som ofta beskrivs på reddit?",
+    questionText: "Vad fick du i julklapp i år Sweddit?.",
     comments: [
       {
-        text: "Jag håller med, det känns som att många av de här könsrollerna är aningen föråldrade. Här i Sverige är det mycket mer vanligt att vi båda tar initiativ i olika sammanhang, och det där med dateringen är verkligen inte så stel, åtminstone i min bekantskapskrets.",
+        text: "",
         isHuman: false,
       },
       {
-        text: "Reddit är från Amerika och tjejer där är ingenting som svenska tjejer, och det gör mig ledsen.",
+        text: "Haha nej du Jävelberg, mig lurar du men ingen annan!",
         isHuman: true,
       },
       {
-        text: "Jag förstår vad du menar! Här hemma känns det som att vi har kommit långt i jämställdheten, och många av de gamla könsrollerna stämmer inte längre. Känns som att vi är ganska öppna och att det är mer fritt fram för både tjejer och killar att ta initiativ nu för tiden.",
+        text: "",
         isHuman: false,
       },
       {
-        text: "Hellre instängda än diskriminerande.",
+        text: "Ett lakan av syster. Ett badlakan av mor. En dagsedel av far.",
         isHuman: true,
       },
     ],
   },
-  // --- Thread 4: Svensk musik (cnl4a) ---
+  // --- Thread 4: Svensk musik (cnl4a) ~~~ REVISED ---
   {
-    questionText: "Kan någon rekommendera bra svensk musik sjungen på svenska?",
+    questionText: "Det slog mig att juldagen inte har samma \"självklara\" traditioner som julafton, visst firar många julafton olika men tex julklapparna öppnas ju alltid den 24:e. Vad är juldagen för dig?",
     comments: [
       {
-        text: "Florence Valentin och Movits, sjukt bra!",
+        text: "Lång jävla promenad och dåliga TV-program.",
         isHuman: true,
       },
       {
-        text: "Självklart! Kolla in Håkan Hellström eller Veronica Maggio, de är grymma!",
+        text: "",
         isHuman: false,
       },
       {
-        text: "Thåström, Ebba Grön, Tommy Körberg. Finns massor :)",
+        text: "Olika från år till år, beror på hos vem julafton firas. Det blir endel bök när både jag och sambon är skilsmässobarn. Men en promenad vill jag gärna ta om vädret tillåter.",
         isHuman: true,
       },
       {
-        text: "Kolla in Håkan Hellström, han har grymma texter och härlig musik! 🎶",
-        isHuman: false,
-      },
-    ],
-  },
-  // --- Thread 5: IKEA kundservice (cns6g) ---
-  {
-    questionText: "Har IKEA dålig kundservice i Sverige också? Eller bara i Amerika? Mycket dålig erfarenhet. Hemskt kundservice.",
-    comments: [
-      {
-        text: "Jag har också haft blandade erfarenheter, ibland funkar det bra och ibland är det rena katastrofen. Typisk IKEA-upplevelse ändå! 😅",
-        isHuman: false,
-      },
-      {
-        text: "Ajdå, där hade ni otur. Jag tänker inte försvara IKEA det minsta men ditt språk är lite förvirrande. Är det ok om jag korrigerar lite? \"Den största delen till vår soffa var defekt. De ville inte skicka en ny del, utan vi fick köra långt. Vi reklamerade soffan istället. Personalen var mycket oförskämd och ville inte hjälpa oss.\" Har jag förstått dig rätt? :)",
-        isHuman: true,
-      },
-      {
-        text: "Tyvärr verkar det vara lite av en dragning överallt, jag har också haft sådana upplevelser. Hoppas de kan förbättra sig snart!",
-        isHuman: false,
-      },
-      {
-        text: "Ledsen för det! Jag lär mig svenska och är inte så bra ännu. Ja, du har historien korrekt. :D",
+        text: "Om man är uppvuxen på någon liten ort och åker dit hem till föräldrar över jul så brukar juldagen vara utgång på \"stan\" och man träffar folk man växte upp med.",
         isHuman: true,
       },
     ],
   },
-  // --- Thread 6: Bokhandlar i Göteborg (cryrl) ---
+  // --- Thread 5: IKEA kundservice (cns6g) ""REVISED"" ---
   {
-    questionText: "Bokhandlar i Göteborg? Kan någon rekommendera en bra bokhandel med läsvänlig atmosfär? Letar efter någonstans att spendera några timmar i helgen över en kopp kaffe, utan att vara tvungen att köpa.",
+    questionText: "Vad är några roliga svenska uttryck som du använder dig av?",
     comments: [
       {
-        text: "Det finns tydligen en sån i Götet också, så det är ju ett alternativ. Men Pocket med mera lät ju bättre.",
+        text: "Nu är det kokta fläsket stekt.",
         isHuman: true,
       },
       {
-        text: "Absolut! Kolla in Akademibokhandeln vid Nordstan, de har en skön atmosfär och café också! Perfekt för en lugn stund med en bok och kaffe.",
+        text: "Blöt under fötterna.",
+        isHuman: true,
+      },
+      {
+        text: "",
         isHuman: false,
       },
       {
-        text: "Båda uttrycken är väl accepterade numera, men att boklådor inte skulle vara ett aktuellt uttryck kan jag verkligen inte hålla med om. Vi skulle kunna skicka en fråga till Språket på P1, de gillar att reda ut sånt här.",
+        text: "Ajsing bajsing!",
+        isHuman: true,
+      },
+    ],
+  },
+  // --- Thread 6: Bokhandlar i Göteborg (cryrl) ### REVISED #### ---
+  {
+    questionText: "Bokhandlar i Göteborg? Kan någon rekommendera en bra bokhandeln i Göteborg med läsvänlig atmosfär? Letar efter någonstans att spendera några timmar i helgen över en kopp kaffe, utan att vara bråttom att köpa (liksom Barnes & Noble, kanske) ...",
+    comments: [
+      {
+        text: "Jag vet inte om nån sådan bokhandel. Stadsbiblioteket däremot har ett kafé som är helt ok. Kan vara värt att testa kanske?",
+        isHuman: true,
+      },
+      {
+        text: "",
+        isHuman: false,
+      },
+      {
+        text: "Lite kuriosa: Bokhandel i plural heter \"boklådor\". Låter knäppt, jag vet, men det är faktiskt sant.",
         isHuman: true,
       },
       {
         text: "Kolla in Linnébokhandeln! Mysig atmosfär och de har bra kaffe också. Perfekt för att slappa och bläddra.",
-        isHuman: false,
+        isHuman: true,
       },
     ],
   },
-  // --- Thread 7: Personförlusten i valet (dgab6) ---
+  // --- Thread 7: Personförlusten i valet (dgab6) REVISED 
   {
-    questionText: "Största personförlusten i valet?",
+    questionText: "Varför tappade de rödgröna makten till att börja med? Jag är 94a så är rätt ung, men jag undrar hur det kommer sig att de rödgröna har regerat Sverige under en väldigt lång period och S alltid har varit det traditionellt största partiet, så kommer Alliansen från ingenstans och plötsligt vinner, och får dessutom sitta kvar i två mandatperioder. Finns det någon speciell anledning till att Alliansen vann? Typ någon dålig reform som sossarna gjorde eller något liknande.",
     comments: [
       {
-        text: "Svårt att säga, men känns som att många saknar förtroendet för partierna nu. Kanske dags för en nystart!",
+        text: "",
         isHuman: false,
       },
       {
-        text: "Alice Åström (V) ryker visst också. Jag kan inte säga att jag gillar något av blocken eller partierna, men hon var riktigt bra i FRA-debatten; det här lär vara en förlust.",
+        text: "Det brukade vara mycket större skilnad mellan sossarna och moderaterna, men under sin tid vid makten så rörde sig sossarna allt längre höger ut. De var ju tex de som öpnnade upp för friskolor och på så sätt startade hela den här kvasimarknadstrenden. Samtidigt så rörde sig moderaterna in mot mitten. Allt prat om nya moderaterna och att de skulle vara ett arbetar parti. När de två sidorna blev allt mer lika, så blev det enklare för väljarna att byta sida, och det räcker med en liten sak som att Göran Persson ser trött ut för att det ska bli regeringsskifte.",
         isHuman: true,
       },
       {
-        text: "Karl Sigfrid från M försvinner också. Två av de få borgerliga röster som hade något vettigt att säga i integritetsfrågor försvinner. Förskräckligt.",
+        text: "Göran Persson upplevdes som väldigt trött på sitt jobb inför valrörelsen 2006 vill jag minnas. Alliansen kom med idéerna. Det hade varit mycket prat om hur man kunde ha nästan samma inkomst på bidrag som på ett låginkomstjobb och därför kunde man sälja in jobbskatteavdraget.",
         isHuman: true,
       },
       {
-        text: "För mig är det nog alltid tufft att se bra politiker försvinna, men kanske särskilt när det handlar om såna som verkligen ville göra skillnad. Trist!",
+        text: "",
         isHuman: false,
       },
     ],
