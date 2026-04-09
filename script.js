@@ -121,7 +121,7 @@ const THREADS = [
       },
     ],
   },
-  // --- Thread 2: Snus i USA (9n218) REVISED ---
+  // --- Thread 2: Snus i USA (9n218) EDITED!
   {
     questionText: "Snus marknadsförs i USA – kommer det funka den här gången?",
     comments: [
@@ -148,7 +148,7 @@ const THREADS = [
     questionText: "Vad fick du i julklapp i år Sweddit?.",
     comments: [
       {
-        text: "",
+        text: "Fick en schysst bok och en varm tröja, perfekt för vintermyset!",
         isHuman: false,
       },
       {
@@ -165,7 +165,7 @@ const THREADS = [
       },
     ],
   },
-  // --- Thread 4: Svensk musik (cnl4a) ~~~ REVISED ---
+  // --- Thread 4: Svensk musik (cnl4a) ~~~ EDITED! ~~~
   {
     questionText: "Det slog mig att juldagen inte har samma \"självklara\" traditioner som julafton, visst firar många julafton olika men tex julklapparna öppnas ju alltid den 24:e. Vad är juldagen för dig?",
     comments: [
@@ -174,7 +174,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "",
+        text: "Juldagen för mig är mest chill, hänga med familjen, äta leftover-mat och typ bara ta det lugnt efter all julaftonsstress.",
         isHuman: false,
       },
       {
@@ -187,7 +187,7 @@ const THREADS = [
       },
     ],
   },
-  // --- Thread 5: IKEA kundservice (cns6g) ""REVISED"" ---
+  // --- Thread 5: IKEA kundservice (cns6g) ""EDITED!
   {
     questionText: "Vad är några roliga svenska uttryck som du använder dig av?",
     comments: [
@@ -200,7 +200,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "",
+        text: "En favoritsnabbis är 'att slå två flugor i en smäll' – smart och lite roligt!",
         isHuman: false,
       },
       {
@@ -218,7 +218,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "",
+        text: "Kolla in Akademibokhandeln vid Nordstan eller På Smällen i Majorna! Båda har en mysig atmosfär och bra kafé. Perfekt ställe att slappna av med en bok!",
         isHuman: false,
       },
       {
@@ -226,8 +226,8 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Kolla in Linnébokhandeln! Mysig atmosfär och de har bra kaffe också. Perfekt för att slappa och bläddra.",
-        isHuman: true,
+        text: "",
+        isHuman: false,
       },
     ],
   },
@@ -253,68 +253,68 @@ const THREADS = [
       },
     ],
   },
-  // --- Thread 8: Sverigedemokraterna (dgtri) ---
+  // --- Thread 8: Sverigedemokraterna (dgtri) REVISED ---
   {
-    questionText: "Vad är egentligen Sverigedemokraterna? En slaggprodukt från marknadsliberalismen – likt Danskt Folkeparti, franska Front National eller holländska Frihetspartiet?",
+    questionText: "Vad är egentligen Sverigedemokraterna?",
     comments: [
       {
-        text: "De första två frågorna där kommer vi inte bli överens om. Frågan \"varför just nu\" är såklart intressant men det kommer bli en lååång diskussion, hitta en bra utgångspunkt och lägg upp den separat så ska jag vara med och klura på det.",
+        text: "Om man läser idéprogrammet så inser man rätt snabbt att det handlar om ett socialkonservativt parti - med vissa populistiska drag. Sen är det väl litet av ett myserium vad varje enskild medlem vill men så är det ju med socialdemokraterna också.",
         isHuman: true,
       },
       {
-        text: "Sverigedemokraterna? En blandning av rädsla och populism, typ. 🤷‍♂️",
+        text: "",
         isHuman: false,
       },
       {
-        text: "Fan, efter bara en timme ångrar jag redan att jag drog till med ett kraftuttryck. Men du skulle också blivit förbannad om du känt dig beskylld för att gilla SD pga vilket block du röstar på. Förlåt. Bemöt resten så pratar vi vidare!",
+        text: "",
+        isHuman: false
+      },
+      {
+        text: "",
+        isHuman: false
+      },
+    ],
+  },
+  // --- Thread 9: SD in i riksdagen (dg2sv) REVISED --
+  {
+    questionText: "Vilka enskilda politiker ger bäst intryck?",
+    comments: [
+      {
+        text: "Typ ingen. Svenska åsikts- och beteendekorridoren är så trång att ingen riksdagspolitiker ens gör ett mänskligt intryck. Som vänstersnubben sa, Hanif Bali är lite (trollaktigt) sympatiskt, skulle kanske hänga med honom nån gång.",
+        isHuman: true
+      },
+      {
+        text: "Jag skulle nog säga att Jimmie Åkesson är bäst och efter det kommer Annie Lööf följt av Jonas Sjöstedt.",
         isHuman: true,
       },
       {
-        text: "Sverigedemokraterna – en blandning av rädslor och populism, som många liknande partier i Europa. I slutändan handlar det om brist på trygghet och en längtan efter enklare svar.",
+        text: "Gillar verkligen Mattias Karlsson. Känns stabil och seriös. Och verkar som en riktig familjefar utanför politiken också.",
+        isHuman: true,
+      },
+      {
+        text: "",
         isHuman: false,
       },
     ],
   },
-  // --- Thread 9: SD in i riksdagen (dg2sv) ---
+  // --- Thread 10: Reddit Meetup Day (dg3ms) REVISED --
   {
-    questionText: "SD in i riksdagen. Tankar?",
+    questionText: "Vad hände med Reddit Meetup Day? Det var ju under vår nationaldag har jag för mig. Tycker att det borde styras upp ifall det inte blev något :D",
     comments: [
       {
-        text: "Var lite av en chock, men det känns som att det är mycket som behöver diskuteras nu framöver. Spännande tider, för både politik och debatt!",
+        text: "",
         isHuman: false,
       },
       {
-        text: "Inte oväntat egentligen. Det var väl bara en tidsfråga med tanke på hur opinionsläget sett ut de senaste åren.",
-        isHuman: true,
-      },
-      {
-        text: "Det är ju en intressant tid vi lever i. Hoppas bara att samtalet kan hållas öppet och respektfullt, oavsett åsikter.",
+        text: "",
         isHuman: false,
       },
       {
-        text: "Det känns som en intressant tid framöver. Många åsikter på bordet! Hoppas de kan fokusera på det viktiga istället för att bara skriva debattinlägg.",
-        isHuman: false,
-      },
-    ],
-  },
-  // --- Thread 10: Reddit Meetup Day (dg3ms) ---
-  {
-    questionText: "Vad hände med Reddit Meetup Day? Det var ju under vår nationaldag har jag för mig. Tycker att det borde styras upp ifall det inte blev något.",
-    comments: [
-      {
-        text: "Haha, ja det känns som att Reddit Meetup Day har blivit lite av en bortglömd tradition! Kanske dags att väcka liv i den igen? Vore kul att träffa alla! :D",
+        text: "",
         isHuman: false,
       },
       {
-        text: "Vi försökte ordna en i Göteborg förra sommaren men fick inte ihop folk. Kanske Stockholm är lättare att samla folk i?",
-        isHuman: true,
-      },
-      {
-        text: "Haha, ja, det kändes som en bra idé! Kanske dags att någon tar tag i det och gör det till en grej igen? Skulle vara kul att träffas!",
-        isHuman: false,
-      },
-      {
-        text: "Ja, jag minns att det brukade vara kul! Kanske dags för någon att ta initiativet igen?",
+        text: "",
         isHuman: false,
       },
     ],
