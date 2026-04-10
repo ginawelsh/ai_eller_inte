@@ -364,6 +364,7 @@ const PARTICIPANT_ID = crypto.randomUUID();
 
 
 const els = {
+  questionHeader: document.querySelector(".question-header"),
   questionLabel: document.getElementById("question-label"),
   questionTag: document.getElementById("question-tag"),
   questionTitle: document.getElementById("question-title"),
@@ -532,17 +533,16 @@ function clampIndex(index) {
 function renderIntro() {
   hideChoices(true);
   if (els.questionTitle) els.questionTitle.hidden = true;
-
   if (els.subtitle) {
-    els.subtitle.textContent = "En studie om AI-genererad svenska";
+    els.subtitle.textContent = "";
   }
 
   els.questionLabel.textContent = "Välkommen!";
   els.questionTag.textContent = "Information";
   els.questionText.classList.add("question-text--intro");
   els.questionText.innerHTML =
-  
-    "<p>Tack för att du deltar!</p>" +
+
+    "<p>Det här är en studie om AI-genererad svensk text. Tack för att du deltar!</p>" +
     "<p><strong>Upplägg:</strong></p>" +
     "<ol>" +
     "<li> För varje text ska du avgöra om den är skriven av <strong>en människa</strong> eller av <strong> en AI. </strong></li>" +
@@ -550,6 +550,7 @@ function renderIntro() {
     "<li>Därefter får du bedöma abstrakt från kandidatuppsatser.</li>" +
     "</ol>" +
     "<p>Du kan svara på så många frågor du vill, och du kan avsluta när som helst.</p>" +
+    "<p><strong>Obs!</strong> Det är möjligt att alla svar i en omgång är skrivna av AI – eller att alla är skrivna av en människa. Utgå inte från att det alltid är en blandning.</p>" +
     "<p>Ingen identifierande information om dig sparas i resultatet (t.ex. namn, e-post eller IP-adress).</p>";
 
   if (els.commentsContainer) els.commentsContainer.innerHTML = "";
@@ -569,13 +570,13 @@ function renderDemographics() {
   els.btnExit.style.display = "none";
 
   if (els.subtitle) {
-    els.subtitle.textContent = "Innan du börjar, svara på några korta frågor om dig själv.";
+    els.subtitle.textContent = "";
   }
 
   els.questionLabel.textContent = "Om dig";
   els.questionTag.textContent = "Bakgrundsfrågor";
   els.questionText.classList.add("question-text--intro");
-  els.questionText.innerHTML = "<p>Innan du börjar, vänligen svara på frågorna nedan:</p>";
+  els.questionText.innerHTML = "<p>Innan du börjar, svara på några korta frågor om dig själv.</p>";
 
   els.progressText.textContent = "";
   els.progressBarInner.style.width = "0%";
