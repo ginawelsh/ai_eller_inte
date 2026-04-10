@@ -179,7 +179,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-      text: "Ett av mina favoriter är \"Kasta inte pärlor för svin\" – det påminner mig om att uppskatta det som verkligen betyder något. Sen har vi "Sätta kniven i ryggen" för att beskriva svikande vänner, alltid en träffande bild! Svensk humor är verkligen unik.",
+      text: "Ett av mina favoriter är \"Kasta inte pärlor för svin\" – det påminner mig om att uppskatta det som verkligen betyder något. Sen har vi \"Sätta kniven i ryggen\" för att beskriva svikande vänner, alltid en träffande bild! Svensk humor är verkligen unik.",
       isHuman: false,
       },
       {
