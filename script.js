@@ -5,14 +5,14 @@
 // - type (optional): label such as "Thesis abstract", "Comment", etc.
 const QUESTIONS = [
   {
-    title: "Filmeventens framväxt i Skåne: En studie av Film i Skånes regionala eventkultur och verksamheter som M:Dox, CineSkåne och Filmbar",
-    text: "Denna studie undersöker den så kallade ”eventbubblan” i södra Sverige genom en analys av Film i Skånes eventverksamhet. Med utgångspunkt i ett regionalt kulturpolitiskt sammanhang belyser uppsatsen hur en filmregional aktör arbetar med eventkultur som strategi för att stärka filmens synlighet, publikrelationer och position i Skåne. Fokus riktas mot olika former av filmevent och återkommande koncept – såsom M:Dox, CineSkåne och Filmbar – samt deras funktion i ett bredare ekosystem av filmfestivaler och publika satsningar.\n\nStudiens centrala syfte är att förstå vilka mål och logiker som präglar Film i Skånes eventarbete, samt vilka möjligheter och spänningar som uppstår när filmkultur i allt högre grad förmedlas genom tidsbegränsade, upplevelsebaserade format. Genom att närläsa verksamhetens praktiker synliggörs hur eventen kan fungera som mötesplatser för publik, bransch och institutioner, där nätverkande, identitetsskapande och regional profilering blir lika viktiga som själva filmvisningen. Samtidigt problematiseras eventifieringen som fenomen: när resurser, uppmärksamhet och kulturkonsumtion koncentreras till event riskerar kontinuitet, fördjupning och långsiktigt publikbyggande att hamna i skymundan.\n\nUppsatsen placerar Film i Skånes arbete i en kontext av regionalisering, där kulturella initiativ ofta motiveras av både kulturpolitiska och utvecklingspolitiska ambitioner. Sammantaget visar studien hur eventverksamheten kan förstås som ett uttryck för en samtida kulturtrend där upplevelser och synlighet blir centrala verktyg för att skapa legitimitet och attraktionskraft. ”Eventbubblan i syd” framstår därmed både som en möjlighet att vitalisera filmkulturen i regionen och som en utmaning som väcker frågor om hållbarhet, prioriteringar och filmkulturens långsiktiga förankring.",
-    isHuman: false,
+    title: "Balettmapp Kungliga Operan: Operahusens design och arkitektur",
+    text: "En presentation av Kungliga Svenska Baletten. Denna ska distribueras till operahus världen över innan ny turné påbörjas. Shanghais operahus var det första som fick den färdiga produkten. Fördjupningen rör olika operahus design och arkitektur ut- och invändigt. Även en del av husens relevanta historia tas upp.",
+    isHuman: true,
     type: "Kandidatuppsats abstrakt",
   },
   {
-    title: "Balettmapp Kungliga Operan: Operahusens design och arkitektur",
-    text: "En presentation av Kungliga Svenska Baletten. Denna ska distribueras till operahus världen över innan ny turné påbörjas. Shanghais operahus var det första som fick den färdiga produkten. Fördjupningen rör olika operahus design och arkitektur ut- och invändigt. Även en del av husens relevanta historia tas upp",
+    title: "Metoder vid implementation av affärssystem: en studie om anpassning",
+    text: "Dagens företag är i stort behov av information. Företag som har många avdelningar behöver möjligheter för att enkelt och smidigt kunna samordna information för hela företaget. Affärssystem erbjuder denna möjlighet genom en modulbaserad konstruktion som integrerar ett företags samtliga avdelningar i ett enda system. Problem kan dock uppstå då ett valt affärssystem inte passar företagets verksamhet. En kompromiss mellan system och verksamhet måste då försöka uppnås. Ett affärssystem implementeras ofta i samband med en metod, vilken ger detaljerade beskrivningar för hur implementeringen ska gå till. På vilka grunder väljer företagen att arbeta efter en specifik metod då system och verksamhet behöver anpassas till varandra? Detta arbete bygger på en undersökning som har utförts genom en survey där fem företag har medverkat. Resultatet av undersökningen visar ett antal metoder samt presenterar orsaker till varför dessa metoder används",
     isHuman: true,
     type: "Kandidatuppsats abstrakt",
   },
@@ -29,21 +29,9 @@ const QUESTIONS = [
     type: "Kandidatuppsats abstrakt",
   },
   {
-    title: "\"Men det här är ju kvinnogöra\": En studie om hur lärare ser på och praktiserar jämställdhet och genus i HKK",
-    text: "Kvinnor och män har historiskt sett ansetts ha olika fysiska och psykiska förutsättningar och den norm i samhället som vi levt efter har varit mannens. Kvinnans plats var i hemmet som maka; mor och husfru. I och med samhällets utveckling förändrades den könsspecifika arbetsfördelningen och kvinnan började förvärvsarbeta. Hem – och konsumentkunskap har gått från flickämne i skolan till obligatoriskt för alla där skolan ska främja jämställdhet och jämlikhet mellan könen. Denna rapports syfte är att undersöka hur yrkesverksamma lärare inom hem – och konsumentkunskap ser på jämställdhet och genus inom sitt ämne; vad som kan påverka hur de arbetar med jämställdhet mellan könen i sin undervisning samt hur de praktiskt genomför detta. Sju behöriga lärare från norra Sverige deltog i enskilda intervjuer. De hade olika åldrar och längd på yrkesverksamhet. Intervjuerna spelades in; transkriberades och analyserades med kvalitativ innehållsanalys. Respondenterna beskrev en pågående förändring av stereotypa könsmönster både i skolan och i hemmet men att traditionella könsroller fortfarande reproduceras. Hkk beskrevs som ett skolämne där lärandet till stor del sker i praktiskt arbete där roller synliggörs som kan ge förutsättningar till diskussion och reflektion om jämställdhet. Respondenterna var dock eniga om att jämställdhetsarbete i skolan ställer krav på lärarrollen och sig själv som verktyg; exempelvis vid bedömning av flickor och pojkar. Slutsatsen av denna studie är att lärare i hkk anser att stereotypa könsmönster har förändrats men fortfarande reproduceras traditionella könsroller i skolan. Yngre generationer frångår alltmer de traditionella könsrollerna då jämställdhet blir en allt mer naturlig del i samhället; dock kvarstår det arbete i jämställdhetsfrågan då det fortfarande finns skillnader mellan könen i betyg.",
-    isHuman: true,
-    type: "Kandidatuppsats abstrakt",
-  },
-  {
     title: "Snabb art- och genusidentifiering av bakterier direkt från positiva blododlingar med MALDI‑TOF MS: utvärdering av NaCl‑metoden i BacT/ALERT vid sepsismisstanke",
     text: "Denna studie behandlar möjligheten att snabbt art- och genusbestämma bakterier direkt från positiva blododlingar med hjälp av MALDI‑TOF MS, med fokus på ett kliniskt relevant flöde kopplat till blododlingssystemet BacT/ALERT. Utgångspunkten är att sepsis och andra blodbanerelaterade infektioner kräver tidig och träffsäker diagnostik, eftersom fördröjd identifiering av agens kan påverka val av antibiotikabehandling och därmed patientutfall. \n\nArbetet undersöker därför en metodik där provmaterial från blododlingar bereds för direktanalys utan att först behöva odlas ut på agar, vilket annars förlänger tiden till svar. Särskild vikt läggs vid NaCl‑metoden som provberedningsstrategi för att separera och koncentrera bakterier från blododlingsbuljongen på ett sätt som är kompatibelt med MALDI‑TOF MS. Studien relaterar metodens användbarhet till olika sepsistyper och den variation i bakterieflora som kan förekomma, med målet att bedöma om identifiering på genus- och artnivå kan erhållas tillräckligt snabbt och tillförlitligt för kliniskt beslutsstöd.\n\nSammanfattningsvis positioneras arbetet i gränslandet mellan klinisk mikrobiologi och diagnostikutveckling: genom att kombinera blododling (BacT/ALERT) med direktidentifiering via MALDI‑TOF MS och en förenklad provberedning (NaCl‑metoden) syftar studien till att bidra till kortare ledtider från positiv blododling till mikrobiologiskt svar, och därigenom till mer riktad behandling vid misstänkt sepsis.",
     isHuman: false,
-    type: "Kandidatuppsats abstrakt",
-  },
-  {
-    title: "Metoder vid implementation av affärssystem: en studie om anpassning",
-    text: "Dagens företag är i stort behov av information. Företag som har många avdelningar behöver möjligheter för att enkelt och smidigt kunna samordna information för hela företaget. Affärssystem erbjuder denna möjlighet genom en modulbaserad konstruktion som integrerar ett företags samtliga avdelningar i ett enda system. Problem kan dock uppstå då ett valt affärssystem inte passar företagets verksamhet. En kompromiss mellan system och verksamhet måste då försöka uppnås. Ett affärssystem implementeras ofta i samband med en metod, vilken ger detaljerade beskrivningar för hur implementeringen ska gå till. På vilka grunder väljer företagen att arbeta efter en specifik metod då system och verksamhet behöver anpassas till varandra? Detta arbete bygger på en undersökning som har utförts genom en survey där fem företag har medverkat. Resultatet av undersökningen visar ett antal metoder samt presenterar orsaker till varför dessa metoder används",
-    isHuman: true,
     type: "Kandidatuppsats abstrakt",
   },
   {
@@ -94,39 +82,30 @@ const QUESTIONS = [
     isHuman: true,
     type: "Kandidatuppsats abstrakt",
   },
+  {
+    title: "Filmeventens framväxt i Skåne: En studie av Film i Skånes regionala eventkultur och verksamheter som M:Dox, CineSkåne och Filmbar",
+    text: "Denna studie undersöker den så kallade ”eventbubblan” i södra Sverige genom en analys av Film i Skånes eventverksamhet. Med utgångspunkt i ett regionalt kulturpolitiskt sammanhang belyser uppsatsen hur en filmregional aktör arbetar med eventkultur som strategi för att stärka filmens synlighet, publikrelationer och position i Skåne. Fokus riktas mot olika former av filmevent och återkommande koncept – såsom M:Dox, CineSkåne och Filmbar – samt deras funktion i ett bredare ekosystem av filmfestivaler och publika satsningar.\n\nStudiens centrala syfte är att förstå vilka mål och logiker som präglar Film i Skånes eventarbete, samt vilka möjligheter och spänningar som uppstår när filmkultur i allt högre grad förmedlas genom tidsbegränsade, upplevelsebaserade format. Genom att närläsa verksamhetens praktiker synliggörs hur eventen kan fungera som mötesplatser för publik, bransch och institutioner, där nätverkande, identitetsskapande och regional profilering blir lika viktiga som själva filmvisningen. Samtidigt problematiseras eventifieringen som fenomen: när resurser, uppmärksamhet och kulturkonsumtion koncentreras till event riskerar kontinuitet, fördjupning och långsiktigt publikbyggande att hamna i skymundan.\n\nUppsatsen placerar Film i Skånes arbete i en kontext av regionalisering, där kulturella initiativ ofta motiveras av både kulturpolitiska och utvecklingspolitiska ambitioner. Sammantaget visar studien hur eventverksamheten kan förstås som ett uttryck för en samtida kulturtrend där upplevelser och synlighet blir centrala verktyg för att skapa legitimitet och attraktionskraft. ”Eventbubblan i syd” framstår därmed både som en möjlighet att vitalisera filmkulturen i regionen och som en utmaning som väcker frågor om hållbarhet, prioriteringar och filmkulturens långsiktiga förankring.",
+    isHuman: false,
+    type: "Kandidatuppsats abstrakt",
+  },
+ {
+    title: "\"Men det här är ju kvinnogöra\": En studie om hur lärare ser på och praktiserar jämställdhet och genus i HKK",
+    text: "Kvinnor och män har historiskt sett ansetts ha olika fysiska och psykiska förutsättningar och den norm i samhället som vi levt efter har varit mannens. Kvinnans plats var i hemmet som maka; mor och husfru. I och med samhällets utveckling förändrades den könsspecifika arbetsfördelningen och kvinnan började förvärvsarbeta. Hem – och konsumentkunskap har gått från flickämne i skolan till obligatoriskt för alla där skolan ska främja jämställdhet och jämlikhet mellan könen. Denna rapports syfte är att undersöka hur yrkesverksamma lärare inom hem – och konsumentkunskap ser på jämställdhet och genus inom sitt ämne; vad som kan påverka hur de arbetar med jämställdhet mellan könen i sin undervisning samt hur de praktiskt genomför detta. Sju behöriga lärare från norra Sverige deltog i enskilda intervjuer. De hade olika åldrar och längd på yrkesverksamhet. Intervjuerna spelades in; transkriberades och analyserades med kvalitativ innehållsanalys. Respondenterna beskrev en pågående förändring av stereotypa könsmönster både i skolan och i hemmet men att traditionella könsroller fortfarande reproduceras. Hkk beskrevs som ett skolämne där lärandet till stor del sker i praktiskt arbete där roller synliggörs som kan ge förutsättningar till diskussion och reflektion om jämställdhet. Respondenterna var dock eniga om att jämställdhetsarbete i skolan ställer krav på lärarrollen och sig själv som verktyg; exempelvis vid bedömning av flickor och pojkar. Slutsatsen av denna studie är att lärare i hkk anser att stereotypa könsmönster har förändrats men fortfarande reproduceras traditionella könsroller i skolan. Yngre generationer frångår alltmer de traditionella könsrollerna då jämställdhet blir en allt mer naturlig del i samhället; dock kvarstår det arbete i jämställdhetsfrågan då det fortfarande finns skillnader mellan könen i betyg.",
+    isHuman: true,
+    type: "Kandidatuppsats abstrakt",
+  },
 ];
 
 // Thread-style Reddit-like discussions
 // Each thread has a question and a list of comments
 const THREADS = [
-  // --- Thread 1: Lumpen (9lfs5) EDITED!
-  {
-    questionText: "Lumpen – har ni gjort den? Jag tycker att vi måste blåsa lite liv i denna reddit, så jag föreslår att vi börjar snacka om det. Gjorde själv inte militärtjänst, var upptagen med andra dumma saker vid den åldern. Dock ångrar jag det väldigt mycket, tror att den hade varit en upplevelse. Åsikter/erfarenheter?",
-    comments: [
-      {
-        text: "Haha, jag gjorde lumpen och måste säga att det var en blandning av kaos och skratt! Visst var det tufft ibland, men man lärde sig massor och fick många minnen för livet. Kan varmt rekommendera det, även om det är lite jobbigt ibland",
-        isHuman: false,
-      },
-      {
-        text: "Jag gjorde inte lumpen, och jag ångrar det inte. Inledningsvis blev jag placerad som civilpliktig i Porjus vattenkraftverk, och det hade säkert varit intressant med tanke på min senare utbildning och mitt nuvarande jobb, men det hade varit 11 långa månader i en liten by i Norrland. Min tjänst drogs in, och jag valde att plugga, resa och jobba det året istället, och känner att den tiden gav mer.",
-        isHuman: true,
-      },
-      {
-        text: "Haha, fattar känslan! Jag gjorde lumpen och det var både slitigt och roligt på nåt sätt. Många minnen, både bra och dåliga, men jag skulle inte missa det för nåt. Man träffar mycket sköna personer också!",
-        isHuman: false,
-      },
-      {
-        text: "Känns ibland som jag är en av de sista som hunnit med tre repövningar utöver originallumpen vid 42 års ålder. Fick ett sorgkantat brev från ÖB för ett par år sedan där han beklagade att det inte fanns någon plats för mig längre. Måste erkänna att jag hade görskoj 80% av tjänstgöringen faktiskt.",
-        isHuman: true,
-      },
-    ],
-  },
-  // --- Thread 2: Snus i USA (9n218) EDITED!
+
+  // --- Thread 1: Snus i USA (9n218) EDITED!
   {
     questionText: "Snus marknadsförs i USA – kommer det funka den här gången?",
     comments: [
       {
-        text: "Det blir intressant att se! Amerikanerna är ju lite skeptiska mot tobaksprodukter, men snus har ju ändå sin charm. Kanske får det fäste den här gången?",
+        text: "Det är svårt att säga. Snus har sin charm och kan locka många, särskilt rökare som söker ett alternativ. Men den amerikanska marknaden är tuff och hälsodebatten kring tobaksprodukter är intensiv. Det hänger på hur bra de lyckas med både marknadsföring och att övervinna motståndet.",
         isHuman: false,
       },
       {
@@ -138,7 +117,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Hmm, svårt att säga! Snus har ju sin charm, men amerikanerna kanske inte är lika snabba på att hoppa på trenden. Vi får se!",
+        text: "Det är svårt att säga. Snus har ju inte tagit fart på samma sätt som i Sverige, men med rätt marknadsföring och hälsobudskap kan det kanske bli en succé. Många amerikaner är ju också nyfikna på svenskt snus, så man får se hur det utvecklas!",
         isHuman: false,
       },
     ],
@@ -152,11 +131,11 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Fick en schysst bok och en varm tröja, perfekt för vintermyset!",
+        text: "Jag fick några riktigt bra böcker som jag längtar efter att läsa, plus en go hoodie som är perfekt för kalla vinterkvällar. Hade även en mysig tid med nära och kära, mycket kvalitetstid! Hur var era julklappar?",
         isHuman: false,
       },
       {
-        text: "Jag fick en mugg med en rolig text och massa godis! Hur var din jul?",
+        text: "Jag fick en riktigt bra trådlös hörlur och ett nytt pussel! Hörlurarna är perfekt när jag vill lyssna på musik utan sladdar, och pusslet är just den svåra utmaningen jag behöver för att koppla av under vintermörkret.",
         isHuman: false,
       },
       {
@@ -174,7 +153,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Juldagen för mig är mest chill, hänga med familjen, äta leftover-mat och typ bara ta det lugnt efter all julaftonsstress.",
+        text: "För mig är juldagen en dag av lugn och gemenskap. Efter all fest och stök på julafton, är det skönt att bara vara med familjen, äta lite rester och kanske gå ut på en promenad. Det är en dag att njuta av stillheten och reflektera över allt som har varit.",
         isHuman: false,
       },
       {
@@ -200,8 +179,8 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "En favoritsnabbis är 'att slå två flugor i en smäll' – smart och lite roligt!",
-        isHuman: false,
+      text: "Ett av mina favoriter är \"Kasta inte pärlor för svin\" – det påminner mig om att uppskatta det som verkligen betyder något. Sen har vi "Sätta kniven i ryggen" för att beskriva svikande vänner, alltid en träffande bild! Svensk humor är verkligen unik.",
+      isHuman: false,
       },
       {
         text: "Ajsing bajsing!",
@@ -218,16 +197,16 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Kolla in Akademibokhandeln vid Nordstan eller På Smällen i Majorna! Båda har en mysig atmosfär och bra kafé. Perfekt ställe att slappna av med en bok!",
-        isHuman: false,
+      text: "Hej! Jag rekommenderar att du besöker Bokskåpet på Chalmers eller Akademibokhandeln i Nordstan. Båda har en mysig atmosfär och en bra kaffehörna. Perfekt för att bläddra bland böcker och ta det lugnt en lördag!",
+      isHuman: false,
       },
       {
         text: "Lite kuriosa: Bokhandel i plural heter \"boklådor\". Låter knäppt, jag vet, men det är faktiskt sant.",
         isHuman: true,
       },
       {
-        text: "",
-        isHuman: false,
+      text: "Absolut, kolla in Kronans bokhandel i Linné! De har en mysig atmosfär, bra utbud och ofta sittplatser där man kan bläddra i böcker. Dessutom ligger det nära mysiga kaféer. Perfekt för en avslappnad helg!",
+      isHuman: false,
       },
     ],
   },
@@ -236,8 +215,8 @@ const THREADS = [
     questionText: "Varför tappade de rödgröna makten till att börja med? Jag är 94a så är rätt ung, men jag undrar hur det kommer sig att de rödgröna har regerat Sverige under en väldigt lång period och S alltid har varit det traditionellt största partiet, så kommer Alliansen från ingenstans och plötsligt vinner, och får dessutom sitta kvar i två mandatperioder. Finns det någon speciell anledning till att Alliansen vann? Typ någon dålig reform som sossarna gjorde eller något liknande.",
     comments: [
       {
-        text: "",
-        isHuman: false,
+      text: "Det handlar nog om en kombination av flera faktorer. Många väljare kände sig trötta på det rödgröna styret efter så många år, och Alliansen lyckades presentera sig som ett fräscht alternativ med fokus på skattesänkningar och jobbskapande. Dessutom påverkade ekonomin mycket, speciellt med krisen som kom strax innan valet.",
+      isHuman: false,
       },
       {
         text: "Det brukade vara mycket större skilnad mellan sossarna och moderaterna, men under sin tid vid makten så rörde sig sossarna allt längre höger ut. De var ju tex de som öpnnade upp för friskolor och på så sätt startade hela den här kvasimarknadstrenden. Samtidigt så rörde sig moderaterna in mot mitten. Allt prat om nya moderaterna och att de skulle vara ett arbetar parti. När de två sidorna blev allt mer lika, så blev det enklare för väljarna att byta sida, och det räcker med en liten sak som att Göran Persson ser trött ut för att det ska bli regeringsskifte.",
@@ -248,8 +227,8 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "",
-        isHuman: false,
+      text: "Det är en intressant fråga! Många menar att Alliansens seger delvis berodde på missnöje med S under finanskrisen, samt att de lyckades profilera sig som ett mer borgerligt alternativ. Dessutom spelade oppositionens enighet stor roll. Reformer som rör skolor och vård kritiserades också, vilket bidrog till att väljare sökte förändring.",
+      isHuman: false,
       },
     ],
   },
@@ -262,16 +241,16 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "",
-        isHuman: false,
+      text: "Sverigedemokraterna är ett politiskt parti i Sverige som ofta kopplas till nationalism och invandringskritik. De har vuxit snabbt de senaste åren och väcker många känslor, både positiva och negativa. För vissa står de för opinionsskifte, medan andra ser dem som ett hot mot den svenska värdegrunden.",
+      isHuman: false,
       },
       {
-        text: "",
-        isHuman: false
+      text: "Sverigedemokraterna är ett svenskt politiskt parti som grundades 1988 och har fokuserat på frågor kring migration och integration. Deras politik har varit kontroversiell och de har fått både stöd och kraftig kritik. Många ser dem som ett populistiskt parti, medan andra anser att de representerar en viktig röst för vissa medborgare.",
+      isHuman: false,
       },
       {
-        text: "",
-        isHuman: false
+        text: "\"Det här är ett parti som vill avskaffa centrala delar av demokratin.\" Vilken demokrati? Sverige röstade höger, fick vänster. Stefan Löfven har satt sig över demokratin. Ja, man kommer förmodligen behöva gå hårt fram och sparka ut en del stofiler för att få till nödvändiga åtgärder. Men att sitta och nörda ner sig i vad som kan hända om SD får ensam majoritet är faktiskt duktigt efterblivet.",
+        isHuman: true,
       },
     ],
   },
@@ -292,11 +271,36 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Svårt att säga, men personligen gillar jag dem som är ärliga och lyssnar på folket. Typ som exempelvis... ja, ni vet vilka!",
+      text: "Det beror verkligen på vad man värderar mest. Jag tycker att politiker som är genuina och lyssnar på medborgarna, som exempelvis Annie Lööf och Stefan Löfven, ger bra intryck. Det handlar också om att vara transparent och stå för sina åsikter. Vad tycker ni?",
+      isHuman: false,
+      },
+
+    ],
+  },
+
+    // --- Thread 9: Lumpen (9lfs5) EDITED!
+  {
+    questionText: "Lumpen – har ni gjort den? Jag tycker att vi måste blåsa lite liv i denna reddit, så jag föreslår att vi börjar snacka om det. Gjorde själv inte militärtjänst, var upptagen med andra dumma saker vid den åldern. Dock ångrar jag det väldigt mycket, tror att den hade varit en upplevelse. Åsikter/erfarenheter?",
+    comments: [
+      {
+        text: "Jag gjorde lumpen för några år sedan och det var verkligen en blandning av hårt arbete och gemenskap. Självklart finns det saker som var jobbiga, men jag ångrar inte en sekund. Det var en chans att träffa nya människor och lära sig mycket om sig själv. Rekommenderar verkligen!",
         isHuman: false,
+      },
+      {
+        text: "Jag gjorde inte lumpen, och jag ångrar det inte. Inledningsvis blev jag placerad som civilpliktig i Porjus vattenkraftverk, och det hade säkert varit intressant med tanke på min senare utbildning och mitt nuvarande jobb, men det hade varit 11 långa månader i en liten by i Norrland. Min tjänst drogs in, och jag valde att plugga, resa och jobba det året istället, och känner att den tiden gav mer.",
+        isHuman: true,
+      },
+      {
+        text: "Jag gjorde lumpen för några år sedan och det var både tufft och lärorikt! Man lär sig mycket om sig själv och får nya vänner för livet. Visst var det jobbigt ibland, men jag ångrar inte en sekund av erfarenheterna. Hade gärna gjort det igen!",
+        isHuman: false,
+      },
+      {
+        text: "Känns ibland som jag är en av de sista som hunnit med tre repövningar utöver originallumpen vid 42 års ålder. Fick ett sorgkantat brev från ÖB för ett par år sedan där han beklagade att det inte fanns någon plats för mig längre. Måste erkänna att jag hade görskoj 80% av tjänstgöringen faktiskt.",
+        isHuman: true,
       },
     ],
   },
+
   // --- Thread 10: Reddit Meetup Day (dg3ms) EDITED!
   {
     questionText: "Vad hände med Reddit Meetup Day? Det var ju under vår nationaldag har jag för mig. Tycker att det borde styras upp ifall det inte blev något :D",
@@ -306,15 +310,15 @@ const THREADS = [
         isHuman: false,
       },
       {
-        text: "Haha, ja, jag undrar också vad som hände med det! Skulle vara kul att få till lite träffar, kanske lite mer engagemang nästa år? :D",
+        text: "Ja, Reddit Meetup Day kändes som en kul grej, speciellt på vår nationaldag! Det är synd att det inte blev av. Förhoppningsvis kan någon ta initiativ och organisera något för att samla alla Redditanvändare nästa år. Hade varit grymt att träffas och diskutera allt möjligt!",
         isHuman: false,
       },
       {
-        text: "Ja, jag har också undrat! Det skulle vara kul om någon tog tag i det. Kanske en bättre planering nästa år? :)",
+        text: "Ja, Reddit Meetup Day har tyvärr blivit lite av en bortglömd tradition. Det vore verkligen kul om folk tog initiativ att planera det igen! Skulle vara trevligt att träffa likasinnade och ha en kul dag tillsammans. Hoppas på bättre organisering framöver!",
         isHuman: false,
       },
       {
-        text: "Ja, det kändes som ett kul koncept! Hoppas de fixar något nästa år, skulle vara roligt att träffa fler entusiaster!",
+        text: "Ja, det var en rolig tradition! Synd att den verkar ha försvunnit. Det skulle vara kul om någon tog initiativ till att ordna en ny meetup, speciellt på nationaldagen. Kanske vi kan skapa något lokalt igen? Hoppas fler är på!",
         isHuman: false,
       },
     ],
@@ -350,9 +354,12 @@ let redditAnswers = [];
 // When true, we're showing correct/incorrect for the current thread after user finished all comments
 let redditShowingFeedback = false;
 
+// Demographics collected before the survey starts
+let demographics = { age: null, profession: "", llmUsage: null };
 
-const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbxAdn0Nk-FQVlgM8OyKfNw9HP7ugIv9xac50-duNwgcNLd6tlYN2VxY_NdwLiu0_gMb/exec";
-const PARTICIPANT_ID = `${Date.now()}-${Math.floor(Math.random() * 1e6)}`;
+
+const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbxf3HTUTT0iepmO1bmwuTBqTGPW0Fg-NcHtNwsjc7ggDAGx7O5_VOIb8ZE_65nnui7lRg/exec"
+
 
 const els = {
   questionLabel: document.getElementById("question-label"),
@@ -490,6 +497,9 @@ async function sendAnswerEvent() {
       questionText: q.text,
       isHumanLabel: q.isHuman,
       userGuessIsHuman: choiceIsHuman,
+      age: demographics.age,
+      profession: demographics.profession,
+      llmUsage: demographics.llmUsage,
       ...extra,
     },
   };
@@ -550,6 +560,126 @@ function renderIntro() {
   els.btnNext.textContent = "Starta ▶";
 }
 
+function renderDemographics() {
+  hideChoices(true);
+  if (els.questionTitle) els.questionTitle.hidden = true;
+  els.btnExit.hidden = true;
+  els.btnExit.style.display = "none";
+
+  if (els.subtitle) {
+    els.subtitle.textContent = "Innan du börjar, svara på några korta frågor om dig själv.";
+  }
+
+  els.questionLabel.textContent = "Om dig";
+  els.questionTag.textContent = "Bakgrundsfrågor";
+  els.questionText.classList.add("question-text--intro");
+  els.questionText.innerHTML = "<p>Innan du börjar, vänligen svara på frågorna nedan:</p>";
+
+  els.progressText.textContent = "";
+  els.progressBarInner.style.width = "0%";
+
+  els.btnPrev.disabled = true;
+  els.btnNext.textContent = "Fortsätt ▶";
+
+  if (els.commentsContainer) {
+    els.commentsContainer.innerHTML = "";
+
+    const form = document.createElement("div");
+    form.style.cssText = "display:flex;flex-direction:column;gap:1.5rem;max-width:520px;margin:0 auto;";
+
+    // --- Age ---
+    const ageGroup = document.createElement("div");
+    const ageQ = document.createElement("p");
+    ageQ.style.cssText = "font-weight:600;margin:0 0 0.5rem;";
+    ageQ.textContent = "Hur gammal är du?";
+    ageGroup.appendChild(ageQ);
+
+    ["0–17", "18–34", "35–50", "51–75", "75+"].forEach(opt => {
+      const label = document.createElement("label");
+      label.style.cssText = "display:flex;align-items:center;gap:0.5rem;cursor:pointer;margin-bottom:0.3rem;";
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "demo-age";
+      radio.value = opt;
+      if (demographics.age === opt) radio.checked = true;
+      radio.addEventListener("change", () => {
+        demographics.age = opt;
+        updateDemoNext();
+      });
+      label.appendChild(radio);
+      label.appendChild(document.createTextNode(opt));
+      ageGroup.appendChild(label);
+    });
+    form.appendChild(ageGroup);
+
+    // --- Profession ---
+    const profGroup = document.createElement("div");
+    const profQ = document.createElement("p");
+    profQ.style.cssText = "font-weight:600;margin:0 0 0.5rem;";
+    profQ.textContent = "Ange ditt yrke:";
+    profGroup.appendChild(profQ);
+
+    const profInput = document.createElement("input");
+    profInput.type = "text";
+    profInput.placeholder = "Skriv ditt yrke här...";
+    profInput.value = demographics.profession || "";
+    profInput.style.cssText = "width:100%;padding:0.4rem 0.6rem;font-size:1rem;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;";
+    profInput.addEventListener("input", () => { demographics.profession = profInput.value; });
+    profGroup.appendChild(profInput);
+    form.appendChild(profGroup);
+
+    // --- LLM usage ---
+    const llmGroup = document.createElement("div");
+    const llmQ = document.createElement("p");
+    llmQ.style.cssText = "font-weight:600;margin:0 0 0.5rem;";
+    llmQ.textContent = "Uppskatta hur många timmar per vecka du använder LLM-verktyg (t.ex. ChatGPT, Claude, Copilot):";
+    llmGroup.appendChild(llmQ);
+
+    ["Inte alls", "0–5 timmar", "5–10 timmar", "10–20 timmar", "20+ timmar"].forEach(opt => {
+      const label = document.createElement("label");
+      label.style.cssText = "display:flex;align-items:center;gap:0.5rem;cursor:pointer;margin-bottom:0.3rem;";
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "demo-llm";
+      radio.value = opt;
+      if (demographics.llmUsage === opt) radio.checked = true;
+      radio.addEventListener("change", () => {
+        demographics.llmUsage = opt;
+        updateDemoNext();
+      });
+      label.appendChild(radio);
+      label.appendChild(document.createTextNode(opt));
+      llmGroup.appendChild(label);
+    });
+    form.appendChild(llmGroup);
+
+    els.commentsContainer.appendChild(form);
+  }
+
+  function updateDemoNext() {
+    els.btnNext.disabled = !demographics.age || !demographics.llmUsage;
+  }
+  updateDemoNext();
+}
+
+async function sendDemographicsEvent() {
+  const payload = {
+    participantId: PARTICIPANT_ID,
+    response: {
+      questionIndex: 0,
+      questionType: "demographics",
+      age: demographics.age,
+      profession: demographics.profession,
+      llmUsage: demographics.llmUsage,
+    },
+  };
+  try {
+    await fetch(RESULTS_ENDPOINT, { method: "POST", body: JSON.stringify(payload) });
+  } catch (err) {
+    console.error("Failed to send demographics", err);
+  }
+}
+
 function renderQuestion() {
   els.btnExit.hidden = false;
   els.btnExit.style.display = "";
@@ -574,7 +704,7 @@ function renderQuestion() {
 
   els.btnPrev.disabled = currentIndex === 0;
   els.btnNext.disabled = !answers[currentIndex] && currentIndex !== total - 1;
-  els.btnNext.textContent = currentIndex === total - 1 ? "Klara" : "Nästa ▶";
+  els.btnNext.textContent = currentIndex === total - 1 ? "Klar" : "Nästa ▶";
 
   resetChoiceStyles();
   applyAnswerStyles();
@@ -884,6 +1014,8 @@ function renderCurrent() {
   }
   if (mode === "intro") {
     renderIntro();
+  } else if (mode === "demographics") {
+    renderDemographics();
   } else if (mode === "reddit") {
     renderThread();
   } else if (mode === "transition") {
@@ -973,6 +1105,12 @@ function recordAnswer(choiceIsHuman) {
 
 function handleNext() {
   if (mode === "intro") {
+    mode = "demographics";
+    renderDemographics();
+    return;
+  }
+  if (mode === "demographics") {
+    sendDemographicsEvent();
     mode = "reddit";
     currentThreadIndex = 0;
     currentCommentIndex = 0;
@@ -1035,6 +1173,7 @@ function handleNext() {
     redditAnswers = [];
     redditShowingFeedback = false;
     lastChoiceIsHuman = null;
+    demographics = { age: null, profession: "", llmUsage: null };
     renderCurrent();
     return;
   }
