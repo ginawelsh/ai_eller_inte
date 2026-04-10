@@ -12,7 +12,7 @@ const QUESTIONS = [
   },
   {
     title: "Metoder vid implementation av affärssystem: en studie om anpassning",
-    text: "Dagens företag är i stort behov av information. Företag som har många avdelningar behöver möjligheter för att enkelt och smidigt kunna samordna information för hela företaget. Affärssystem erbjuder denna möjlighet genom en modulbaserad konstruktion som integrerar ett företags samtliga avdelningar i ett enda system. Problem kan dock uppstå då ett valt affärssystem inte passar företagets verksamhet. En kompromiss mellan system och verksamhet måste då försöka uppnås. Ett affärssystem implementeras ofta i samband med en metod, vilken ger detaljerade beskrivningar för hur implementeringen ska gå till. På vilka grunder väljer företagen att arbeta efter en specifik metod då system och verksamhet behöver anpassas till varandra? Detta arbete bygger på en undersökning som har utförts genom en survey där fem företag har medverkat. Resultatet av undersökningen visar ett antal metoder samt presenterar orsaker till varför dessa metoder används",
+    text: "Dagens företag är i stort behov av information. Företag som har många avdelningar behöver möjligheter för att enkelt och smidigt kunna samordna information för hela företaget. Affärssystem erbjuder denna möjlighet genom en modulbaserad konstruktion som integrerar ett företags samtliga avdelningar i ett enda system. Problem kan dock uppstå då ett valt affärssystem inte passar företagets verksamhet. En kompromiss mellan system och verksamhet måste då försöka uppnås. Ett affärssystem implementeras ofta i samband med en metod, vilken ger detaljerade beskrivningar för hur implementeringen ska gå till. På vilka grunder väljer företagen att arbeta efter en specifik metod då system och verksamhet behöver anpassas till varandra? Detta arbete bygger på en undersökning som har utförts genom en survey där fem företag har medverkat. Resultatet av undersökningen visar ett antal metoder samt presenterar orsaker till varför dessa metoder används.",
     isHuman: true,
     type: "Kandidatuppsats abstrakt",
   },
@@ -109,11 +109,11 @@ const THREADS = [
         isHuman: false,
       },
       {
-        text: "forsokte snusa lite Copenhagen och Camel snus nar jag bodde i Seattle, men det ar verkligen inte samma grej som hemma. Pasarna ar alldeles for stora och, som robeph skriver, sa ar materialet lite off ocksa. Tror for ovrigt inte att konceptet ar sa slaende nar det inte ar en del av kulturen som den ar i Sverige.",
+        text: "Forsokte snusa lite Copenhagen och Camel snus nar jag bodde i Seattle, men det ar verkligen inte samma grej som hemma. Pasarna ar alldeles for stora och, som robeph skriver, sa ar materialet lite off ocksa. Tror for ovrigt inte att konceptet ar sa slaende nar det inte ar en del av kulturen som den ar i Sverige.",
         isHuman: true,
       },
       {
-        text: "kommenterade lite med en snubbe om just camel snus, han var inte så förtjust, men varför inte? med alla sluta röka på offentliga platser lagar så.",
+        text: "Kommenterade lite med en snubbe om just camel snus, han var inte så förtjust, men varför inte? med alla sluta röka på offentliga platser lagar så.",
         isHuman: true,
       },
       {
