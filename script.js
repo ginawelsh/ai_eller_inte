@@ -358,7 +358,7 @@ let redditShowingFeedback = false;
 let demographics = { age: null, profession: "", llmUsage: null };
 
 
-const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVV34iJgbofXC2t3N-ZAscZRL07SlJR34L87py1DUaK4OsqXV_Mc19cT_kEWHTFMs3HQ/exec"
+const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycby4xbqNGTgaV8bzjFQOeceV_gJKWzP4BjgoFp0kQy7I2v_Fa4vpAP0FRZ7ETXJNRt01/exec"
 
 const PARTICIPANT_ID = crypto.randomUUID();
 
@@ -509,7 +509,7 @@ async function sendAnswerEvent() {
   try {
     await fetch(RESULTS_ENDPOINT, {
       method: "POST",
-      // mode: "no-cors",   // this is optional now; you can keep or remove it
+      mode: "no-cors",
       body: JSON.stringify(payload),
     });
   } catch (err) {
@@ -676,7 +676,7 @@ async function sendDemographicsEvent() {
     },
   };
   try {
-    await fetch(RESULTS_ENDPOINT, { method: "POST", body: JSON.stringify(payload) });
+    await fetch(RESULTS_ENDPOINT, { method: "POST", mode: "no-cors", body: JSON.stringify(payload) });
   } catch (err) {
     console.error("Failed to send demographics", err);
   }
@@ -968,7 +968,7 @@ function renderOutro() {
       };
 
       try {
-        await fetch(RESULTS_ENDPOINT, { method: "POST", body: JSON.stringify(payload) });
+        await fetch(RESULTS_ENDPOINT, { method: "POST", mode: "no-cors", body: JSON.stringify(payload) });
         textarea.value = "";
         textarea.disabled = true;
         submit.textContent = "Tack för att du svarade!";
