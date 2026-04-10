@@ -588,12 +588,12 @@ function renderDemographics() {
     els.commentsContainer.innerHTML = "";
 
     const form = document.createElement("div");
-    form.style.cssText = "display:flex;flex-direction:column;gap:1.5rem;max-width:520px;margin:0 auto;";
+    form.style.cssText = "display:flex;flex-direction:column;gap:1rem;font-size:clamp(0.85rem,2.3vw,0.95rem);";
 
     // --- Age ---
     const ageGroup = document.createElement("div");
     const ageQ = document.createElement("p");
-    ageQ.style.cssText = "font-weight:600;margin:0 0 0.5rem;";
+    ageQ.style.cssText = "font-weight:600;margin:0 0 0.3rem;";
     ageQ.textContent = "Hur gammal är du?";
     ageGroup.appendChild(ageQ);
 
@@ -618,7 +618,7 @@ function renderDemographics() {
     // --- Profession ---
     const profGroup = document.createElement("div");
     const profQ = document.createElement("p");
-    profQ.style.cssText = "font-weight:600;margin:0 0 0.5rem;";
+    profQ.style.cssText = "font-weight:600;margin:0 0 0.3rem;";
     profQ.textContent = "Ange ditt yrke:";
     profGroup.appendChild(profQ);
 
@@ -626,7 +626,7 @@ function renderDemographics() {
     profInput.type = "text";
     profInput.placeholder = "Skriv ditt yrke här...";
     profInput.value = demographics.profession || "";
-    profInput.style.cssText = "width:100%;padding:0.4rem 0.6rem;font-size:1rem;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;";
+    profInput.style.cssText = "width:100%;padding:0.3rem 0.5rem;font-size:inherit;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;";
     profInput.addEventListener("input", () => { demographics.profession = profInput.value; });
     profGroup.appendChild(profInput);
     form.appendChild(profGroup);
@@ -634,7 +634,7 @@ function renderDemographics() {
     // --- LLM usage ---
     const llmGroup = document.createElement("div");
     const llmQ = document.createElement("p");
-    llmQ.style.cssText = "font-weight:600;margin:0 0 0.5rem;";
+    llmQ.style.cssText = "font-weight:600;margin:0 0 0.3rem;";
     llmQ.textContent = "Uppskatta hur många timmar per vecka du använder LLM-verktyg (t.ex. ChatGPT, Claude, Copilot):";
     llmGroup.appendChild(llmQ);
 
