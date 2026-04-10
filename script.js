@@ -99,12 +99,12 @@ const QUESTIONS = [
 // Thread-style Reddit-like discussions
 // Each thread has a question and a list of comments
 const THREADS = [
-  // --- Thread 1: Lumpen (9lfs5) REVISED ---
+  // --- Thread 1: Lumpen (9lfs5) EDITED!
   {
     questionText: "Lumpen – har ni gjort den? Jag tycker att vi måste blåsa lite liv i denna reddit, så jag föreslår att vi börjar snacka om det. Gjorde själv inte militärtjänst, var upptagen med andra dumma saker vid den åldern. Dock ångrar jag det väldigt mycket, tror att den hade varit en upplevelse. Åsikter/erfarenheter?",
     comments: [
       {
-        text: "Jag gjorde lumpen och det var en galen tid! Mycket skratt, några tuffa stunder, men jag skulle inte vilja vara utan den upplevelsen. En del av att växa upp, typ!",
+        text: "Haha, jag gjorde lumpen och måste säga att det var en blandning av kaos och skratt! Visst var det tufft ibland, men man lärde sig massor och fick många minnen för livet. Kan varmt rekommendera det, även om det är lite jobbigt ibland",
         isHuman: false,
       },
       {
@@ -112,7 +112,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Jag gjorde lumpen och det var verkligen en blandning av upplevelser! Lärde mig mycket om mig själv och fick några grymma kompisar på köpet. Visst var det tufft ibland, men det är väl det som gör det minnesvärt, eller hur?",
+        text: "Haha, fattar känslan! Jag gjorde lumpen och det var både slitigt och roligt på nåt sätt. Många minnen, både bra och dåliga, men jag skulle inte missa det för nåt. Man träffar mycket sköna personer också!",
         isHuman: false,
       },
       {
@@ -148,15 +148,15 @@ const THREADS = [
     questionText: "Vad fick du i julklapp i år Sweddit?.",
     comments: [
       {
-        text: "Fick en schysst bok och en varm tröja, perfekt för vintermyset!",
-        isHuman: false,
-      },
-      {
         text: "Haha nej du Jävelberg, mig lurar du men ingen annan!",
         isHuman: true,
       },
       {
-        text: "",
+        text: "Fick en schysst bok och en varm tröja, perfekt för vintermyset!",
+        isHuman: false,
+      },
+      {
+        text: "Jag fick en mugg med en rolig text och massa godis! Hur var din jul?",
         isHuman: false,
       },
       {
@@ -275,7 +275,7 @@ const THREADS = [
       },
     ],
   },
-  // --- Thread 9: SD in i riksdagen (dg2sv) REVISED --
+  // --- Thread 9: SD in i riksdagen (dg2sv)EDITED!
   {
     questionText: "Vilka enskilda politiker ger bäst intryck?",
     comments: [
@@ -292,29 +292,29 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "",
+        text: "Svårt att säga, men personligen gillar jag dem som är ärliga och lyssnar på folket. Typ som exempelvis... ja, ni vet vilka!",
         isHuman: false,
       },
     ],
   },
-  // --- Thread 10: Reddit Meetup Day (dg3ms) REVISED --
+  // --- Thread 10: Reddit Meetup Day (dg3ms) EDITED!
   {
     questionText: "Vad hände med Reddit Meetup Day? Det var ju under vår nationaldag har jag för mig. Tycker att det borde styras upp ifall det inte blev något :D",
     comments: [
       {
-        text: "",
+        text: "Ja, det känns som att det har blivit lite tyst om det! Skulle vara kul om de kunde fixa till det igen. Kanske vi borde börja peppa för nästa år?",
         isHuman: false,
       },
       {
-        text: "",
+        text: "Haha, ja, jag undrar också vad som hände med det! Skulle vara kul att få till lite träffar, kanske lite mer engagemang nästa år? :D",
         isHuman: false,
       },
       {
-        text: "",
+        text: "Ja, jag har också undrat! Det skulle vara kul om någon tog tag i det. Kanske en bättre planering nästa år? :)",
         isHuman: false,
       },
       {
-        text: "",
+        text: "Ja, det kändes som ett kul koncept! Hoppas de fixar något nästa år, skulle vara roligt att träffa fler entusiaster!",
         isHuman: false,
       },
     ],
