@@ -360,6 +360,8 @@ let demographics = { age: null, profession: "", llmUsage: null };
 
 const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbzVV34iJgbofXC2t3N-ZAscZRL07SlJR34L87py1DUaK4OsqXV_Mc19cT_kEWHTFMs3HQ/exec"
 
+const PARTICIPANT_ID = crypto.randomUUID();
+
 
 const els = {
   questionLabel: document.getElementById("question-label"),
