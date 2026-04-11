@@ -127,11 +127,11 @@ const THREADS = [
     questionText: "Vad fick du i julklapp i år Sweddit?.",
     comments: [
       {
-        text: "Haha nej du Jävelberg, mig lurar du men ingen annan!",
+        text: "Jag fick några riktigt bra böcker som jag längtar efter att läsa, plus en go hoodie som är perfekt för kalla vinterkvällar. Hade även en mysig tid med nära och kära, mycket kvalitetstid! Hur var era julklappar?",
         isHuman: true,
       },
       {
-        text: "Jag fick några riktigt bra böcker som jag längtar efter att läsa, plus en go hoodie som är perfekt för kalla vinterkvällar. Hade även en mysig tid med nära och kära, mycket kvalitetstid! Hur var era julklappar?",
+        text: "Haha nej du Jävelberg, mig lurar du men ingen annan!",
         isHuman: false,
       },
       {
