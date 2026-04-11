@@ -128,11 +128,11 @@ const THREADS = [
     comments: [
       {
         text: "Jag fick några riktigt bra böcker som jag längtar efter att läsa, plus en go hoodie som är perfekt för kalla vinterkvällar. Hade även en mysig tid med nära och kära, mycket kvalitetstid! Hur var era julklappar?",
-        isHuman: true,
+        isHuman: false,
       },
       {
         text: "Haha nej du Jävelberg, mig lurar du men ingen annan!",
-        isHuman: false,
+        isHuman: true,
       },
       {
         text: "Jag fick en riktigt bra trådlös hörlur och ett nytt pussel! Hörlurarna är perfekt när jag vill lyssna på musik utan sladdar, och pusslet är just den svåra utmaningen jag behöver för att koppla av under vintermörkret.",
