@@ -291,7 +291,7 @@ const THREADS = [
         isHuman: true,
       },
       {
-        text: "Jag gjorde lumpen för några år sedan och det var både tufft och lärorikt! Man lär sig mycket om sig själv och får nya vänner för livet. Visst var det jobbigt ibland, men jag ångrar inte en sekund av erfarenheterna. Hade gärna gjort det igen!",
+        text: "Gjorde lumpen för några år sen och det var både skitjobbigt och bland det roligaste jag gjort. Mycket väntan, lite “pang pang”, men framför allt rutin, kyla, sömnbrist och att lära sig funka i grupp även när man är helt slut. Man får en speciell gemenskap som är svår att hitta annars, plus att man växer som person (klyscha men sant). Samtidigt är det inte för alla, vissa hatade varje minut. Om du ångrar dig: kolla Hemvärnet eller frivilligorganisationer, eller sök GU nu om du är sugen. Det är inte “för sent” bara för att man missade 18-årsåldern.",
         isHuman: false,
       },
       {
