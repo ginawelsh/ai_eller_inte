@@ -355,10 +355,10 @@ let redditAnswers = [];
 let redditShowingFeedback = false;
 
 // Demographics collected before the survey starts
-let demographics = { age: null, profession: "", llmUsage: null };
+let demographics = { age: null, profession: "", llmUsage: null, swedishLevel: null };
 
 
-const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycby4xbqNGTgaV8bzjFQOeceV_gJKWzP4BjgoFp0kQy7I2v_Fa4vpAP0FRZ7ETXJNRt01/exec"
+const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwYpMGlHYUxKaRoFzfskyVaOviYLEU_MGqZX9ULjZKOgdViPbW-bHLNwRk_qbHUok4-Rw/exec"
 
 const PARTICIPANT_ID = crypto.randomUUID();
 
@@ -503,6 +503,7 @@ async function sendAnswerEvent() {
       age: demographics.age,
       profession: demographics.profession,
       llmUsage: demographics.llmUsage,
+      swedishLevel: demographics.swedishLevel,
       ...extra,
     },
   };
@@ -656,11 +657,36 @@ function renderDemographics() {
     });
     form.appendChild(llmGroup);
 
+    // --- Swedish level ---
+    const sweGroup = document.createElement("div");
+    const sweQ = document.createElement("p");
+    sweQ.style.cssText = "font-weight:600;margin:0 0 0.3rem;";
+    sweQ.textContent = "Vilken nivå av svenska talar du?";
+    sweGroup.appendChild(sweQ);
+
+    ["Modersmål", "Avancerad", "Mellannivå", "Grundläggande"].forEach(opt => {
+      const label = document.createElement("label");
+      label.style.cssText = "display:flex;align-items:center;gap:0.5rem;cursor:pointer;margin-bottom:0.3rem;";
+      const radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "demo-swedish";
+      radio.value = opt;
+      if (demographics.swedishLevel === opt) radio.checked = true;
+      radio.addEventListener("change", () => {
+        demographics.swedishLevel = opt;
+        updateDemoNext();
+      });
+      label.appendChild(radio);
+      label.appendChild(document.createTextNode(opt));
+      sweGroup.appendChild(label);
+    });
+    form.appendChild(sweGroup);
+
     els.commentsContainer.appendChild(form);
   }
 
   function updateDemoNext() {
-    els.btnNext.disabled = !demographics.age || !demographics.llmUsage;
+    els.btnNext.disabled = !demographics.age || !demographics.llmUsage || !demographics.swedishLevel;
   }
   updateDemoNext();
 }
@@ -674,6 +700,7 @@ async function sendDemographicsEvent() {
       age: demographics.age,
       profession: demographics.profession,
       llmUsage: demographics.llmUsage,
+      swedishLevel: demographics.swedishLevel,
     },
   };
   try {
@@ -1176,7 +1203,7 @@ function handleNext() {
     redditAnswers = [];
     redditShowingFeedback = false;
     lastChoiceIsHuman = null;
-    demographics = { age: null, profession: "", llmUsage: null };
+    demographics = { age: null, profession: "", llmUsage: null, swedishLevel: null };
     renderCurrent();
     return;
   }
