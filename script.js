@@ -116,33 +116,6 @@ const THREADS = [
       },
     ],
   },
-
-// Thread-style Reddit-like discussions
-// Each thread has a question and a list of comments
-const THREADS = [
-
-  // --- Thread 1: Snus i USA (9n218) EDITED!
-  {
-    questionText: "Snus marknadsförs i USA – kommer det funka den här gången?",
-    comments: [
-      {
-        text: "Det är svårt att säga. Snus har sin charm och kan locka många, särskilt rökare som söker ett alternativ. Men den amerikanska marknaden är tuff och hälsodebatten kring tobaksprodukter är intensiv. Det hänger på hur bra de lyckas med både marknadsföring och att övervinna motståndet.",
-        isHuman: false,
-      },
-      {
-        text: "Forsokte snusa lite Copenhagen och Camel snus nar jag bodde i Seattle, men det ar verkligen inte samma grej som hemma. Pasarna ar alldeles for stora och, som robeph skriver, sa ar materialet lite off ocksa. Tror for ovrigt inte att konceptet ar sa slaende nar det inte ar en del av kulturen som den ar i Sverige.",
-        isHuman: true,
-      },
-      {
-        text: "Kommenterade lite med en snubbe om just camel snus, han var inte så förtjust, men varför inte? med alla sluta röka på offentliga platser lagar så.",
-        isHuman: true,
-      },
-      {
-        text: "Det är svårt att säga. Snus har ju inte tagit fart på samma sätt som i Sverige, men med rätt marknadsföring och hälsobudskap kan det kanske bli en succé. Många amerikaner är ju också nyfikna på svenskt snus, så man får se hur det utvecklas!",
-        isHuman: false,
-      },
-    ],
-  },
   // --- Thread 3: Sverige jämställt? (b4cce) ----- REVISED ---
   {
     questionText: "Vad fick du i julklapp i år Sweddit?.",
