@@ -539,7 +539,6 @@ function renderIntro() {
   }
 
   els.questionLabel.textContent = "Välkommen!";
-  els.questionTag.textContent = "Information";
   els.questionText.classList.add("question-text--intro");
   els.questionText.innerHTML =
 
@@ -761,11 +760,10 @@ function renderThread() {
 
   if (els.subtitle) {
     els.subtitle.textContent =
-      "Läs kommentarerna och avgör för varje om den är skriven av en människa eller AI.";
+      "Läs kommentarerna. Avgör för varje kommentar om den är skriven av en människa eller AI.";
   }
 
   els.questionLabel.textContent = `Tråd ${currentThreadIndex + 1} av ${THREADS.length}`;
-  els.questionTag.textContent = "Kommentars-tråd";
   els.questionText.textContent = thread.questionText;
 
   if (els.commentsContainer) {
@@ -925,6 +923,8 @@ function makeScoreBar(label, correct, answered) {
 function renderOutro() {
   hideChoices(true);
   if (els.questionTitle) els.questionTitle.hidden = true;
+  els.btnExit.hidden = true;
+  els.btnExit.style.display = "none";
 
   if (els.subtitle) {
     els.subtitle.textContent = "Tack för att du deltog!";
@@ -938,7 +938,7 @@ function renderOutro() {
 
   els.questionText.classList.add("question-text--intro");
   els.questionText.innerHTML =
-    "<p>Tack för att du har genomfört undersökningen.</p>" +
+    "<p>Tack för att du har genomfört undersökningen! :) </p>" +
     "<p>Nedan ser du dina resultat för varje del.</p>";
 
   if (els.commentsContainer) {
@@ -958,7 +958,7 @@ function renderOutro() {
 
     const reflLabel = document.createElement("p");
     reflLabel.className = "outro-refl-label";
-    reflLabel.textContent = "Vill du skriva en kort reflektion? (frivilligt)";
+    reflLabel.textContent = "Fanns det några tecken som fick dig att tro att en text var skriven av AI snarare än en människa? (frivilligt)";
     box.appendChild(reflLabel);
 
     const textarea = document.createElement("textarea");
@@ -1184,7 +1184,7 @@ function handleNext() {
     hasAnsweredCurrent = !!answers[currentIndex];
     if (els.subtitle) {
       els.subtitle.textContent =
-        "Läs abstraktet och avgör om det är skrivet av en människa eller AI.";
+        "Läs abstraktet. Avgör om det är skrivet av en människa eller AI.";
     }
     renderQuestion();
     return;

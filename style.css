@@ -38,8 +38,7 @@ body {
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-    "Segoe UI", sans-serif;
+  font-family: "Inter", "Segoe UI", "Roboto", "Helvetica Neue", Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
   display: flex;
@@ -114,9 +113,13 @@ body {
 }
 
 .app-subtitle {
-  margin: 0;
-  font-size: clamp(0.8rem, 2.2vw, 0.92rem);
-  color: var(--text-muted);
+  margin: 0 0 10px;
+  font-size: clamp(0.78rem, 1.8vw, 0.92rem);
+  color: var(--accent-dark);
+  line-height: 1.6;
+  font-weight: 500;
+  font-style: italic;
+  max-width: 720px;
 }
 
 /* ── Progress bar ───────────────────────────────────────── */
@@ -124,6 +127,7 @@ body {
 .progress-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 6px;
   width: 100%;
   max-width: 420px;
@@ -177,8 +181,9 @@ body {
 
 .question-header {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   gap: 8px;
   margin-bottom: 10px;
   flex-wrap: wrap;
@@ -192,10 +197,11 @@ body {
 }
 
 .question-tag {
+  display: none;
   font-size: clamp(0.68rem, 1.8vw, 0.75rem);
   color: #ffffff;
   background: var(--accent);
-  padding: 3px 9px;
+  padding: 5px 9px;
   border-radius: 999px;
   box-shadow: var(--shadow-chip);
   border: 1px solid rgba(249, 115, 22, 0.4);
@@ -487,16 +493,9 @@ body {
 }
 
 .choice-button::before {
-  content: "";
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.25);
-  flex-shrink: 0;
+  content: none;
+  display: none;
 }
-
-.choice-human::before { background: linear-gradient(135deg, #16a34a, #4ade80); }
-.choice-ai::before    { background: linear-gradient(135deg, var(--accent), var(--accent-dark)); }
 
 .choice-button:hover:not(:disabled) {
   transform: translateY(-1px);
@@ -646,6 +645,25 @@ body {
   /* Let comment choice buttons stack if they don't fit side-by-side */
   .comment-choice-buttons {
     gap: 5px;
+  }
+}
+
+/* ── Desktop (≥ 820px wide) ─────────────────────────────── */
+
+@media (min-width: 820px) {
+  .app-shell {
+    max-width: 820px;
+  }
+
+  /* Remove the scroll cap — let comments expand to their full height */
+  .comments-container {
+    max-height: none;
+    overflow-y: visible;
+  }
+
+  .question-text {
+    max-height: none;
+    overflow-y: visible;
   }
 }
 
