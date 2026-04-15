@@ -47,12 +47,6 @@ const QUESTIONS = [
     type: "Kandidatuppsats abstrakt",
   },
   {
-    title: "Upplevelser av interaktionen mellan klient och socialsekreterare -sett ur ett maktperspektiv",
-    text: "För socialtjänstens klienter innebär klientskapet en ovillkorligt underordnad roll, där individen befinner sig i en situation denne inte styr över. Individen etablerar en relation till den offentliga hjälpapparaten som samtidigt är en maktapparat. Det övergripande syftet med studien är att skapa förståelse för hur den specifika ekonomisektionen inom socialförvaltningen, i en kommun i södra Sverige, som avgränsat socialt fält, är konstruerat. Ett delsyfte är att belysa hur enskilda socialsekreterare inom denna sektion samt ett urval av deras klienter, upplever interaktionen vid handläggning av ekonomiskt bistånd. Ytterligare ett delsyfte är att få en förståelse för hur de sociala konfigurationerna ter sig samt hur makt konstrueras, i interaktionen mellan klient och socialsekreterare. Tidigare forskning inom området, av Greta-Marie Skau och Leila Billqvist, belyser problematiken i den svåra balanssituation som socialsekreterare befinner sig i, vad gäller att ha makt och ge hjälp samt vad som sker i klientprocessen. Studiens teoretiska ansats utgörs av Tillys teori om beständig ojämlikhet, där fokus ligger på kombinationer av sociala konfigurationer samt den kategoriella ojämlikhetens orsaksmekanismer. Studien metodologiska ansats är av abduktiv art, varpå Tillys teori utgör grunden för den empiriska datainsamlingen. Genom studiens resultat modifieras därefter denna teori. För den empiriska datainsamlingen tillämpas en metodtriangulering, i form av personliga dokument samt semistrukturerade intervjuer. Huvuddraget i resultatet inbegriper upplevelser av distinktionen i socialsekreterarrollen, vilken består av dels en hjälpande/behandlande funktion, dels en myndighetsutövande funktion. Resultatet påvisar även en distinktion vad gäller klientrollen, då den består av såväl rättigheter som skyldigheter. Vidare presenteras upplevelser av interaktionen mellan klient och socialsekreterare, varigenom ojämlikheter upprättas och vidmakthålls. Av analysen framgår att en beständig ojämlikhet råder i interaktionen mellan klient och socialsekreterare. Denna ojämlikhet yttrar sig inom det kategoriella paret, vilka karaktäriseras av inre och yttre kategorier, således tenderar den kategoriella ojämlikheten att vara strukturellt betingad. Ojämlikheten och maktobalansen upprättas genom exploatering och möjlighetsansamling samt vidmakthålls genom efterlikning och anpassning.",
-    isHuman: true,
-    type: "Kandidatuppsats abstrakt",
-  },
-  {
     title: "Användarverifiering från webbkamera",
     text: "Arbetet som presenteras i den här rapporten handlar om ansiktsigenkänning från webbkameror med hjälp av principal component analysis samt artificiella neurala nätverk av typen feedforward. Arbetet förbättrar tekniken med hjälp av filterbaserade metoder som bland annat används inom ansiktsdetektering. Dessa filter bygger på att skicka med redundant data av delregioner av ansiktet.",
     isHuman: true,
@@ -64,7 +58,64 @@ const QUESTIONS = [
     isHuman: false,
     type: "Kandidatuppsats abstrakt",
   },
+  {
+    title: "Processer och informationsstöd för uppföljning av efterkalkyler i Portsystem 2000 AB:s affärssystem: från förkalkyl till kvalitetssäkrad återkoppling",
+    text: "Denna studie behandlar hur Portsystem 2000 AB arbetar med uppföljning av efterkalkyler och hur detta uppföljningsarbete påverkar företagets kalkylprocess och beslutsunderlag. Utifrån begreppen förkalkyl och efterkalkyl undersöks hur kostnader och intäkter planeras inför ett uppdrag samt hur utfallet senare sammanställs, analyseras och återförs till verksamheten. Ett särskilt fokus ligger på vilka rutiner och processer som finns för att jämföra förkalkyl med faktiskt resultat, identifiera avvikelser och använda lärdomar i kommande offerter och projekt.\n\nVidare analyseras affärssystemets och övriga informationssystems roll i uppföljningsarbetet. Studien belyser hur data samlas in, registreras och bearbetas, samt vilka möjligheter och begränsningar systemstödet innebär för att skapa en effektiv och tillförlitlig efterkalkyl. Kvalitetsaspekter, såsom datakvalitet, spårbarhet och enhetliga arbetssätt, lyfts fram som centrala för att efterkalkylerna ska kunna fungera som ett praktiskt styr- och förbättringsverktyg.\n\nSammantaget syftar arbetet till att beskriva och bedöma hur uppföljningen av efterkalkyler kan utvecklas för att stärka kopplingen mellan kalkylarbete och verksamhetsstyrning. Genom att tydliggöra processflöden, ansvarsfördelning och informationshantering skapas ett underlag för förbättringar som kan bidra till bättre precision i förkalkyler, mer systematiskt lärande och ökad kvalitet i företagets ekonomiska uppföljning.",
+    isHuman: false,
+    type: "Kandidatuppsats abstrakt",
+  },
+  {
+    title: "Pappersmakulatur vid Bobergs Tryckeri AB - orsaker och förbättringsförslag",
+    text: "Pappersmakulatur uppstår i tryckpressarna, men orsakerna finns i företagets alla funktioner. För ett framgångsrikt förbättringsarbete med att minska makulaturen krävs därför att all personal är engagerad. Examensarbetet utfördes på Bobergs Tryckeri AB i Falun, ett familjeägt företag med 60 anställda, som producerar personifierad direktreklam och blanketter. Syftet var att undersöka hur pappersmakulaturen kan minska och målet var att hitta orsaker samt ge förslag på åtgärder för att minska den. Genom intervjuer med personalen kartlades produktionssprocessen och utifrån det utarbetades förbättringsförslag. Exempel på förbättringsförslag är att kontinuerligt mäta och rapportera makulaturen, förbättra kommunikationen mellan avdelningarna och utveckla färgstyrningen. Litteraturstudier och kontakter med nyckelpersoner inom branschorganisationer och andra liknande företag, var till stor hjälp i arbetet. Fördjupningsdelen i projektet har sin grund i boken The Printer’s Guide to Waste Reduction av Tim Dalton.",
+    isHuman: true,
+    type: "Kandidatuppsats abstrakt",
+  },
+  {
+    title: "Visionen om det narkotikafria samhället: En diskursanalys",
+    text: "Syftet med denna uppsats är att belysa hur visionen om det narkotikafria samhället uppenbarar sig i diskurser som behandlar narkotikamissbruk som socialt problem. Empiriskt material i form av ett policydokument och en debattföljetong har analyserats utifrån ett socialkonstruktivistiskt och diskursanalytiskt perspektiv. Analysen pekar mot att definitionskampen om narkotikamissbruk som socialt problem finns över många diskurser; samtidigt ses visionen om det narkotikafria samhället ofta vara närvarande. En nationell diskurs som kan ses utgå från vad vi som nation anser och vill ha i vårt land. En moraldiskurs som lägger värde i olika beteenden och åsikter. En juridisk och polisiär diskurs som utifrån narkotikas juridiska status ramar in fenomenet och en barn-och ungdomsdiskurs som formulerar narkotikan som det största hotet. Alla dessa kan enligt studien ses som en del i konstruktionen av narkotikamissbruk som socialt problem.",
+    isHuman: true,
+    type: "Kandidatuppsats abstrakt",
+  },
+  {
+    title: "Filmeventens framväxt i Skåne: En studie av Film i Skånes regionala eventkultur och verksamheter som M:Dox, CineSkåne och Filmbar",
+    text: "Denna studie undersöker den så kallade ”eventbubblan” i södra Sverige genom en analys av Film i Skånes eventverksamhet. Med utgångspunkt i ett regionalt kulturpolitiskt sammanhang belyser uppsatsen hur en filmregional aktör arbetar med eventkultur som strategi för att stärka filmens synlighet, publikrelationer och position i Skåne. Fokus riktas mot olika former av filmevent och återkommande koncept – såsom M:Dox, CineSkåne och Filmbar – samt deras funktion i ett bredare ekosystem av filmfestivaler och publika satsningar.\n\nStudiens centrala syfte är att förstå vilka mål och logiker som präglar Film i Skånes eventarbete, samt vilka möjligheter och spänningar som uppstår när filmkultur i allt högre grad förmedlas genom tidsbegränsade, upplevelsebaserade format. Genom att närläsa verksamhetens praktiker synliggörs hur eventen kan fungera som mötesplatser för publik, bransch och institutioner, där nätverkande, identitetsskapande och regional profilering blir lika viktiga som själva filmvisningen. Samtidigt problematiseras eventifieringen som fenomen: när resurser, uppmärksamhet och kulturkonsumtion koncentreras till event riskerar kontinuitet, fördjupning och långsiktigt publikbyggande att hamna i skymundan.\n\nUppsatsen placerar Film i Skånes arbete i en kontext av regionalisering, där kulturella initiativ ofta motiveras av både kulturpolitiska och utvecklingspolitiska ambitioner. Sammantaget visar studien hur eventverksamheten kan förstås som ett uttryck för en samtida kulturtrend där upplevelser och synlighet blir centrala verktyg för att skapa legitimitet och attraktionskraft. ”Eventbubblan i syd” framstår därmed både som en möjlighet att vitalisera filmkulturen i regionen och som en utmaning som väcker frågor om hållbarhet, prioriteringar och filmkulturens långsiktiga förankring.",
+    isHuman: false,
+    type: "Kandidatuppsats abstrakt",
+  },
+ {
+    title: "\"Men det här är ju kvinnogöra\": En studie om hur lärare ser på och praktiserar jämställdhet och genus i HKK",
+    text: "Kvinnor och män har historiskt sett ansetts ha olika fysiska och psykiska förutsättningar och den norm i samhället som vi levt efter har varit mannens. Kvinnans plats var i hemmet som maka; mor och husfru. I och med samhällets utveckling förändrades den könsspecifika arbetsfördelningen och kvinnan började förvärvsarbeta. Hem – och konsumentkunskap har gått från flickämne i skolan till obligatoriskt för alla där skolan ska främja jämställdhet och jämlikhet mellan könen. Denna rapports syfte är att undersöka hur yrkesverksamma lärare inom hem – och konsumentkunskap ser på jämställdhet och genus inom sitt ämne; vad som kan påverka hur de arbetar med jämställdhet mellan könen i sin undervisning samt hur de praktiskt genomför detta. Sju behöriga lärare från norra Sverige deltog i enskilda intervjuer. De hade olika åldrar och längd på yrkesverksamhet. Intervjuerna spelades in; transkriberades och analyserades med kvalitativ innehållsanalys. Respondenterna beskrev en pågående förändring av stereotypa könsmönster både i skolan och i hemmet men att traditionella könsroller fortfarande reproduceras. Hkk beskrevs som ett skolämne där lärandet till stor del sker i praktiskt arbete där roller synliggörs som kan ge förutsättningar till diskussion och reflektion om jämställdhet. Respondenterna var dock eniga om att jämställdhetsarbete i skolan ställer krav på lärarrollen och sig själv som verktyg; exempelvis vid bedömning av flickor och pojkar. Slutsatsen av denna studie är att lärare i hkk anser att stereotypa könsmönster har förändrats men fortfarande reproduceras traditionella könsroller i skolan. Yngre generationer frångår alltmer de traditionella könsrollerna då jämställdhet blir en allt mer naturlig del i samhället; dock kvarstår det arbete i jämställdhetsfrågan då det fortfarande finns skillnader mellan könen i betyg.",
+    isHuman: true,
+    type: "Kandidatuppsats abstrakt",
+  },
 ];
+
+// Thread-style Reddit-like discussions
+// Each thread has a question and a list of comments
+const THREADS = [
+
+  // --- Thread 1: Snus i USA (9n218) EDITED!
+  {
+    questionText: "Snus marknadsförs i USA – kommer det funka den här gången?",
+    comments: [
+      {
+        text: "Det är svårt att säga. Snus har sin charm och kan locka många, särskilt rökare som söker ett alternativ. Men den amerikanska marknaden är tuff och hälsodebatten kring tobaksprodukter är intensiv. Det hänger på hur bra de lyckas med både marknadsföring och att övervinna motståndet.",
+        isHuman: false,
+      },
+      {
+        text: "Forsokte snusa lite Copenhagen och Camel snus nar jag bodde i Seattle, men det ar verkligen inte samma grej som hemma. Pasarna ar alldeles for stora och, som robeph skriver, sa ar materialet lite off ocksa. Tror for ovrigt inte att konceptet ar sa slaende nar det inte ar en del av kulturen som den ar i Sverige.",
+        isHuman: true,
+      },
+      {
+        text: "Kommenterade lite med en snubbe om just camel snus, han var inte så förtjust, men varför inte? med alla sluta röka på offentliga platser lagar så.",
+        isHuman: true,
+      },
+      {
+        text: "Det är svårt att säga. Snus har ju inte tagit fart på samma sätt som i Sverige, men med rätt marknadsföring och hälsobudskap kan det kanske bli en succé. Många amerikaner är ju också nyfikna på svenskt snus, så man får se hur det utvecklas!",
+        isHuman: false,
+      },
+    ],
+  },
 
 // Thread-style Reddit-like discussions
 // Each thread has a question and a list of comments
