@@ -402,7 +402,11 @@ const els = {
   feedback: document.getElementById("feedback"),
   scoreCorrect: document.getElementById("score-correct"),
   scoreTotal: document.getElementById("score-total"),
+  scoreSummary: document.getElementById("score-summary"),
 };
+
+// Running score is hidden so participants get no correctness feedback during the survey.
+if (els.scoreSummary) els.scoreSummary.hidden = true;
 
 const answers = new Array(effectiveQuestions.length).fill(null);
 
@@ -798,10 +802,7 @@ function renderThread() {
       const row = document.createElement("div");
       let rowClass = "comment-row";
 
-      if (redditShowingFeedback && ans) {
-        const isCorrect = ans.choiceIsHuman === comment.isHuman;
-        rowClass += isCorrect ? " comment-row--correct" : " comment-row--incorrect";
-      } else if (!redditShowingFeedback && ans !== null) {
+      if (ans !== null && ans) {
         rowClass += ans.choiceIsHuman ? " comment-row--picked-human" : " comment-row--picked-ai";
       }
 
@@ -811,10 +812,8 @@ function renderThread() {
       meta.className = "comment-meta";
 
       if (redditShowingFeedback && ans) {
-        const isCorrect = ans.choiceIsHuman === comment.isHuman;
         const guess = ans.choiceIsHuman ? "Människa" : "AI";
-        const actual = comment.isHuman ? "Människa" : "AI";
-        meta.textContent = `Kommentar ${idx + 1} · Din bedömning: ${guess}. ${isCorrect ? "✓ Rätt!" : "✗ Rätt svar: " + actual + "."}`;
+        meta.textContent = `Kommentar ${idx + 1} · Din bedömning: ${guess}`;
       } else {
         meta.textContent = `Kommentar ${idx + 1}`;
       }
@@ -1083,43 +1082,25 @@ function renderCurrent() {
 
 function resetChoiceStyles() {
   [els.btnHuman, els.btnAi].forEach((btn) => {
-    btn.classList.remove("selected-correct", "selected-incorrect", "disabled");
+    btn.classList.remove("selected", "selected-correct", "selected-incorrect", "disabled");
   });
 }
 
 function applyAnswerStyles() {
-  const q = effectiveQuestions[currentIndex];
   const answer = answers[currentIndex];
 
   if (!answer) return;
 
-  const isCorrect = answer.choiceIsHuman === q.isHuman;
   const selectedButton = answer.choiceIsHuman ? els.btnHuman : els.btnAi;
 
-  selectedButton.classList.add(isCorrect ? "selected-correct" : "selected-incorrect");
+  selectedButton.classList.add("selected");
   [els.btnHuman, els.btnAi].forEach((btn) => btn.classList.add("disabled"));
 }
 
 function renderFeedback() {
-  const q = effectiveQuestions[currentIndex];
-  const answer = answers[currentIndex];
-
+  // No correctness feedback is shown during the survey.
   els.feedback.textContent = "";
   els.feedback.classList.remove("correct", "incorrect");
-
-  if (!answer) {
-    return;
-  }
-
-  const isCorrect = answer.choiceIsHuman === q.isHuman;
-  if (isCorrect) {
-    els.feedback.textContent = 'Du har rätt!';
-    els.feedback.classList.add("correct");
-  } else {
-    const actualLabel = q.isHuman ? "skrivet av en människa" : "skrivet av en AI";
-    els.feedback.textContent = `Inte korrekt. Det var ${actualLabel}.`;
-    els.feedback.classList.add("incorrect");
-  }
 }
 
 function updateScoreSummary() {
