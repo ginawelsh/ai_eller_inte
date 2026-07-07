@@ -6,340 +6,314 @@
 const QUESTIONS = [
   {
     title: "Balettmapp Kungliga Operan: Operahusens design och arkitektur",
-    text: "En presentation av Kungliga Svenska Baletten. Denna ska distribueras till operahus världen över innan ny turné påbörjas. Shanghais operahus var det första som fick den färdiga produkten. Fördjupningen rör olika operahus design och arkitektur ut- och invändigt. Även en del av husens relevanta historia tas upp",
+    text: "En presentation av Kungliga Svenska Baletten. Denna ska distribueras till operahus världen över innan ny turné påbörjas. Shanghais operahus var det första som fick den färdiga produkten. Fördjupningen rör olika operahus design och arkitektur ut- och invändigt. Även en del av husens relevanta historia tas upp.",
     isHuman: true,
     type: "Kandidatuppsats abstrakt",
-    condition: "human",
   },
   {
-    title: "Kvotflyktingar i Sverige: En kvalitativ studie om arbete och samverkan inom flyktingmottagande",
-    text: "Denna studie undersöker mottagandet av kvotflyktingar i Sverige med särskilt fokus på hur arbete och samverkan mellan berörda aktörer påverkar etablering och integration. Med utgångspunkt i en kvalitativ ansats belyses hur mottagningsprocessen formas av både individens förutsättningar och organisationers praktiska samarbete, exempelvis mellan kommunala verksamheter, Arbetsförmedlingen, civilsamhälle och andra stödstrukturer. Ett centralt tema är betydelsen av kvotflyktingars förkunskaper och tidigare erfarenheter – såsom utbildningsbakgrund, yrkeskompetens och språkliga resurser – och hur dessa tas tillvara (eller riskerar att förbises) i etableringsinsatser. Studien synliggör hur matchning mot arbete och utbildning ofta påverkas av institutionella ramar, tillgången till relevanta insatser samt graden av samordning. Brister i samverkan kan leda till parallella processer, informationsglapp och otydligt ansvar, vilket i sin tur kan fördröja vägen till egen försörjning och meningsfull delaktighet i samhället. Analysen tar stöd i Maslows behovshierarki och KASAM (känsla av sammanhang) för att förstå etablering som mer än en arbetsmarknadsfråga. Utifrån Maslow framträder hur grundläggande behov – trygghet, stabilt boende och tillgång till stöd – utgör förutsättningar för att individen ska kunna fokusera på lärande, arbete och social tillhörighet. KASAM används för att belysa hur begriplighet, hanterbarhet och meningsfullhet påverkar individens möjligheter att navigera i nya system och skapa riktning i tillvaron. När mottagandet upplevs sammanhängande och förutsägbart stärks individens handlingsutrymme och motivation, medan otydliga processer och fragmenterade insatser riskerar att undergräva både välbefinnande och etableringsprogression. Sammantaget visar studien att ett framgångsrikt mottagande av kvotflyktingar kräver en helhetssyn där arbete, sociala behov och psykosociala resurser förstås som sammanlänkade. Effektiv samverkan, tidig kartläggning av förkunskaper och insatser som stärker trygghet och begriplighet framstår som avgörande för att främja både etablering och långsiktig integration.",
-    isHuman: false,
-    type: "Kandidatuppsats abstrakt",
-    condition: "baseline",
-  },
-  {
-    title: "Mesopotamiens gudomligförklarade kungar: En undersökning av teologiska perspektiv på två gudomligförklarade kungar i det forntida Mesopotamien",
-    text: "Ämnet för denna undersökning är de teologiska perspektiven runt två gudomligförklarade kungar i det forntida Mesopotamien; nämligen den gammalakkadiske kungen Naram-Sin (ca. 2254-2218 f.kr.) och den nysumeriske kungen Shulgi (ca. 2094-2047 f.kr.). De teologiska perspektiven behandlas här med hjälp av en induktionsbaserad historisk undersökning som utgår från vad olika forskare har skrivit i ämnet. Eftersom detta är en c-uppsats och det inte har varit möjligt att använda sig av primärkällor såsom arkeologiskt material och historiska källor på originalspråk så utgår denna undersökning uteslutande från forskningslitteratur. Undersökningen består av tre delar; i de två första delarna behandlas de teologiska perspektiven på kungarna var för sig och i det tredje görs en jämförelse mellan perspektiven. Undersökningens upplägg ser ut på så sätt att först har det gjorts observationer av vad som står om de teologiska perspektiven på monarkerna i de olika forskarnas verk. Sedan har perspektiven brutits ner i olika delämnen och därefter har informationen om dem sorterats in i de olika delämnena. Utifrån detta försöker sedan undersökningen att skissa fram en bild av de teologiska perspektivens karaktär. Uppsatsens tyngdpunkt ligger framförallt på att peka på olika tendenser i de religiösa föreställningarna runt dem med avseende på vilka teman de kretsar kring. I undersökningen framkommer det att perspektiven är ganska spretiga och går i många olika riktningar och även att det finns skillnader och likheter i perspektiven mellan kungarna. Två teman som dock ofta återkommer är fruktbarhet och himlen.",
+    title: "Metoder vid implementation av affärssystem: en studie om anpassning",
+    text: "Dagens företag är i stort behov av information. Företag som har många avdelningar behöver möjligheter för att enkelt och smidigt kunna samordna information för hela företaget. Affärssystem erbjuder denna möjlighet genom en modulbaserad konstruktion som integrerar ett företags samtliga avdelningar i ett enda system. Problem kan dock uppstå då ett valt affärssystem inte passar företagets verksamhet. En kompromiss mellan system och verksamhet måste då försöka uppnås. Ett affärssystem implementeras ofta i samband med en metod, vilken ger detaljerade beskrivningar för hur implementeringen ska gå till. På vilka grunder väljer företagen att arbeta efter en specifik metod då system och verksamhet behöver anpassas till varandra? Detta arbete bygger på en undersökning som har utförts genom en survey där fem företag har medverkat. Resultatet av undersökningen visar ett antal metoder samt presenterar orsaker till varför dessa metoder används.",
     isHuman: true,
     type: "Kandidatuppsats abstrakt",
-    condition: "human",
   },
   {
-    title: "IT-stöd för Migrationsverket: En studie om nyttjande av beslutsstödssystem vid placeringen av ensamkommande flyktingbarn",
-    text: "Denna studie behandlar hur Migrationsverket använder IT-stöd i arbetet med att anvisa ensamkommande flyktingbarn till kommuner, med särskilt fokus på nyttjandet av beslutsstödssystem inom ramen för Business Intelligence (BI). Utgångspunkten är att anvisningsprocessen kännetecknas av höga krav på rättssäkerhet, spårbarhet och effektivitet, samtidigt som besluten ofta behöver fattas under tidspress och med varierande kvalitet i tillgängliga underlag. Mot denna bakgrund undersöker uppsatsen hur beslutsstöd faktiskt används i praktiken, vilka informationsbehov som styr arbetet och i vilken mån systemen bidrar till en mer enhetlig och transparent handläggning. Studien analyserar samspelet mellan verksamhetsprocesser, informationsflöden och tekniska lösningar, där BI-baserade verktyg antas kunna skapa bättre överblick över exempelvis kapacitet, beläggning och tidigare anvisningsmönster. Samtidigt belyses hur beslutsstöd kan få en normerande roll i verksamheten: systemens indikatorer och visualiseringar riskerar att styra vilka aspekter som prioriteras, medan mer svårmätbara hänsyn – såsom individuella behov och lokala förutsättningar – kan hamna i skymundan eller behöva hanteras utanför systemet. Uppsatsen problematiserar därför både nyttan och begränsningarna med beslutsstöd i en verksamhet där beslutens konsekvenser är långtgående för den enskilde. Som analytiskt ramverk används Zachmans ramverk för att strukturera förståelsen av organisationens olika perspektiv och nivåer, från övergripande verksamhetsmål till mer konkreta frågor om data, funktioner, roller och teknisk implementering. Genom detta blir det möjligt att tydliggöra var eventuella glapp uppstår mellan verksamhetens behov och systemens utformning, exempelvis om datakvalitet, definitioner och ansvarsfördelning inte är tillräckligt harmoniserade. Studien visar därmed hur ett beslutsstöds värde inte enbart avgörs av tekniska egenskaper, utan lika mycket av hur processer, styrning och informationshantering är organiserade. Sammanfattningsvis bidrar uppsatsen med en fördjupad bild av hur IT-stöd och beslutsstödssystem kan påverka anvisningsarbetet vid Migrationsverket, både som ett medel för effektivisering och som en faktor som formar praktiken. Studien pekar på att BI och beslutsstöd kan stärka beslutsunderlag och uppföljning, men att nyttjandet behöver förankras i tydliga verksamhetskrav, gemensamma begrepp och kontinuerligt arbete med datakvalitet för att undvika att systemen skapar falsk precision eller oönskade styrsignaler. Därmed blir en central slutsats att ett ändamålsenligt IT-stöd för anvisningar kräver ett helhetsgrepp där teknik, organisation och rättssäkerhet utvecklas i takt.",
+    title: "Vägen till jobb: Sambandet mellan anställningsbarhet, Big Five-personlighet och proaktivt arbetssökande – med fokus på självförtroende och anpassningsförmåga",
+    text: "Denna studie undersöker hur anställningsbarhet kan förstås i relation till individers personlighet och deras sökbeteenden på arbetsmarknaden. Med utgångspunkt i Big Five-modellen analyseras hur olika personlighetsdrag kan hänga samman med proaktiva strategier i jobbsökandet, såsom att aktivt söka information, bygga nätverk och ta egna initiativ. Vidare belyses självförtroendets betydelse som en möjlig resurs i processen, både för att våga agera och för att uthålligt hantera motgångar kopplade till att söka arbete.\n\nStudiens fokus ligger även på anpassningsbarhet som en central dimension av anställningsbarhet, där individens förmåga att justera mål, strategier och kompetenser efter arbetsmarknadens krav antas påverka möjligheterna att få och behålla ett arbete. Sammantaget syftar undersökningen till att bidra med en mer nyanserad bild av hur personliga egenskaper och beteendemönster samverkar i övergången mellan studier och arbetsliv. Genom att koppla samman personlighetsdrag, proaktivt beteende och självförtroende diskuteras vilka faktorer som kan underlätta ett framgångsrikt jobbsökande och därmed stärka individens upplevda och faktiska anställningsbarhet.",
     isHuman: false,
     type: "Kandidatuppsats abstrakt",
-    condition: "human_like",
   },
   {
-    title: "Upplevelser av interaktionen mellan klient och socialsekreterare -sett ur ett maktperspektiv Blekinge Institute of Technology, School of Management. Blekinge Institute of Technology, School of Management.",
-    text: "Uppsatsen undersöker hur mötet mellan klient och socialsekreterare upplevs när det betraktas genom ett maktperspektiv. Fokus ligger på själva interaktionen: samtalen, bedömningarna, väntetiderna, formulären, kroppsspråket och de små markeringarna som avgör vem som får tolkningsföreträde. I materialet framträder makt inte bara som något någon “har”, utan som något som skapas och återskapas i praktiken. Den tar form i rutiner, i språkbruk och i de organisatoriska ramar som både klient och socialsekreterare måste förhålla sig till. Analysen knyter an till sociala konfigurationer där rollerna är tydligt asymmetriska. Socialsekreteraren representerar myndigheten och kontrollen över resurser, beslut och tidslinjer. Klienten är beroende av samma system för stöd eller insatser, samtidigt som hen ofta måste bevisa behov, vara begriplig på rätt sätt och acceptera att bli granskad. I berättelser om mötena märks hur denna obalans kan kännas i rummet: vem som ställer frågorna, vem som avbryter, vem som sammanfattar och sätter punkt. Ett “fel” ord kan upplevas få stora konsekvenser, medan socialsekreterarens tolkning lättare blir den som fastnar i akten. Maktperspektivet synliggör också mekanismer som kan beskrivas som exploatering och möjlighetsansamling. Exploatering framträder när klientens situation, tid och berättelse blir ett underlag som systemet använder för att administrera, sortera och fatta beslut, ofta utan att klienten upplever sig ha kontroll över processen eller förstå kriterierna fullt ut. Möjlighetsansamling syns när tillgång till information, nätverk och institutionell kompetens samlas på myndighetssidan: att kunna reglerna, veta hur man uttrycker sig “rätt”, känna till alternativa vägar och interna rutiner. För klienten blir samma kunskap något man försöker gissa sig till, ibland genom försök och misstag, ibland genom att anpassa sin berättelse för att passa in. Samtidigt framkommer att interaktionen inte är entydigt repressiv. I vissa möten beskrivs socialsekreteraren som en möjlig motkraft mot systemets hårdhet: någon som kan översätta myndighetsspråk, skapa handlingsutrymme och göra klientens perspektiv begripligt inom ramen för reglerna. När relationen präglas av respekt, tydlighet och förutsägbarhet förskjuts maktens uttryck. Klienten kan då uppleva större delaktighet och mindre känsla av att stå under prövning, även om beroendeställningen finns kvar. Helhetsbilden som tecknas är att makten i klient–socialsekreterarrelationen sitter i fler lager än den formella beslutanderätten. Den finns i hur problem definieras, i vilka berättelser som får status som trovärdiga och i vilka möjligheter som öppnas eller stängs genom små interaktiva val. Uppsatsen pekar därmed på hur vardagliga möten i socialt arbete blir platser där ojämlikhet både kan förstärkas och, ibland, mildras.",
-    isHuman: false,
-    type: "Kandidatuppsats abstrakt",
-    condition: "detector_aware",
-  },
-  {
-    title: "Kalmar - ett platsvarumärke i skuggan av Öland och Glasriket: En studie om destinationsutveckling",
-    text: "Denna studie undersöker Kalmar som platsvarumärke och hur stadens identitet och attraktionskraft formas i relation till närliggande och starkt etablerade destinationer, särskilt Öland och Glasriket. Utifrån ett place branding- och platsmarknadsföringsperspektiv analyseras hur Kalmar kan positionera sig i en regional kontext där konkurrensen om besökare, investeringar och uppmärksamhet är tydlig. Fokus ligger på samspelet mellan den bild som kommuniceras externt och den faktiska platsupplevelsen, samt på vilka berättelser, värden och kännetecken som används för att skapa igenkänning och differentiering. Studien belyser centrala utmaningar i destinationsutveckling när en plats uppfattas hamna “i skuggan” av starkare varumärken. Den problematiserar hur Kalmar kan dra nytta av närheten till Öland och Glasriket utan att reduceras till en “bas” eller genomfartsdestination, samt hur lokala aktörer kan arbeta mer samordnat för att stärka en gemensam och trovärdig profil. Samtidigt uppmärksammas möjligheter kopplade till Kalmars egna resurser—såsom historia, kulturmiljöer, evenemang och stadsmiljö—och hur dessa kan paketeras och kommuniceras för att bygga en mer tydlig position på destinationsmarknaden. Sammanfattningsvis bidrar studien med en fördjupad förståelse för hur platsvarumärkesarbete och destinationsutveckling kan användas för att stärka Kalmars konkurrenskraft. Genom att analysera Kalmar i relation till omgivande destinationer synliggörs behovet av en konsekvent berättelse, långsiktig strategi och samverkan mellan offentliga och privata aktörer för att skapa ett starkare, mer självständigt platsvarumärke.",
-    isHuman: false,
-    type: "Kandidatuppsats abstrakt",
-    condition: "baseline",
-  },
-  {
-    title: "Aktiemarknadens effektivitet: En studie av effektiviteten på den svenska aktiemarknaden i samband med kvartalsrapporter",
-    text: "Effektiva marknadshypotesen (EMH) utvecklades av Eugene Fama under 1960- och 1970-talet. Grundtanken var att prisbildningen alltid reflekterar den information som finns tillgänglig för marknaden. Fama skiljde på tre former av effektivitet: svaga, semistarka och starka formen. I denna uppsats studerar vi den semistarka formen av effektivitet, vilken omfattar all offentligt tillgänglig information. Syftet är att undersöka effektiviteten i samband med att ny information tillfaller den svenska aktiemarknaden. I de fall aktiemarknaden är effektiv finns ingen möjlighet till onormal avkastning. Vår studie omfattar de 39 största företagen noterade på den svenska aktiemarknaden, vilket motsvarar 81,5 procent av det totala värdet. Vi kunde i vår undersökning dra slutsatsen att Stockholmsbörsen inte är fullständigt effektiv när ny information offentliggörs",
+    title: "Mer lättläst: Påbyggnad av ett automatiskt omskrivningsverktyg till lätt svenska",
+    text: "Det svenska språket ska finnas tillgängligt för alla som bor och verkar i Sverige. Därförär det viktigt att det finns lättlästa alternativ för dem som har svårighet att läsa svensktext. Detta arbete bygger vidare på att visa att det är möjligt att skapa ett automatisktomskrivningsprogram som gör texter mer lättlästa. Till grund för arbetet liggerCogFLUX som är ett verktyg för automatisk omskrivning till lätt svenska. CogFLUXinnehåller funktioner för att syntaktiskt skriva om texter till mer lättläst svenska.Omskrivningarna görs med hjälp av omskrivningsregler framtagna i ett tidigare projekt.I detta arbete implementeras ytterligare omskrivningsregler och även en ny modul förhantering av synonymer. Med dessa nya regler och modulen ska arbetet undersöka omdet är det är möjligt att skapa system som ger en mer lättläst text enligt etableradeläsbarhetsmått som LIX; OVIX och Nominalkvot. Omskrivningsreglerna ochsynonymhanteraren testas på tre olika texter med en total lägnd på ungefär hundra tusenord. Arbetet visar att det går att sänka både LIX-värdet och Nominalkvoten signifikantmed hjälp av omskrivningsregler och synonymhanterare. Arbetet visar även att det finnsfler saker kvar att göra för att framställa ett riktigt bra program för automatiskomskrivning till lätt svenska.",
     isHuman: true,
     type: "Kandidatuppsats abstrakt",
-    condition: "human",
   },
   {
-    title: "Säkerhetskapital En del av det Intellektuella Kapitalet",
-    text: "I en kunskapsintensiv ekonomi har organisationers värdeskapande i allt högre grad kommit att vila på immateriella resurser. I detta sammanhang är intellektuellt kapital ett centralt begrepp och används ofta som ett samlingsnamn för de tillgångar som inte alltid syns i balansräkningen men som ändå är avgörande för verksamhetens prestation och konkurrenskraft. Hit räknas exempelvis medarbetares kompetens och erfarenhet, organisationens processer och rutiner, samt relationer till kunder och samarbetspartners. Samtidigt gör digitalisering, datadrivna arbetssätt och ökade beroenden av informationssystem att en viktig dimension av dessa immateriella tillgångar blir sårbar: informationens och kunskapens skydd. Mot denna bakgrund kan säkerhetskapital förstås som en delmängd av det intellektuella kapitalet – det vill säga den del av organisationens immateriella resurser som specifikt möjliggör och upprätthåller ett robust skydd av information, system och kunskapsflöden. Säkerhetskapital kan därmed ses som ett värdeskapande kapital i sig, snarare än enbart en kostnadspost eller ett reaktivt försvar mot hot. Det består av såväl tekniska som organisatoriska förmågor: exempelvis välfungerande säkerhetsprocesser, tydliga roller och ansvar, etablerade styrmodeller, säkerhetsmedveten kultur, kompetens inom informationssäkerhet och incidenthantering, samt förmågan att kontinuerligt identifiera och hantera sårbarheter. Sammantaget bidrar detta kapital till att organisationen kan arbeta effektivt utan att exponera sin information för onödiga risker. Informationssäkerhet blir i denna kontext ett praktiskt uttryck för säkerhetskapitalets innehåll och funktion. Genom att skydda konfidentialitet, riktighet och tillgänglighet (och ofta även spårbarhet och efterlevnad) skapas förutsättningar för att kunskap ska kunna användas, delas och utvecklas på ett kontrollerat sätt. När information och kunskap hanteras i digitala miljöer blir relationen mellan säkerhet och värdeskapande särskilt tydlig: brister i säkerheten kan leda till avbrott, förlust av affärskritisk information, skadat förtroende och därmed också ett direkt bortfall av immateriellt värde. Riskbegreppet binder samman dessa perspektiv. Risk kan förstås som en osäkerhet som, om den realiseras, påverkar organisationens mål negativt. Ur ett säkerhetskapitalperspektiv handlar risk inte enbart om externa hotaktörer, utan även om interna svagheter såsom otydliga rutiner, bristande kompetens, teknisk skuld eller otillräcklig styrning. Säkerhetskapitalet blir då den samlade förmågan att minska sannolikheten för oönskade händelser och begränsa konsekvenserna när incidenter inträffar. Ett högt säkerhetskapital innebär inte att risk elimineras, utan att risker förstås, prioriteras och hanteras systematiskt i linje med verksamhetens behov. Sammanfattningsvis kan säkerhetskapital beskrivas som den del av intellektuellt kapital som skapar motståndskraft och tillit i organisationens informationshantering. Genom att koppla informationssäkerhet och riskhantering till intellektuellt kapital blir det möjligt att betrakta säkerhet som en strategisk resurs: något som inte bara skyddar befintliga värden, utan också möjliggör fortsatt kunskapsutveckling, stabila relationer och långsiktig konkurrenskraft. Detta synsätt skiftar fokus från säkerhet som en isolerad IT-fråga till säkerhet som en integrerad del av organisationens värdeskapande och immateriella förmögenhet.",
+    title: "Snabb art- och genusidentifiering av bakterier direkt från positiva blododlingar med MALDI‑TOF MS: utvärdering av NaCl‑metoden i BacT/ALERT vid sepsismisstanke",
+    text: "Denna studie behandlar möjligheten att snabbt art- och genusbestämma bakterier direkt från positiva blododlingar med hjälp av MALDI‑TOF MS, med fokus på ett kliniskt relevant flöde kopplat till blododlingssystemet BacT/ALERT. Utgångspunkten är att sepsis och andra blodbanerelaterade infektioner kräver tidig och träffsäker diagnostik, eftersom fördröjd identifiering av agens kan påverka val av antibiotikabehandling och därmed patientutfall. \n\nArbetet undersöker därför en metodik där provmaterial från blododlingar bereds för direktanalys utan att först behöva odlas ut på agar, vilket annars förlänger tiden till svar. Särskild vikt läggs vid NaCl‑metoden som provberedningsstrategi för att separera och koncentrera bakterier från blododlingsbuljongen på ett sätt som är kompatibelt med MALDI‑TOF MS. Studien relaterar metodens användbarhet till olika sepsistyper och den variation i bakterieflora som kan förekomma, med målet att bedöma om identifiering på genus- och artnivå kan erhållas tillräckligt snabbt och tillförlitligt för kliniskt beslutsstöd.\n\nSammanfattningsvis positioneras arbetet i gränslandet mellan klinisk mikrobiologi och diagnostikutveckling: genom att kombinera blododling (BacT/ALERT) med direktidentifiering via MALDI‑TOF MS och en förenklad provberedning (NaCl‑metoden) syftar studien till att bidra till kortare ledtider från positiv blododling till mikrobiologiskt svar, och därigenom till mer riktad behandling vid misstänkt sepsis.",
     isHuman: false,
     type: "Kandidatuppsats abstrakt",
-    condition: "human_like",
   },
   {
-    title: "Matematik för alla?: Hur lärare arbetar med individualisering",
-    text: "Utgångspunkt för arbetet har varit de brister i matematikkunskaper hos eleverna som framkommit i ett flertal rapporter, samtidigt som många framställningar pekar på att dagens matematikundervisning bedrivs på ett mycket traditionellt sätt. Syftet med denna uppsats har varit att ur ett matematikdidaktiskt perspektiv belysa hur matematiklärare i grundskolans senare år planerar, genomför, följer upp och utvärderar sin undervisning i avsikt möta den stora variation av elever som finns i varje elevgrupp, dvs hur lärare arbetar för att variera sin undervisning i syfte att individualisera för eleverna. Undersökningen har genomförts som en kombination av enkät och intervju, där den inledande enkäten dels har gett en bred bild av lärarnas uppfattningar inom några väsentliga områden dels använts för att fånga in intervjupersoner för den efterföljande intervjun. Den senare delen av undersökningen, där avsikten varit att komma några utvalda lärare närmare in på livet, har genomförts som kvalitativa intervjuer. Resultatet av undersökningen visar att det både finns stora variationer mellan olika lärares sätt att arbeta, samtidigt som det finns många gemensamma uppfattningar. Den bild som jag fått genom intervjuerna, vilken i mycket stämmer överens med flera tidigare undersökningar, är att den dominerande formen av individualisering är hastighetsindividualisering där eleverna arbetar med samma material men i olika takt. För att individualisera undervisningen på ett mer effektivt sätt krävs troligtvis en större variation, än vad denna undersökning kunnat visa, både vad gäller innehåll och metoder. Ofta handlar det om resurser, intentioner kontra betingelser, och frågan om att låta sig styras eller att försöka påverka och styra. För att kunna arbeta efter det senare alternativet krävs ett systematiskt och strukturerat angrepps- och arbetssätt. Detta kräver i sin tur åtgärder på flera olika nivåer inom skolan",
-    isHuman: true,
-    type: "Kandidatuppsats abstrakt",
-    condition: "human",
-  },
-  {
-    title: "Kommunikationspolicyn: En studie av svenska offentliga organisationers kommunikationspolicys med utgångspunkt i samtida forskningsperspektiv",
-    text: "I akademisk litteratur om public relations och strategisk kommunikation talas det om ett paradigmskifte. Istället för att se kommunikation som information som skickas från en aktiv sändare till en passiv mottagare; börjar man se kommunikation som något som skapas i en dialog mellan två aktiva aktörer. Man rör sig från en strategisk syn på publiken som en påverkbar målgrupp till en dialogisk syn på publiken som aktiva deltagare. Har detta paradigmskifte även ägt rum i praktiken? Hur ser man på kommunikation inom svenska offentliga organisationer idag? Finns det några likheter och skillnader i synsätt; och vad kan dessa tänkas bero på? Materialet utgörs av elva svenska offentliga organisationers kommunikationspolicys. Teorin utgörs av två svenska forskningsantologier om public relations respektive strategisk kommunikation; samt ett urval kritiskt problematiserande artiklar i ämnet. Efter en genomgång av den teoretiska litteraturen har de samtida forskningsperspektiven sammanfattats. Utifrån dessa har en idéanalysmall; en typologi; konstruerats med utgångspunkt i två idealtyper. Det förekom tydliga samband mellan de olika synsätten och hart när alla organisationer gick att placera i endera av de två idealtyperna. Samtliga forskningsperspektiv utom ett gick att hitta i materialet. Skillnaderna i synsätt gick att koppla till de olika organisationernas uppdrag och utformning. Organisationer med nya synsätt är överlag sådana som har tydliga behov av att effektivt kommunicera med omvärlden; medan de övriga organisationerna huvudsakligen har en informationsspridande funktion.",
-    isHuman: true,
-    type: "Kandidatuppsats abstrakt",
-    condition: "human",
-  },
-  {
-    title: "Utveckling av ett företags marknadskommunikation med informationsteknik",
-    text: "Arbetet behandlar hur ett företags marknadskommunikation kan utvecklas med hjälp av informationsteknik, med fokus på det som faktiskt möter mottagaren: webbsidan och produktbladet. Utgångspunkten är att ett budskap sällan faller på plats av sig självt. Det måste gå att hitta, förstå och känna igen. Därför kopplas marknadskommunikation ihop med användbarhet och praktisk utformning. Studien undersöker hur navigation och struktur styr användarens väg genom innehållet och hur små friktioner – otydliga menyer, splittrade rubriker, svårtolkade länkar – kan försvaga ett i grunden bra erbjudande. Texterna granskas ur ett klarspråksperspektiv: ordval, tonalitet och meningsbyggnad jämförs med vad som krävs för att göra produktinformation tydlig utan att bli platt. Parallellt analyseras formgivningen. Visuella hierarkier, kontrast, typografi och layout används inte som dekoration utan som en del av budskapet, där en konsekvent design kan skapa förtroende och minska kognitiv belastning. Målet är att ta fram en mer sammanhållen kommunikation där webbsida och produktblad drar åt samma håll. Arbetet mynnar ut i förslag som rör både innehåll och gränssnitt: hur budskap prioriteras, hur information grupperas, hur navigationslogik förenklas och hur språket stramas upp för att stödja läsning snarare än att imponera. Resultatet visar att informations­tekniska val och kommunikationsval i praktiken hänger ihop. När struktur, navigation, klarspråk och formgivning behandlas som en helhet blir det lättare för mottagaren att förstå erbjudandet – och för företaget att uppfattas som tydligt och professionellt.",
+    title: "Kuratorers hantering av anmälningsskyldighet på ungdomsmottagningar: bedömningar av mognad och sexuella relationer i möten med sexuellt aktiva barn under 15 år",
+    text: "Denna studie behandlar kuratorers anmälningsskyldighet på ungdomsmottagningar och hur den aktualiseras i mötet med barn under 15 år som är sexuellt aktiva. Utifrån kuratorns professionella roll undersöks hur ett urval kuratorer resonerar kring bedömningar av barnets situation och vilka faktorer som påverkar beslut om att göra en orosanmälan. Särskilt fokus ligger på hur kuratorerna väger juridiska krav och verksamhetens uppdrag mot behovet av förtroendefulla samtal, integritet och stöd.\n\nI studien framträder bedömning och mognad som centrala begrepp i kuratorernas arbete. Kuratorerna behöver tolka barnets ålder i relation till upplevd mognad, grad av frivillighet, eventuella maktobalanser, och omständigheter som kan tyda på utsatthet eller exploatering. Sexuell aktivitet hos barn under 15 år beskrivs därmed inte som en fråga som automatiskt leder till anmälan, utan som något som kräver en kontextuell och individuell bedömning. Samtidigt belyses hur anmälningsskyldigheten fungerar som en tydlig yttre ram som kan skapa etiska dilemman, exempelvis när kuratorn bedömer att en anmälan riskerar att skada alliansen eller minska benägenheten att söka hjälp.\n\nSammanfattningsvis synliggör studien en praktik där kuratorer kontinuerligt balanserar stödjande samtal och skyddsperspektiv. Resultaten pekar på att bedömningar av mognad och risk blir avgörande för hur anmälningsskyldigheten förstås och tillämpas, och att kuratorernas handlingsutrymme påverkas av både juridiska tolkningar och professionella överväganden i arbetet med unga.",
     isHuman: false,
     type: "Kandidatuppsats abstrakt",
-    condition: "detector_aware",
   },
   {
-    title: "Stöd vid övervikt och fetma Blekinge Institute of Technology, School of Health Science. Blekinge Institute of Technology, School of Health Science.",
-    text: "Övervikt och fetma är idag ett världsomspännande hälso- och omvårdnadsproblem där sjuksköterskan har en stödjande och motiverande uppgift för att hjälpa personer hantera samt klara av en livsstilsförändring som leder till viktminskning. Syftet med studien var att belysa sjuksköterskans stöd vid personens livsstilsförändring i samband med viktnedgång. Metoden som används är litteraturstudie. Resultatet visar på att sjuksköterskan har en betydande roll vid personens livsstilsförändring när det gäller att bistå med stöd. Genom att basera en relation på tillit kan sjuksköterskan och personen tillsammans skapa de mål som möjliggör personens livsstilsförändring. Vidare visar Resultatet att sjuksköterskan bör fokusera på personens kroppsuppfattning för att motivera personen till en livsstilsförändring som leder till viktminskning. I diskussionen framkommer vikten av att sjuksköterskan förstår personens motiv till viktminskning och utgår från detta då stöd och motivation skall ges.",
+    title: "Går det att påverka iranska aktörer? En fältteoretisk analys av USA:s kapacitet till strategiskt inflytande",
+    text: "Denna studie undersöker om, och i vilken utsträckning, iranska aktörer kan påverkas av USA samt vad som avgör USA:s förmåga att utöva strategiskt inflytande. Utifrån ett fältperspektiv analyseras inflytande som något som uppstår i relationer mellan aktörer inom ett specifikt politiskt och säkerhetspolitiskt “fält”, där makt inte enbart förstås som materiella resurser utan också som positioner, normer, legitimitet och etablerade handlingsmönster.\n\nUppsatsen syftar till att belysa vilka verktyg och mekanismer USA använder för att påverka iranska aktörer, samt vilka begränsningar som finns inbyggda i fältets struktur. Genom att fokusera på hur aktörerna är placerade i fältet och vilka intressen, kapitalformer och strategier som är tillgängliga för dem, kan studien visa hur inflytande både möjliggörs och motverkas. Centralt är antagandet att iranska aktörers mottaglighet för påverkan beror på deras interna konkurrens, deras behov av legitimitet och resurser samt hur de tolkar hot, status och handlingsutrymme.\n\nSammanfattningsvis bidrar uppsatsen med en analys som problematiserar föreställningen om strategiskt inflytande som en enkel fråga om “påtryckningar” eller “eftergifter”. I stället framställs USA:s möjligheter att påverka som villkorade av fältets dynamik: vilka aktörer som dominerar, vilka spelregler som råder och vilka kostnader inflytandeförsök skapar för iranska aktörer. Studien förväntas därmed ge en mer nyanserad förståelse av varför vissa amerikanska strategier kan få genomslag medan andra möter motstånd eller ger motsatt effekt.",
+    isHuman: false,
+    type: "Kandidatuppsats abstrakt",
+  },
+  {
+    title: "Användarverifiering från webbkamera",
+    text: "Arbetet som presenteras i den här rapporten handlar om ansiktsigenkänning från webbkameror med hjälp av principal component analysis samt artificiella neurala nätverk av typen feedforward. Arbetet förbättrar tekniken med hjälp av filterbaserade metoder som bland annat används inom ansiktsdetektering. Dessa filter bygger på att skicka med redundant data av delregioner av ansiktet.",
     isHuman: true,
     type: "Kandidatuppsats abstrakt",
-    condition: "human",
+  },
+  {
+    title: "Inlärningsstilar som verktyg för att individanpassa undervisningen – en studie om möjligheter och begränsningar",
+    text: "Titeln *”Inlärningsstilar – ett sätt att individanpassa undervisningen?”* antyder en undersökning av om och hur idén om inlärningsstilar kan användas som grund för att anpassa undervisning efter elevers individuella behov. En rimlig utgångspunkt är att skolan förväntas erbjuda en undervisning som tar hänsyn till elevers olikheter, och att begreppet inlärningsstilar ofta lyfts fram som ett praktiskt verktyg för detta. Samtidigt väcker frågetecknet i titeln frågan om begreppet verkligen är tillräckligt hållbart, både teoretiskt och empiriskt, för att fungera som ett stöd i pedagogisk planering.\n\nSammanfattningsvis kan arbetet förstås som en problematisering av relationen mellan individanpassning och kategorisering: att dela in elever i ”stilar” kan upplevas ge läraren ett språk för variation och differentiering, men riskerar också att förenkla komplexa lärprocesser och leda till låsningar i synen på elevers förmågor. I en kandidatuppsatsstil skulle analysen troligen belysa hur inlärningsstilar definieras och används i skolpraktik, vilka argument som framförs för deras pedagogiska värde samt vilka invändningar som finns utifrån forskning om lärande. En sannolik slutsats är att individanpassning kan vinna på varierade arbetssätt och medveten didaktisk flexibilitet, men att undervisning som utformas utifrån fasta antaganden om elevers specifika ”inlärningsstil” behöver hanteras kritiskt och inte ersätta andra, mer evidensnära sätt att förstå och stödja elevers lärande.",
+    isHuman: false,
+    type: "Kandidatuppsats abstrakt",
+  },
+  {
+    title: "Processer och informationsstöd för uppföljning av efterkalkyler i Portsystem 2000 AB:s affärssystem: från förkalkyl till kvalitetssäkrad återkoppling",
+    text: "Denna studie behandlar hur Portsystem 2000 AB arbetar med uppföljning av efterkalkyler och hur detta uppföljningsarbete påverkar företagets kalkylprocess och beslutsunderlag. Utifrån begreppen förkalkyl och efterkalkyl undersöks hur kostnader och intäkter planeras inför ett uppdrag samt hur utfallet senare sammanställs, analyseras och återförs till verksamheten. Ett särskilt fokus ligger på vilka rutiner och processer som finns för att jämföra förkalkyl med faktiskt resultat, identifiera avvikelser och använda lärdomar i kommande offerter och projekt.\n\nVidare analyseras affärssystemets och övriga informationssystems roll i uppföljningsarbetet. Studien belyser hur data samlas in, registreras och bearbetas, samt vilka möjligheter och begränsningar systemstödet innebär för att skapa en effektiv och tillförlitlig efterkalkyl. Kvalitetsaspekter, såsom datakvalitet, spårbarhet och enhetliga arbetssätt, lyfts fram som centrala för att efterkalkylerna ska kunna fungera som ett praktiskt styr- och förbättringsverktyg.\n\nSammantaget syftar arbetet till att beskriva och bedöma hur uppföljningen av efterkalkyler kan utvecklas för att stärka kopplingen mellan kalkylarbete och verksamhetsstyrning. Genom att tydliggöra processflöden, ansvarsfördelning och informationshantering skapas ett underlag för förbättringar som kan bidra till bättre precision i förkalkyler, mer systematiskt lärande och ökad kvalitet i företagets ekonomiska uppföljning.",
+    isHuman: false,
+    type: "Kandidatuppsats abstrakt",
+  },
+  {
+    title: "Pappersmakulatur vid Bobergs Tryckeri AB - orsaker och förbättringsförslag",
+    text: "Pappersmakulatur uppstår i tryckpressarna, men orsakerna finns i företagets alla funktioner. För ett framgångsrikt förbättringsarbete med att minska makulaturen krävs därför att all personal är engagerad. Examensarbetet utfördes på Bobergs Tryckeri AB i Falun, ett familjeägt företag med 60 anställda, som producerar personifierad direktreklam och blanketter. Syftet var att undersöka hur pappersmakulaturen kan minska och målet var att hitta orsaker samt ge förslag på åtgärder för att minska den. Genom intervjuer med personalen kartlades produktionssprocessen och utifrån det utarbetades förbättringsförslag. Exempel på förbättringsförslag är att kontinuerligt mäta och rapportera makulaturen, förbättra kommunikationen mellan avdelningarna och utveckla färgstyrningen. Litteraturstudier och kontakter med nyckelpersoner inom branschorganisationer och andra liknande företag, var till stor hjälp i arbetet. Fördjupningsdelen i projektet har sin grund i boken The Printer’s Guide to Waste Reduction av Tim Dalton.",
+    isHuman: true,
+    type: "Kandidatuppsats abstrakt",
+  },
+  {
+    title: "Visionen om det narkotikafria samhället: En diskursanalys",
+    text: "Syftet med denna uppsats är att belysa hur visionen om det narkotikafria samhället uppenbarar sig i diskurser som behandlar narkotikamissbruk som socialt problem. Empiriskt material i form av ett policydokument och en debattföljetong har analyserats utifrån ett socialkonstruktivistiskt och diskursanalytiskt perspektiv. Analysen pekar mot att definitionskampen om narkotikamissbruk som socialt problem finns över många diskurser; samtidigt ses visionen om det narkotikafria samhället ofta vara närvarande. En nationell diskurs som kan ses utgå från vad vi som nation anser och vill ha i vårt land. En moraldiskurs som lägger värde i olika beteenden och åsikter. En juridisk och polisiär diskurs som utifrån narkotikas juridiska status ramar in fenomenet och en barn-och ungdomsdiskurs som formulerar narkotikan som det största hotet. Alla dessa kan enligt studien ses som en del i konstruktionen av narkotikamissbruk som socialt problem.",
+    isHuman: true,
+    type: "Kandidatuppsats abstrakt",
+  },
+  {
+    title: "Filmeventens framväxt i Skåne: En studie av Film i Skånes regionala eventkultur och verksamheter som M:Dox, CineSkåne och Filmbar",
+    text: "Denna studie undersöker den så kallade ”eventbubblan” i södra Sverige genom en analys av Film i Skånes eventverksamhet. Med utgångspunkt i ett regionalt kulturpolitiskt sammanhang belyser uppsatsen hur en filmregional aktör arbetar med eventkultur som strategi för att stärka filmens synlighet, publikrelationer och position i Skåne. Fokus riktas mot olika former av filmevent och återkommande koncept – såsom M:Dox, CineSkåne och Filmbar – samt deras funktion i ett bredare ekosystem av filmfestivaler och publika satsningar.\n\nStudiens centrala syfte är att förstå vilka mål och logiker som präglar Film i Skånes eventarbete, samt vilka möjligheter och spänningar som uppstår när filmkultur i allt högre grad förmedlas genom tidsbegränsade, upplevelsebaserade format. Genom att närläsa verksamhetens praktiker synliggörs hur eventen kan fungera som mötesplatser för publik, bransch och institutioner, där nätverkande, identitetsskapande och regional profilering blir lika viktiga som själva filmvisningen. Samtidigt problematiseras eventifieringen som fenomen: när resurser, uppmärksamhet och kulturkonsumtion koncentreras till event riskerar kontinuitet, fördjupning och långsiktigt publikbyggande att hamna i skymundan.\n\nUppsatsen placerar Film i Skånes arbete i en kontext av regionalisering, där kulturella initiativ ofta motiveras av både kulturpolitiska och utvecklingspolitiska ambitioner. Sammantaget visar studien hur eventverksamheten kan förstås som ett uttryck för en samtida kulturtrend där upplevelser och synlighet blir centrala verktyg för att skapa legitimitet och attraktionskraft. ”Eventbubblan i syd” framstår därmed både som en möjlighet att vitalisera filmkulturen i regionen och som en utmaning som väcker frågor om hållbarhet, prioriteringar och filmkulturens långsiktiga förankring.",
+    isHuman: false,
+    type: "Kandidatuppsats abstrakt",
+  },
+ {
+    title: "\"Men det här är ju kvinnogöra\": En studie om hur lärare ser på och praktiserar jämställdhet och genus i HKK",
+    text: "Kvinnor och män har historiskt sett ansetts ha olika fysiska och psykiska förutsättningar och den norm i samhället som vi levt efter har varit mannens. Kvinnans plats var i hemmet som maka; mor och husfru. I och med samhällets utveckling förändrades den könsspecifika arbetsfördelningen och kvinnan började förvärvsarbeta. Hem – och konsumentkunskap har gått från flickämne i skolan till obligatoriskt för alla där skolan ska främja jämställdhet och jämlikhet mellan könen. Denna rapports syfte är att undersöka hur yrkesverksamma lärare inom hem – och konsumentkunskap ser på jämställdhet och genus inom sitt ämne; vad som kan påverka hur de arbetar med jämställdhet mellan könen i sin undervisning samt hur de praktiskt genomför detta. Sju behöriga lärare från norra Sverige deltog i enskilda intervjuer. De hade olika åldrar och längd på yrkesverksamhet. Intervjuerna spelades in; transkriberades och analyserades med kvalitativ innehållsanalys. Respondenterna beskrev en pågående förändring av stereotypa könsmönster både i skolan och i hemmet men att traditionella könsroller fortfarande reproduceras. Hkk beskrevs som ett skolämne där lärandet till stor del sker i praktiskt arbete där roller synliggörs som kan ge förutsättningar till diskussion och reflektion om jämställdhet. Respondenterna var dock eniga om att jämställdhetsarbete i skolan ställer krav på lärarrollen och sig själv som verktyg; exempelvis vid bedömning av flickor och pojkar. Slutsatsen av denna studie är att lärare i hkk anser att stereotypa könsmönster har förändrats men fortfarande reproduceras traditionella könsroller i skolan. Yngre generationer frångår alltmer de traditionella könsrollerna då jämställdhet blir en allt mer naturlig del i samhället; dock kvarstår det arbete i jämställdhetsfrågan då det fortfarande finns skillnader mellan könen i betyg.",
+    isHuman: true,
+    type: "Kandidatuppsats abstrakt",
   },
 ];
 
 // Thread-style Reddit-like discussions
 // Each thread has a question and a list of comments
 const THREADS = [
+
+  // --- Thread 1: Snus i USA (9n218) EDITED!
   {
-    questionText: "Hej, jag funderar på att nån dag i framtiden flytta till antingen Argentina, Chile eller Filippinerna, då undrar jag, vilket är billigast helt enkelt? Nån som har bott eller bor i nåt av dessa länder?",
+    questionText: "Snus marknadsförs i USA – kommer det funka den här gången?",
     comments: [
       {
-        text: "Tja! Jag har bott i Argentina ett tag, och måste säga att det är rätt billigt här. Jag menar, du kan äta ute för en spottstyver jämfört med Sverige. Men sen är det ju lite kaos med inflationen, så priserna kan fladdra en hel del. Chile å sin sida är också nice, och kanske lite mer stabilt prismässigt, men jag upplevde att allt var dyrare där, speciellt om du typ ska bo i storstäder. Filippinerna har jag bara besökt, men priserna där var också låga, och du får ju en grym livsstil vid kusten! Gillar du stränder och lite chill liv? Skulle nog rekommendera Filippinerna för det. Men om du vill ha ett äventyr och lite mer liv och rörelse så gå för Argentina, trots allt kaos. 🍻✈️",
+        text: "Det är svårt att säga. Snus har sin charm och kan locka många, särskilt rökare som söker ett alternativ. Men den amerikanska marknaden är tuff och hälsodebatten kring tobaksprodukter är intensiv. Det hänger på hur bra de lyckas med både marknadsföring och att övervinna motståndet.",
         isHuman: false,
-        condition: "detector_aware",
       },
       {
-        text: "Tja! Har bott i Argentina ett tag och kan säga att där är relativt billigt jämfört med Sverige, men det beror ju på vart man är. Städer som Buenos Aires är dyrare än landsbygden, såklart. Chile är också schysst, men kan vara lite mer pricey i städerna. Filippinerna har sina billiga ställen, typ om man åker ut på öarna. Kollar man bara på mat och boende så kan man leva rätt chill om man hittar rätt. Men räkna med att växelkursen kan svänga en del i Argentina. Vad du är ute efter kan verkligen påverka!",
-        isHuman: false,
-        condition: "detector_aware",
+        text: "Forsokte snusa lite Copenhagen och Camel snus nar jag bodde i Seattle, men det ar verkligen inte samma grej som hemma. Pasarna ar alldeles for stora och, som robeph skriver, sa ar materialet lite off ocksa. Tror for ovrigt inte att konceptet ar sa slaende nar det inte ar en del av kulturen som den ar i Sverige.",
+        isHuman: true,
       },
       {
-        text: "Tja! Jag har inte bott i något av dem, men har gjort en del research. Om jag måste gissa så känns Argentina som det billigaste alternativet just nu. Har snackat med folk som varit där och de sa att priserna är rätt låga, speciellt om man jämför med här hemma. Men sen är ju Chile också rätt billigt, typ. Filippinerna är nog lite dyrare om man snackar om boende och sånt. Men samtidigt är det ju olika beroende på var man hamnar i de länderna. Så självklart kan det variera. Hoppas du får en grymt spännande flytt, oavsett vart du landar! 😊✈️",
-        isHuman: false,
-        condition: "detector_aware",
+        text: "Kommenterade lite med en snubbe om just camel snus, han var inte så förtjust, men varför inte? med alla sluta röka på offentliga platser lagar så.",
+        isHuman: true,
       },
       {
-        text: "Hej! Jag har bott i Chile ett tag och kan säga att det är ganska överkomligt, speciellt om man håller sig borta från de riktigt dyra områdena som Santiago. Argentina har också sina fördelar och är oftast billigare än Chile, men inflationen där kan verkligen påverka priserna. Filippinerna är å sin sida också billigt, särskilt om du gillar att bo på landsbygden. Så det beror lite på vad du är ute efter! Vad är viktigast för dig – kostnad, kultur eller något annat? 😊",
+        text: "Det är svårt att säga. Snus har ju inte tagit fart på samma sätt som i Sverige, men med rätt marknadsföring och hälsobudskap kan det kanske bli en succé. Många amerikaner är ju också nyfikna på svenskt snus, så man får se hur det utvecklas!",
         isHuman: false,
-        condition: "human_like",
       },
     ],
   },
+  // --- Thread 3: Sverige jämställt? (b4cce) ----- REVISED ---
   {
-    questionText: "Advokat anses väl av allmänheten vara ett betydligt mer statusfyllt yrke än att vara åklagare. Skiljer sig den bilden inom juristkåren?",
+    questionText: "Vad fick du i julklapp i år Sweddit?.",
     comments: [
       {
-        text: "Haha, jo men alltså, sånt där snack hör man ju hela tiden! Visst, advokaterna har liksom den där glammiga fasaden, dyra kostymer och champagne på mingel, men som åklagare sitter man ju med på det \"riktiga\" jobbet, om man säger så. Vi pratar ju ändå om att stå på rättens sida och faktiskt jobba för rättvisa. Många med jur.kand ser nog lite snobbigt på åklagare, men grejen är att de vet ju att vi faktiskt gör en viktig grej, även om det inte glimmar lika mycket. Så jag tror inte riktigt att bilden är densamma i juristkretsar, vi har en annan respekt för varandras roller. Men man får ju erkänna, advokatlivet har sin charm! 😅",
+        text: "Jag fick några riktigt bra böcker som jag längtar efter att läsa, plus en go hoodie som är perfekt för kalla vinterkvällar. Hade även en mysig tid med nära och kära, mycket kvalitetstid! Hur var era julklappar?",
         isHuman: false,
-        condition: "detector_aware",
       },
       {
-        text: "Ja, det skiljer sig nog en del inom juristkåren. Många advokater kanske har en mer glamourös bild av sig själva, särskilt med tanke på att de ofta arbetar med privatklienter och större företag. Åklagare å sin sida har ofta en viktig och utmanande roll i samhället, men det kanske inte alltid får samma uppmärksamhet eller status. Det handlar nog mycket om hur man ser på sin egen roll och vad man tycker är viktigt i vårt arbete.",
+        text: "Haha nej du Jävelberg, mig lurar du men ingen annan!",
+        isHuman: true,
+      },
+      {
+        text: "Jag fick en riktigt bra trådlös hörlur och ett nytt pussel! Hörlurarna är perfekt när jag vill lyssna på musik utan sladdar, och pusslet är just den svåra utmaningen jag behöver för att koppla av under vintermörkret.",
         isHuman: false,
-        condition: "baseline",
       },
       {
-        text: "\nJuristkåren består till en majoritet av jurister som sitter på myndigheter och vänder papper - indragna körkort, offentliga upphandlingar, plan- och byggärenden osv \nEn minoritet av advokaterna jobbar med straffrätt. Och de får ingen bonus för frikännanden - i alla fall inte om de är offentliga försvarare.\nNej, det är så klart inte så.",
+        text: "Ett lakan av syster. Ett badlakan av mor. En dagsedel av far.",
         isHuman: true,
-        condition: "human",
-      },
-      {
-        text: "\nAnna Lindhs mördare hade en gammal åklagare som försvarare och det gick ju inte så bra. Fast Mikael Nilsson är en skicklig advokat som är känd för att använda sina kunskaper som f.d. åklagare när han försvarar sina klienter. Att göra rekonstruktionsvideor är hans specialitet vad jag har hört.\nVad gäller vilket yrke som har högst status beror det väl på personliga preferenser.",
-        isHuman: true,
-        condition: "human",
       },
     ],
   },
+  // --- Thread 4: Svensk musik (cnl4a) ~~~ EDITED! ~~~
   {
-    questionText: "Nån som vet vart man hittar schyssta modeller? Vill ha ungt och fräscht till lesbisk porr, har kollat runt lite men det är ju fan omöjligt att hitta nåt med sökmotor när det är porr inblandat.\ntacksam om nån har lite info",
+    questionText: "Det slog mig att juldagen inte har samma \"självklara\" traditioner som julafton, visst firar många julafton olika men tex julklapparna öppnas ju alltid den 24:e. Vad är juldagen för dig?",
     comments: [
       {
-        text: "Det kan verkligen vara klurigt att hitta bra grejer när det gäller lesbisk porr. Kolla in några av de mindre indie-sajterna, de brukar ofta ha mer variation och kanske även mer \"naturliga\" modeller. Sedan finns det även vissa sociala medier där vissa skapare lägger upp sitt material. Se bara till att alltid vara säker på att det är lagligt och samtyckt! Lycka till!",
-        isHuman: false,
-        condition: "baseline",
+        text: "Lång jävla promenad och dåliga TV-program.",
+        isHuman: true,
       },
       {
-        text: "Haha, ja du, det är ju en djungel där ute! Jag skulle rekommendera att kolla in vissa svenska plattformar, de har ofta lite mer autentiskt material. Kanske kolla på TikTok eller Insta också, ibland dyker det upp coola konton där. Men kom ihåg att hålla ögonen öppna för sidor med bra rykte, man vet ju aldrig vad man kan snubbla över annars. Lycka till!",
+        text: "För mig är juldagen en dag av lugn och gemenskap. Efter all fest och stök på julafton, är det skönt att bara vara med familjen, äta lite rester och kanske gå ut på en promenad. Det är en dag att njuta av stillheten och reflektera över allt som har varit.",
         isHuman: false,
-        condition: "detector_aware",
       },
       {
-        text: "Alltså, jag fattar precis vad du menar! Det är sjukt svårt att hitta kvalitetsgrejer när man söker porrsajter. Har du kollat in de där mindre, mer nischade sidorna? Ibland kan man hitta guld där. Kolla typ på Tumblr eller nåt, eller på Instagram – många gör sina egna grejer där nu för tiden. Man får vara lite kreativ med sökord också, kanske \"lesbian indie porn\" eller något sånt. Hoppas du hittar nåt!",
-        isHuman: false,
-        condition: "detector_aware",
+        text: "Olika från år till år, beror på hos vem julafton firas. Det blir endel bök när både jag och sambon är skilsmässobarn. Men en promenad vill jag gärna ta om vädret tillåter.",
+        isHuman: true,
       },
       {
-        text: "Kolla in sajter som är fokuserade på lesbisk porr, typ SiteXXX eller LesbianXXX. De har ofta bra utbud och uppdaterar med nya modeller hela tiden. Tänk också på att följa konton på sociala medier som fokuserar på lesbisk kultur, där lägger de ibland upp tips och länkar. Lycka till!",
-        isHuman: false,
-        condition: "baseline",
+        text: "Om man är uppvuxen på någon liten ort och åker dit hem till föräldrar över jul så brukar juldagen vara utgång på \"stan\" och man träffar folk man växte upp med.",
+        isHuman: true,
       },
     ],
   },
+  // --- Thread 5: IKEA kundservice (cns6g) ""EDITED!
   {
-    questionText: "Mat till event utan kylskåp, men micro? Hyfsat less på panpizzor. **edit:** shit, menade inte till andra, bara till mig då",
+    questionText: "Vad är några roliga svenska uttryck som du använder dig av?",
     comments: [
       {
-        text: "Kör matlådor som klarar rumstemp och som bara behöver micras. Typ tortillawraps med ris/bönor/kyckling (om du köper samma dag) och mycket salsa, eller vego så slipper du nojja. Couscous/ bulgur med pesto + soltorkade tomater + kikärtor funkar också bra utan kyl ett tag. Annars klassiker: nudlar/ramen cups men pimpa med jordnötssmör, frystorkade grönsaker och en burk tonfisk. Havregrynsgröt i micro + banan/peanut butter om du bara vill bli mätt och orkar noll. Och ta med lite frukt/nötter som “backup” så du inte hamnar i panpizza-träsket igen.",
-        isHuman: false,
-        condition: "baseline",
+        text: "Nu är det kokta fläsket stekt.",
+        isHuman: true,
       },
       {
-        text: "Om du bara gör mat till dig själv så funkar det ju att köra på lite olika rätter som inte kräver kyl. Prova att göra en risotto i micron, det är både gott och enkelt! Eller varför inte en macka med avokado och tonfisk? Sen kan du alltid ha grönsaker som paprika och gurka – de klarar sig utan kyl. Kanske lite nötter eller frukt som snacks? Det är ju skönt att slippa panpizzor för en gångs skull!",
-        isHuman: false,
-        condition: "human_like",
+        text: "Blöt under fötterna.",
+        isHuman: true,
       },
       {
-        text: "Alltså, känns ju som man har fastnat i samma matgrej jämt. Men om du kan använda micro, så är ju typ färdiga lasagner grymt. Tar typ 5 minuter att värma och smakar ändå bra! Eller varför inte micra nåt ris eller nudlar och slänga dit nån sås eller typ frysta grönsaker? En annan grej är att göra omelett i mikron, bara vispa ägg och slänga in grejer du har hemma. Enkelt och asgott! Hoppas du slipper panpizzan snart, den är ju så tråkig!",
-        isHuman: false,
-        condition: "detector_aware",
+      text: "Ett av mina favoriter är \"Kasta inte pärlor för svin\" – det påminner mig om att uppskatta det som verkligen betyder något. Sen har vi \"Sätta kniven i ryggen\" för att beskriva svikande vänner, alltid en träffande bild! Svensk humor är verkligen unik.",
+      isHuman: false,
       },
       {
-        text: "Jag känner så väl igen mig! När jag har micro men inget kylskåp brukar jag köra på saker som är lätta att värma. Typ färdiga soppor eller såna där nudlar som man bara häller hett vatten på. Man kan också göra omelett i mikron, superenkelt och gott! Annars är frysta grönsaker och lite ris bra att ha, går att blanda hur man vill. Bara att vara lite kreativ! 🙂",
-        isHuman: false,
-        condition: "human_like",
+        text: "Ajsing bajsing!",
+        isHuman: true,
       },
     ],
   },
+  // --- Thread 6: Bokhandlar i Göteborg (cryrl) ### REVISED #### ---
   {
-    questionText: "Kan man driva ett klockbatteri genom att utvinna energi från handledens värme? Köpte en Apple Watch och det slog mig. Borde det inte gå att omvandla den värmeenergi som handleden utsöndrar för att ladda batteriet? Någon som vet/hört något?",
+    questionText: "Bokhandlar i Göteborg? Kan någon rekommendera en bra bokhandeln i Göteborg med läsvänlig atmosfär? Letar efter någonstans att spendera några timmar i helgen över en kopp kaffe, utan att vara bråttom att köpa (liksom Barnes & Noble, kanske) ...",
     comments: [
       {
-        text: "Jo, i teorin går det – det heter termoelektrisk generator (Seebeck-effekten) och används i vissa nischprylar. Problemet är att du behöver en temperaturskillnad för att få ut vettig effekt. Handleden är typ 33–35°C och omgivningen kanske 20–25°C (ibland ännu närmare), så ΔT blir liten, och då blir effekten pytteliten. En Apple Watch drar ändå ganska mycket, särskilt med skärm, puls, GPS osv. För att få ut nog med energi skulle du behöva antingen mycket större yta, mycket bättre kylning på utsidan (vilket är obekvämt och funkar sämre när du har tröja/jacka), eller extremt effektiv termoelektrik som inte finns i konsumentformat. Det är därför de flesta “självladdande” klockor kör på rörelse (automatverk/kinetisk) eller solcell (typ Citizen Eco-Drive) – där är energitätheten mycket bättre. Så: cool idé, men i praktiken räcker handledsvärme inte till för att driva en smartwatch, bara möjligen för att förlänga batteritiden marginellt i bästa fall.",
-        isHuman: false,
-        condition: "baseline",
-      },
-      {
-        text: "Solceller är effektivare, och räcker för att driva ett enkelt digitalur. Propblemet är att en smartwatch drar runt 1000 gånger mer ström än ett enkelt digitalur.",
+        text: "Jag vet inte om nån sådan bokhandel. Stadsbiblioteket däremot har ett kafé som är helt ok. Kan vara värt att testa kanske?",
         isHuman: true,
-        condition: "human",
       },
       {
-        text: "Haha, ja du, det är ju en intressant tanke! Varför inte? Värmeenergi har ju potential, men jag tror det skulle vara en jäkla utmaning att få till det effektivt. Sen vet jag inte hur mycket värme vi verkligen avger när vi går runt och bara chillar. Man kanske skulle kunna bygga något litet värmeelement i klockan, men det känns som att det är mycket enklare med batterier. Apple kanske borde kolla in det där, men tills dess får vi väl ladda som vanligt! 😄",
-        isHuman: false,
-        condition: "detector_aware",
+      text: "Hej! Jag rekommenderar att du besöker Bokskåpet på Chalmers eller Akademibokhandeln i Nordstan. Båda har en mysig atmosfär och en bra kaffehörna. Perfekt för att bläddra bland böcker och ta det lugnt en lördag!",
+      isHuman: false,
       },
       {
-        text: "Det är en intressant tanke! Det finns faktiskt forskning på att utvinna energi från kroppsvärme, men det är fortfarande i ett tidigt skede. Om det skulle funka för klockor som Apple Watch i framtiden, skulle det ju vara supercoolt och praktiskt! Men just nu är batteritiden fortfarande en stor faktor och de flesta klockor behöver en mer pålitlig källa. Hoppas de hittar en lösning snart!",
-        isHuman: false,
-        condition: "human_like",
+        text: "Lite kuriosa: Bokhandel i plural heter \"boklådor\". Låter knäppt, jag vet, men det är faktiskt sant.",
+        isHuman: true,
+      },
+      {
+      text: "Absolut, kolla in Kronans bokhandel i Linné! De har en mysig atmosfär, bra utbud och ofta sittplatser där man kan bläddra i böcker. Dessutom ligger det nära mysiga kaféer. Perfekt för en avslappnad helg!",
+      isHuman: false,
       },
     ],
   },
+  // --- Thread 7: Personförlusten i valet (dgab6) REVISED 
   {
-    questionText: "Hej.  Jag undrar om någon här vet hur man blir frisör?  Eller om det finns någon billig väg att gå förutom att gå en svindyr utbildning.  Kan man gå någon annan väg för att bli det? Typ  Praktik.\n Berätta gärna om egna erfarenheter.",
+    questionText: "Varför tappade de rödgröna makten till att börja med? Jag är 94a så är rätt ung, men jag undrar hur det kommer sig att de rödgröna har regerat Sverige under en väldigt lång period och S alltid har varit det traditionellt största partiet, så kommer Alliansen från ingenstans och plötsligt vinner, och får dessutom sitta kvar i två mandatperioder. Finns det någon speciell anledning till att Alliansen vann? Typ någon dålig reform som sossarna gjorde eller något liknande.",
     comments: [
       {
-        text: "Hej! Jag förstår verkligen vad du menar, frisörutbildningar kan kosta en hel del. En del väljer faktiskt att börja med praktik på en salong, där man får lära sig av erfaren personal. Det är ofta ett bra sätt att komma in i branschen och se om det är något för en. Man kan också kolla på kortare kurser eller workshops som vissa salonger erbjuder, ibland har de även trainee-program där man får jobba och lära sig på samma gång. Lycka till, hoppas du hittar din väg! 😊",
-        isHuman: false,
-        condition: "human_like",
+      text: "Det handlar nog om en kombination av flera faktorer. Många väljare kände sig trötta på det rödgröna styret efter så många år, och Alliansen lyckades presentera sig som ett fräscht alternativ med fokus på skattesänkningar och jobbskapande. Dessutom påverkade ekonomin mycket, speciellt med krisen som kom strax innan valet.",
+      isHuman: false,
       },
       {
-        text: "Hej! Jag förstår verkligen vad du menar, frisörutbildningar kan vara dyra. Jag tror att praktik kan vara en bra väg att gå – många salonger söker alltid efter assistenter eller lärlingar. Kolla om det finns möjlighet att praktisera på en salong i närheten, ibland kan de även erbjuda någon form av lärlingsprogram där du kan få lära dig på plats. Har själv haft en kompis som började så, och efter ett tag fick hon jobbet som frisör när hon hade lärt sig tillräckligt. Lycka till!",
-        isHuman: false,
-        condition: "human_like",
-      },
-      {
-        text: "Bump på denna. \nÄr det bara privata utbildningar som gäller? Eller finns det skattefinansierade utbildningar typ komvux som man kan gå om man är för gammal för gymnasiet?",
+        text: "Det brukade vara mycket större skilnad mellan sossarna och moderaterna, men under sin tid vid makten så rörde sig sossarna allt längre höger ut. De var ju tex de som öpnnade upp för friskolor och på så sätt startade hela den här kvasimarknadstrenden. Samtidigt så rörde sig moderaterna in mot mitten. Allt prat om nya moderaterna och att de skulle vara ett arbetar parti. När de två sidorna blev allt mer lika, så blev det enklare för väljarna att byta sida, och det räcker med en liten sak som att Göran Persson ser trött ut för att det ska bli regeringsskifte.",
         isHuman: true,
-        condition: "human",
       },
       {
-        text: "Hej! Jag kan verkligen förstå att du vill hitta en bra och billig väg in i frisörbranschen. Jag rekommenderar att kolla upp om det finns möjlighet att göra praktik hos en frisörsalong. Många salonger uppskattar hjälp och kan tänka sig att lära ut grunderna under tiden du jobbar där. Framför allt kan de ge dig värdefull erfarenhet och kontakter. Sen finns det även kortare utbildningar och kurser som är mer prisvärda än en full utbildning. Lycka till! 🚀✂️",
-        isHuman: false,
-        condition: "baseline",
+        text: "Göran Persson upplevdes som väldigt trött på sitt jobb inför valrörelsen 2006 vill jag minnas. Alliansen kom med idéerna. Det hade varit mycket prat om hur man kunde ha nästan samma inkomst på bidrag som på ett låginkomstjobb och därför kunde man sälja in jobbskatteavdraget.",
+        isHuman: true,
+      },
+      {
+      text: "Det är en intressant fråga! Många menar att Alliansens seger delvis berodde på missnöje med S under finanskrisen, samt att de lyckades profilera sig som ett mer borgerligt alternativ. Dessutom spelade oppositionens enighet stor roll. Reformer som rör skolor och vård kritiserades också, vilket bidrog till att väljare sökte förändring.",
+      isHuman: false,
       },
     ],
   },
+  // --- Thread 8: Sverigedemokraterna (dgtri) REVISED ---
   {
-    questionText: "Hej! \nJag och min kompis är intresserad av att åka till Frankrike, någon som vet ett bra och vackert ställe att åka till? \nNågot ställe där det inte är allt för dyrt med hotell, helst! \nTack i förhand!",
+    questionText: "Vad är egentligen Sverigedemokraterna?",
     comments: [
       {
-        text: "Hejsan! Om ni vill ha ett vackert och lite mer prisvärt ställe i Frankrike kan jag verkligen rekommendera att åka till Nice! Det finns så mycket fint att se där, och stranden är verkligen härlig. Hotellen kan variera i pris, men man kan hitta bra alternativ om man bokar i tid. Annars kanske ni vill kika på städer som Montpellier eller Aix-en-Provence, de är också superfina och lite snällare mot plånboken. Lycka till med planeringen! 😊✈️",
-        isHuman: false,
-        condition: "human_like",
-      },
-      {
-        text: "Vad tycker du är vackert då? Folk är olika. En del gillar kusten och tycker det är fint. Andra föredrar\"landsbygden\" dvs skog, öppna landskap osv. Kan rabbla exempel i evigheter. \nÄr det bara hotell som inte ska vara för dyrt, eller gäller det resan också? Syftar främst på flyg och transport till den platsen om det inte ligger särskilt nära närmsta internationella flygplats.",
+        text: "Om man läser idéprogrammet så inser man rätt snabbt att det handlar om ett socialkonservativt parti - med vissa populistiska drag. Sen är det väl litet av ett myserium vad varje enskild medlem vill men så är det ju med socialdemokraterna också.",
         isHuman: true,
-        condition: "human",
       },
       {
-        text: "\nDet låter bra. Fråga på om det är något mer du undrar över.",
+      text: "Sverigedemokraterna är ett politiskt parti i Sverige som ofta kopplas till nationalism och invandringskritik. De har vuxit snabbt de senaste åren och väcker många känslor, både positiva och negativa. För vissa står de för opinionsskifte, medan andra ser dem som ett hot mot den svenska värdegrunden.",
+      isHuman: false,
+      },
+      {
+      text: "Sverigedemokraterna är ett svenskt politiskt parti som grundades 1988 och har fokuserat på frågor kring migration och integration. Deras politik har varit kontroversiell och de har fått både stöd och kraftig kritik. Många ser dem som ett populistiskt parti, medan andra anser att de representerar en viktig röst för vissa medborgare.",
+      isHuman: false,
+      },
+      {
+        text: "\"Det här är ett parti som vill avskaffa centrala delar av demokratin.\" Vilken demokrati? Sverige röstade höger, fick vänster. Stefan Löfven har satt sig över demokratin. Ja, man kommer förmodligen behöva gå hårt fram och sparka ut en del stofiler för att få till nödvändiga åtgärder. Men att sitta och nörda ner sig i vad som kan hända om SD får ensam majoritet är faktiskt duktigt efterblivet.",
         isHuman: true,
-        condition: "human",
-      },
-      {
-        text: "Hej! Om ni vill åka till Frankrike rekommenderar jag er att kolla in staden Carcassonne. Den har en fantastisk medeltida borg som är otroligt vacker och området runt omkring är super mysigt. Hotellen där är oftast inte så dyra heller, särskilt om ni bokar i förväg. Dessutom finns det bra matställen där ni kan njuta av lokal sydfransk mat. Hoppas ni får en härlig resa! 🌞🍷",
-        isHuman: false,
-        condition: "baseline",
       },
     ],
   },
+  // --- Thread 9: SD in i riksdagen (dg2sv)EDITED!
   {
-    questionText: "Har precis köpt en gainer och det står att man ska ha i 50 gram. Hur mycket är det i ett dl-mått?",
+    questionText: "Vilka enskilda politiker ger bäst intryck?",
     comments: [
       {
-        text: "Det beror på hur fin/grovkornig pulvret är, men men, här är mitt bidrag till upplysning:\nStraight out of skafferiet:\n1 dl Maizena Majsstärkelse = 55g\n1 dl Strösocker = 88g\n1 dl Vetemjöl = 60g",
+        text: "Typ ingen. Svenska åsikts- och beteendekorridoren är så trång att ingen riksdagspolitiker ens gör ett mänskligt intryck. Som vänstersnubben sa, Hanif Bali är lite (trollaktigt) sympatiskt, skulle kanske hänga med honom nån gång.",
+        isHuman: true
+      },
+      {
+        text: "Jag skulle nog säga att Jimmie Åkesson är bäst och efter det kommer Annie Lööf följt av Jonas Sjöstedt.",
         isHuman: true,
-        condition: "human",
       },
       {
-        text: "Det beror lite på hur tungt pulvret är, men som en tumregel brukar 50 gram gainer motsvara ungefär 1 dl. Du kan alltid väga det för att vara säker, men om du inte har en våg så funkar ett dl-mått ganska bra. Lycka till med träningen! 🏋️‍♂️",
-        isHuman: false,
-        condition: "human_like",
-      },
-      {
-        text: "Du skulle ju kunna mäta upp en halv dl vatten det väger ju ungefär 50g så kan du ju jämföra med din uppmätta mängd pulver. Det blir ju inte exakt på något sätt men +/- 10g borde inte vara någon omöjlighet om man koncentrerar sig. Annars vore väl en våg ett trevligt kökstillbehör att införskaffa?\nEtt annat sätt är ju att läsa på lådan hur mycket hela mängden pulver väger (för det bör väl stå utskrivet) och sen kan du mäta upp hur stor volym allt pulvret tar och vipps så vet du den ungefärliga densiteten på ditt pulver.  ",
+        text: "Gillar verkligen Mattias Karlsson. Känns stabil och seriös. Och verkar som en riktig familjefar utanför politiken också.",
         isHuman: true,
-        condition: "human",
       },
       {
-        text: "Kolla liiiite på förpackningen, men typ en dl gainer väger runt 100 gram, så 50 gram borde vara typ hälften av det. Så om du har ett decilitermått, fyll det till typ halva. Lite snurrigt ibland, jag vet, men det funkar! Lycka till med träningen! 💪",
+      text: "Det beror verkligen på vad man värderar mest. Jag tycker att politiker som är genuina och lyssnar på medborgarna, som exempelvis Annie Lööf och Stefan Löfven, ger bra intryck. Det handlar också om att vara transparent och stå för sina åsikter. Vad tycker ni?",
+      isHuman: false,
+      },
+
+    ],
+  },
+
+    // --- Thread 9: Lumpen (9lfs5) EDITED!
+  {
+    questionText: "Lumpen – har ni gjort den? Jag tycker att vi måste blåsa lite liv i denna reddit, så jag föreslår att vi börjar snacka om det. Gjorde själv inte militärtjänst, var upptagen med andra dumma saker vid den åldern. Dock ångrar jag det väldigt mycket, tror att den hade varit en upplevelse. Åsikter/erfarenheter?",
+    comments: [
+      {
+        text: "Jag gjorde lumpen för några år sedan och det var verkligen en blandning av hårt arbete och gemenskap. Självklart finns det saker som var jobbiga, men jag ångrar inte en sekund. Det var en chans att träffa nya människor och lära sig mycket om sig själv. Rekommenderar verkligen!",
         isHuman: false,
-        condition: "detector_aware",
+      },
+      {
+        text: "Jag gjorde inte lumpen, och jag ångrar det inte. Inledningsvis blev jag placerad som civilpliktig i Porjus vattenkraftverk, och det hade säkert varit intressant med tanke på min senare utbildning och mitt nuvarande jobb, men det hade varit 11 långa månader i en liten by i Norrland. Min tjänst drogs in, och jag valde att plugga, resa och jobba det året istället, och känner att den tiden gav mer.",
+        isHuman: true,
+      },
+      {
+        text: "Gjorde lumpen för några år sen och det var både skitjobbigt och bland det roligaste jag gjort. Mycket väntan, lite “pang pang”, men framför allt rutin, kyla, sömnbrist och att lära sig funka i grupp även när man är helt slut. Man får en speciell gemenskap som är svår att hitta annars, plus att man växer som person (klyscha men sant). Samtidigt är det inte för alla, vissa hatade varje minut. Om du ångrar dig: kolla Hemvärnet eller frivilligorganisationer, eller sök GU nu om du är sugen. Det är inte “för sent” bara för att man missade 18-årsåldern.",
+        isHuman: false,
+      },
+      {
+        text: "Känns ibland som jag är en av de sista som hunnit med tre repövningar utöver originallumpen vid 42 års ålder. Fick ett sorgkantat brev från ÖB för ett par år sedan där han beklagade att det inte fanns någon plats för mig längre. Måste erkänna att jag hade görskoj 80% av tjänstgöringen faktiskt.",
+        isHuman: true,
       },
     ],
   },
+
+  // --- Thread 10: Reddit Meetup Day (dg3ms) EDITED!
   {
-    questionText: "Vad kallar en blind programmerare sin ledhund? SYNTAX.",
+    questionText: "Vad hände med Reddit Meetup Day? Det var ju under vår nationaldag har jag för mig. Tycker att det borde styras upp ifall det inte blev något :D",
     comments: [
       {
-        text: "Ska vi gå över till den blinde snickaren nu? Den blinde snickaren tog sin hammare och såg.",
-        isHuman: true,
-        condition: "human",
-      },
-      {
-        text: "Haha, den var ju klockren! 😂 Synd bara att man inte kan se hunden, men förstår att den säkert är lika smart som sin matte/husse. Man måste ju ha lite humor i programmeringens värld! Keep it up! 🐶💻",
+        text: "Ja, det känns som att det har blivit lite tyst om det! Skulle vara kul om de kunde fixa till det igen. Kanske vi borde börja peppa för nästa år?",
         isHuman: false,
-        condition: "detector_aware",
       },
       {
-        text: "Haha, den var ju bra! 😄 Älskar ordleken, och att det kommer från en programmerare gör det ju ännu roligare! Hatten av till den som kom på det!",
+        text: "Ja, Reddit Meetup Day kändes som en kul grej, speciellt på vår nationaldag! Det är synd att det inte blev av. Förhoppningsvis kan någon ta initiativ och organisera något för att samla alla Redditanvändare nästa år. Hade varit grymt att träffas och diskutera allt möjligt!",
         isHuman: false,
-        condition: "human_like",
       },
       {
-        text: "Hur mår en programmerare som skriver kod i ett högnivåspråk? ...python",
-        isHuman: true,
-        condition: "human",
-      },
-    ],
-  },
-  {
-    questionText: "någon som har lyckats och vet hur man gör?\nvet att det ska fungera men jag har pillat runt i månader utan att lyckas...",
-    comments: [
-      {
-        text: "Det kan vara riktigt frustrerande, men ge inte upp! Har du kikat på någon handledning eller video? Ibland kan man få en ny insikt bara genom att se någon annan göra det. Kolla också om det finns några forumtrådar eller grupper där andra delat med sig av sina tips! Hoppas du hittar lösningen snart! 😊",
+        text: "Ja, Reddit Meetup Day har tyvärr blivit lite av en bortglömd tradition. Det vore verkligen kul om folk tog initiativ att planera det igen! Skulle vara trevligt att träffa likasinnade och ha en kul dag tillsammans. Hoppas på bättre organisering framöver!",
         isHuman: false,
-        condition: "baseline",
       },
       {
-        text: "Jag förstår hur frustrerande det kan vara! Har också kämpat med liknande grejer tidigare. Har du kollat så att du följer alla steg noggrant? Ibland kan det vara något litet man missar. Om du vill kan vi försöka lista ut det tillsammans!",
+        text: "Ja, det var en rolig tradition! Synd att den verkar ha försvunnit. Det skulle vara kul om någon tog initiativ till att ordna en ny meetup, speciellt på nationaldagen. Kanske vi kan skapa något lokalt igen? Hoppas fler är på!",
         isHuman: false,
-        condition: "human_like",
-      },
-      {
-        text: "Har du kollat på Guider och tutorials på nätet? Ibland kan det vara små detaljer man missar. Jag har också haft det kämpigt i början, men när jag väl fattade knylen var det som en lättnad. Håll ut, du kommer klara det!",
-        isHuman: false,
-        condition: "baseline",
-      },
-      {
-        text: "Jag förstår verkligen din frustration! Har du testat att följa några steg-för-steg-guider? Ibland kan det vara små detaljer som gör stor skillnad. Om du ger lite mer information om vad du försöker åstadkomma kanske vi kan hjälpa dig bättre! Håll ut, du kommer fixa det!",
-        isHuman: false,
-        condition: "baseline",
       },
     ],
   },
@@ -402,11 +376,7 @@ const els = {
   feedback: document.getElementById("feedback"),
   scoreCorrect: document.getElementById("score-correct"),
   scoreTotal: document.getElementById("score-total"),
-  scoreSummary: document.getElementById("score-summary"),
 };
-
-// Running score is hidden so participants get no correctness feedback during the survey.
-if (els.scoreSummary) els.scoreSummary.hidden = true;
 
 const answers = new Array(effectiveQuestions.length).fill(null);
 
@@ -473,14 +443,12 @@ async function sendAnswerEvent() {
   let choiceIsHuman;
   let extra = {};
   let questionType = "";
-  let condition = "";
 
   if (mode === "abstracts") {
     q = effectiveQuestions[currentIndex];
     const answer = answers[currentIndex];
     if (!q || !answer) return;
     choiceIsHuman = answer.choiceIsHuman;
-    condition = q.condition || "";
 
     const isCorrect = choiceIsHuman === q.isHuman;
 
@@ -500,7 +468,6 @@ async function sendAnswerEvent() {
     if (!thread || !comment || !stored) return;
     q = { text: comment.text, isHuman: comment.isHuman };
     choiceIsHuman = stored.choiceIsHuman;
-    condition = comment.condition || "";
 
     const isCorrect = choiceIsHuman === q.isHuman;
     const totals = computeTotalScoreSoFar();
@@ -527,7 +494,6 @@ async function sendAnswerEvent() {
       questionText: q.text,
       isHumanLabel: q.isHuman,
       userGuessIsHuman: choiceIsHuman,
-      condition,
       age: demographics.age,
       profession: demographics.profession,
       llmUsage: demographics.llmUsage,
@@ -802,7 +768,10 @@ function renderThread() {
       const row = document.createElement("div");
       let rowClass = "comment-row";
 
-      if (ans !== null && ans) {
+      if (redditShowingFeedback && ans) {
+        const isCorrect = ans.choiceIsHuman === comment.isHuman;
+        rowClass += isCorrect ? " comment-row--correct" : " comment-row--incorrect";
+      } else if (!redditShowingFeedback && ans !== null) {
         rowClass += ans.choiceIsHuman ? " comment-row--picked-human" : " comment-row--picked-ai";
       }
 
@@ -812,8 +781,10 @@ function renderThread() {
       meta.className = "comment-meta";
 
       if (redditShowingFeedback && ans) {
+        const isCorrect = ans.choiceIsHuman === comment.isHuman;
         const guess = ans.choiceIsHuman ? "Människa" : "AI";
-        meta.textContent = `Kommentar ${idx + 1} · Din bedömning: ${guess}`;
+        const actual = comment.isHuman ? "Människa" : "AI";
+        meta.textContent = `Kommentar ${idx + 1} · Din bedömning: ${guess}. ${isCorrect ? "✓ Rätt!" : "✗ Rätt svar: " + actual + "."}`;
       } else {
         meta.textContent = `Kommentar ${idx + 1}`;
       }
@@ -1082,25 +1053,43 @@ function renderCurrent() {
 
 function resetChoiceStyles() {
   [els.btnHuman, els.btnAi].forEach((btn) => {
-    btn.classList.remove("selected", "selected-correct", "selected-incorrect", "disabled");
+    btn.classList.remove("selected-correct", "selected-incorrect", "disabled");
   });
 }
 
 function applyAnswerStyles() {
+  const q = effectiveQuestions[currentIndex];
   const answer = answers[currentIndex];
 
   if (!answer) return;
 
+  const isCorrect = answer.choiceIsHuman === q.isHuman;
   const selectedButton = answer.choiceIsHuman ? els.btnHuman : els.btnAi;
 
-  selectedButton.classList.add("selected");
+  selectedButton.classList.add(isCorrect ? "selected-correct" : "selected-incorrect");
   [els.btnHuman, els.btnAi].forEach((btn) => btn.classList.add("disabled"));
 }
 
 function renderFeedback() {
-  // No correctness feedback is shown during the survey.
+  const q = effectiveQuestions[currentIndex];
+  const answer = answers[currentIndex];
+
   els.feedback.textContent = "";
   els.feedback.classList.remove("correct", "incorrect");
+
+  if (!answer) {
+    return;
+  }
+
+  const isCorrect = answer.choiceIsHuman === q.isHuman;
+  if (isCorrect) {
+    els.feedback.textContent = 'Du har rätt!';
+    els.feedback.classList.add("correct");
+  } else {
+    const actualLabel = q.isHuman ? "skrivet av en människa" : "skrivet av en AI";
+    els.feedback.textContent = `Inte korrekt. Det var ${actualLabel}.`;
+    els.feedback.classList.add("incorrect");
+  }
 }
 
 function updateScoreSummary() {
