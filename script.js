@@ -102,7 +102,7 @@ const THREADS = [
         condition: "baseline",
       },
       {
-        text: "Jag brukar också slita av folien direkt, känns liksom enklare. Men jag har kompisar som har kvar den tills de har använt smöret, typ för att det ska bevara friskheten eller nåt. Jag har aldrig fattat grejen, haha. Plus, jag glömmer alltid bort att ens ta av det innan jag ska smöra mackan. Man får leva med sin slarviga stil, eller? 😄",
+        text: "Jag brukar också slita av folien direkt, känns liksom enklare. Men jag har kompisar som har kvar den tills de har använt smöret, typ för att det ska bevara friskheten eller nåt. Jag har aldrig fattat grejen, haha. Plus, jag glömmer alltid bort att ens ta av det innan jag ska smöra mackan. Man får leva med sin slarviga stil, eller?",
         isHuman: false,
         condition: "detector_aware",
       },
@@ -172,7 +172,7 @@ const THREADS = [
     questionText: "Hej, jag funderar på att nån dag i framtiden flytta till antingen Argentina, Chile eller Filippinerna, då undrar jag, vilket är billigast helt enkelt? Nån som har bott eller bor i nåt av dessa länder?",
     comments: [
       {
-        text: "Hej! Jag har bott i både Argentina och Chile, och jag kan säga att Argentina generellt är billigare när det kommer till mat och boende, speciellt om man håller sig borta från de mer turistiga områdena. Chile är också fint, men priserna är ofta högre. Filippinerna har sin egen charm med låga levnadskostnader, framför allt om du gillar ö-liv och natur. Men det beror ju också på var i Filippinerna du hamnar. Så om billigast är grejen, ge Argentina en chans! Men kolla lite på vad du tycker om kulturen och språket också. Lycka till! 😊",
+        text: "Hej! Jag har bott i både Argentina och Chile, och jag kan säga att Argentina generellt är billigare när det kommer till mat och boende, speciellt om man håller sig borta från de mer turistiga områdena. Chile är också fint, men priserna är ofta högre. Filippinerna har sin egen charm med låga levnadskostnader, framför allt om du gillar ö-liv och natur. Men det beror ju också på var i Filippinerna du hamnar. Så om billigast är grejen, ge Argentina en chans! Men kolla lite på vad du tycker om kulturen och språket också. Lycka till!",
         isHuman: false,
         condition: "human_like",
       },
@@ -202,7 +202,7 @@ const THREADS = [
         condition: "human",
       },
       {
-        text: "Jag har faktiskt Comviq och har haft det ett tag nu. Jag tycker att det funkar riktigt bra, speciellt i storstadsområden som Stockholm. Har inte haft några större problem med täckningen eller hastigheten. Visst, vissa ställen kan vara lite sämre men det har varit överlag positivt. Om du får ett bra pris så kan det definitivt vara värt att testa! Men annars är Telia-kopplade nät alltid säkra, så fundera noga på vad som är viktigast för dig. 👍",
+        text: "Jag har faktiskt Comviq och har haft det ett tag nu. Jag tycker att det funkar riktigt bra, speciellt i storstadsområden som Stockholm. Har inte haft några större problem med täckningen eller hastigheten. Visst, vissa ställen kan vara lite sämre men det har varit överlag positivt. Om du får ett bra pris så kan det definitivt vara värt att testa! Men annars är Telia-kopplade nät alltid säkra, så fundera noga på vad som är viktigast för dig.",
         isHuman: false,
         condition: "human_like",
       },
@@ -252,7 +252,7 @@ const THREADS = [
         condition: "detector_aware",
       },
       {
-        text: "Det låter frustrerande! Jag har också kämpat med sådana grejer ibland. Har du kollat på några guider eller videor? Det kan verkligen hjälpa att se det i praktiken. Och skäms inte för att fråga om hjälp, det är så lätt att fastna i sitt eget huvud! Lycka till, håller tummarna för att du får det att funka snart! 🚀",
+        text: "Det låter frustrerande! Jag har också kämpat med sådana grejer ibland. Har du kollat på några guider eller videor? Det kan verkligen hjälpa att se det i praktiken. Och skäms inte för att fråga om hjälp, det är så lätt att fastna i sitt eget huvud! Lycka till, håller tummarna för att du får det att funka snart!",
         isHuman: false,
         condition: "human_like",
       },
@@ -262,7 +262,7 @@ const THREADS = [
         condition: "baseline",
       },
       {
-        text: "Det kan vara riktigt frustrerande, men ge inte upp! Har du kikat på någon handledning eller video? Ibland kan man få en ny insikt bara genom att se någon annan göra det. Kolla också om det finns några forumtrådar eller grupper där andra delat med sig av sina tips! Hoppas du hittar lösningen snart! 😊",
+        text: "Det kan vara riktigt frustrerande, men ge inte upp! Har du kikat på någon handledning eller video? Ibland kan man få en ny insikt bara genom att se någon annan göra det. Kolla också om det finns några forumtrådar eller grupper där andra delat med sig av sina tips! Hoppas du hittar lösningen snart!",
         isHuman: false,
         condition: "baseline",
       },
@@ -277,17 +277,17 @@ const THREADS = [
         condition: "human",
       },
       {
-        text: "Det beror lite på hur mycket du äter totalt sett under dagen. Spaghetti är ju ganska kaloririkt och innehåller massa kolhydrater, så om du trycker i dig stora mängder kan det absolut bidra till viktökning. Men om du håller koll på portionerna och ser till att allt annat i kosten är balanserat, så kanske det går bra. Sen är det ju också viktigt hur aktiv du är! Själv gillar jag pasta ibland, men jag försöker vara lite försiktig med mängderna. 🍝😊",
+        text: "Det beror lite på hur mycket du äter totalt sett under dagen. Spaghetti är ju ganska kaloririkt och innehåller massa kolhydrater, så om du trycker i dig stora mängder kan det absolut bidra till viktökning. Men om du håller koll på portionerna och ser till att allt annat i kosten är balanserat, så kanske det går bra. Sen är det ju också viktigt hur aktiv du är! Själv gillar jag pasta ibland, men jag försöker vara lite försiktig med mängderna.",
         isHuman: false,
         condition: "human_like",
       },
       {
-        text: "Ja, om du äter massor av spaghetti som mellanmål så är det stor risk att du går upp i vikt, speciellt om du inte är aktiv. Kolhydrater blir lätt energi som kroppen lagrar som fett om du inte förbränner dem. Kanske testa att blanda med lite grönsaker eller protein för en mer balanserad kost? 😊",
+        text: "Ja, om du äter massor av spaghetti som mellanmål så är det stor risk att du går upp i vikt, speciellt om du inte är aktiv. Kolhydrater blir lätt energi som kroppen lagrar som fett om du inte förbränner dem. Kanske testa att blanda med lite grönsaker eller protein för en mer balanserad kost?",
         isHuman: false,
         condition: "baseline",
       },
       {
-        text: "Självklart går man upp i vikt om man äter mycket spaghetti som mellanmål! Kolhydrater är en viktig energikälla, men om du äter mer kalorier än du förbränner så lagras överskottet som fett. Kanske kan du tänka på att balansera det med andra näringsämnen och se till att få i dig tillräckligt med protein och grönsaker också? Det kan vara bra att mixa upp kosten lite! 😊",
+        text: "Självklart går man upp i vikt om man äter mycket spaghetti som mellanmål! Kolhydrater är en viktig energikälla, men om du äter mer kalorier än du förbränner så lagras överskottet som fett. Kanske kan du tänka på att balansera det med andra näringsämnen och se till att få i dig tillräckligt med protein och grönsaker också? Det kan vara bra att mixa upp kosten lite!",
         isHuman: false,
         condition: "baseline",
       },
@@ -297,7 +297,7 @@ const THREADS = [
     questionText: "Vad kallar en blind programmerare sin ledhund? SYNTAX.",
     comments: [
       {
-        text: "Haha, den var ju grym! 😂 Älskar hur programmerare alltid ska hjälpa till att göra sina skämt lite nördigare! Hade aldrig kommit på det själv, men nu när jag ser det blir jag ju helt fnissig. Att kunna blanda humor med lite kodsnack, det är ju klassiskt! Respekt! 🙌",
+        text: "Haha, den var ju grym! Älskar hur programmerare alltid ska hjälpa till att göra sina skämt lite nördigare! Hade aldrig kommit på det själv, men nu när jag ser det blir jag ju helt fnissig. Att kunna blanda humor med lite kodsnack, det är ju klassiskt! Respekt!",
         isHuman: false,
         condition: "detector_aware",
       },
@@ -307,7 +307,7 @@ const THREADS = [
         condition: "baseline",
       },
       {
-        text: "Haha, den var bra! 😂 Måste säga att humor alltid är ett trevligt sätt att lätta upp stämningen, oavsett situation. För övrigt, är det någon som har fler roliga programmerar-skämt?",
+        text: "Haha, den var bra! Måste säga att humor alltid är ett trevligt sätt att lätta upp stämningen, oavsett situation. För övrigt, är det någon som har fler roliga programmerar-skämt?",
         isHuman: false,
         condition: "human_like",
       },
@@ -759,12 +759,11 @@ function renderQuestion() {
   const progressRatio = total > 0 ? questionNumber / total : 0;
   els.progressBarInner.style.width = `${Math.round(progressRatio * 100)}%`;
 
-  els.btnPrev.disabled = currentIndex === 0;
-  els.btnNext.disabled = !answers[currentIndex] && currentIndex !== total - 1;
-  els.btnNext.textContent = currentIndex === total - 1 ? "Klar" : "Nästa ▶";
+  // Abstracts auto-advance on selection, so no Nästa button is shown here.
+  els.btnNext.hidden = true;
+  els.btnNext.style.display = "none";
 
   resetChoiceStyles();
-  applyAnswerStyles();
   renderFeedback();
   updateScoreSummary();
 }
@@ -810,13 +809,7 @@ function renderThread() {
 
       const meta = document.createElement("div");
       meta.className = "comment-meta";
-
-      if (redditShowingFeedback && ans) {
-        const guess = ans.choiceIsHuman ? "Människa" : "AI";
-        meta.textContent = `Kommentar ${idx + 1} · Din bedömning: ${guess}`;
-      } else {
-        meta.textContent = `Kommentar ${idx + 1}`;
-      }
+      meta.textContent = `Kommentar ${idx + 1}`;
       row.appendChild(meta);
 
       const body = document.createElement("div");
@@ -824,27 +817,25 @@ function renderThread() {
       body.textContent = comment.text;
       row.appendChild(body);
 
-      // Inline choice buttons — shown while answering, hidden after submit
-      if (!redditShowingFeedback) {
-        const btnRow = document.createElement("div");
-        btnRow.className = "comment-choice-buttons";
+      // Inline choice buttons for each comment
+      const btnRow = document.createElement("div");
+      btnRow.className = "comment-choice-buttons";
 
-        const btnH = document.createElement("button");
-        btnH.type = "button";
-        btnH.className = "comment-choice-btn comment-choice-human" + (ans && ans.choiceIsHuman === true ? " selected" : "");
-        btnH.textContent = 'Människa';
-        btnH.addEventListener("click", () => inlineRecordAnswer(idx, true));
+      const btnH = document.createElement("button");
+      btnH.type = "button";
+      btnH.className = "comment-choice-btn comment-choice-human" + (ans && ans.choiceIsHuman === true ? " selected" : "");
+      btnH.textContent = 'Människa';
+      btnH.addEventListener("click", () => inlineRecordAnswer(idx, true));
 
-        const btnA = document.createElement("button");
-        btnA.type = "button";
-        btnA.className = "comment-choice-btn comment-choice-ai" + (ans && ans.choiceIsHuman === false ? " selected" : "");
-        btnA.textContent = 'AI';
-        btnA.addEventListener("click", () => inlineRecordAnswer(idx, false));
+      const btnA = document.createElement("button");
+      btnA.type = "button";
+      btnA.className = "comment-choice-btn comment-choice-ai" + (ans && ans.choiceIsHuman === false ? " selected" : "");
+      btnA.textContent = 'AI';
+      btnA.addEventListener("click", () => inlineRecordAnswer(idx, false));
 
-        btnRow.appendChild(btnH);
-        btnRow.appendChild(btnA);
-        row.appendChild(btnRow);
-      }
+      btnRow.appendChild(btnH);
+      btnRow.appendChild(btnA);
+      row.appendChild(btnRow);
 
       els.commentsContainer.appendChild(row);
     });
@@ -853,25 +844,14 @@ function renderThread() {
   const answeredCount = threadAnswers.filter(a => a !== null).length;
   const allAnswered = answeredCount === thread.comments.length;
 
-  if (redditShowingFeedback) {
-    els.progressText.textContent = `Resultat · Tråd ${currentThreadIndex + 1} av ${THREADS.length}`;
-    els.progressBarInner.style.width = "100%";
-    els.btnPrev.disabled = currentThreadIndex === 0;
-    els.btnNext.disabled = false;
-    els.btnNext.textContent = currentThreadIndex === THREADS.length - 1 ? "Nästa del ▶" : "Nästa tråd ▶";
-    els.feedback.textContent = "";
-    els.feedback.classList.remove("correct", "incorrect");
-    updateScoreSummary();
-  } else {
-    els.progressText.textContent = `Tråd ${currentThreadIndex + 1} av ${THREADS.length} · ${answeredCount}/${thread.comments.length} bedömda`;
-    const progressRatio = thread.comments.length > 0 ? answeredCount / thread.comments.length : 0;
-    els.progressBarInner.style.width = `${Math.round(progressRatio * 100)}%`;
-    els.btnPrev.disabled = currentThreadIndex === 0;
-    els.btnNext.disabled = !allAnswered;
-    els.btnNext.textContent = "Skicka svar ▶";
-    els.feedback.textContent = "";
-    els.feedback.classList.remove("correct", "incorrect");
-  }
+  els.progressText.textContent = `Tråd ${currentThreadIndex + 1} av ${THREADS.length} · ${answeredCount}/${thread.comments.length} bedömda`;
+  const progressRatio = thread.comments.length > 0 ? answeredCount / thread.comments.length : 0;
+  els.progressBarInner.style.width = `${Math.round(progressRatio * 100)}%`;
+  els.btnPrev.disabled = currentThreadIndex === 0;
+  els.btnNext.disabled = !allAnswered;
+  els.btnNext.textContent = currentThreadIndex === THREADS.length - 1 ? "Nästa del ▶" : "Nästa tråd ▶";
+  els.feedback.textContent = "";
+  els.feedback.classList.remove("correct", "incorrect");
 }
 
 function inlineRecordAnswer(commentIdx, choiceIsHuman) {
@@ -974,6 +954,64 @@ function renderOutro() {
     scoresWrap.appendChild(makeScoreBar("Abstrakt", sections.abstracts.correct, sections.abstracts.answered));
     scoresWrap.appendChild(makeScoreBar("Totalt", totals.correct, totals.answered));
     els.commentsContainer.appendChild(scoresWrap);
+
+    // ---- Answer key: reveal each item's true label and whether the guess was right ----
+    function buildReviewRow(text, actualIsHuman, guessIsHuman) {
+      const isCorrect = guessIsHuman === actualIsHuman;
+      const row = document.createElement("div");
+      row.className = "comment-row " + (isCorrect ? "comment-row--correct" : "comment-row--incorrect");
+      const meta = document.createElement("div");
+      meta.className = "comment-meta";
+      const actual = actualIsHuman ? "Människa" : "AI";
+      const guess = guessIsHuman ? "Människa" : "AI";
+      meta.textContent = `${isCorrect ? "Rätt" : "Fel"} — Rätt svar: ${actual} · Ditt svar: ${guess}`;
+      row.appendChild(meta);
+      const body = document.createElement("div");
+      body.className = "comment-body";
+      body.textContent = text;
+      row.appendChild(body);
+      return row;
+    }
+
+    const review = document.createElement("div");
+    review.className = "outro-review";
+    review.style.cssText = "margin-top:1.5rem;display:flex;flex-direction:column;gap:0.6rem;";
+
+    const revIntro = document.createElement("p");
+    revIntro.className = "outro-refl-label";
+    revIntro.textContent = "Facit: här ser du vilka texter som var skrivna av AI respektive människa, och vad du svarade.";
+    review.appendChild(revIntro);
+
+    const cHead = document.createElement("h3");
+    cHead.textContent = "Kommentarer";
+    cHead.style.cssText = "margin:0.6rem 0 0;font-size:clamp(1rem,2.6vw,1.15rem);";
+    review.appendChild(cHead);
+
+    THREADS.forEach((thread, t) => {
+      const ta = redditAnswers[t];
+      if (!ta || ta.every(a => a === null)) return;
+      const qLabel = document.createElement("div");
+      qLabel.style.cssText = "font-weight:600;margin-top:0.5rem;font-size:clamp(0.85rem,2.3vw,0.95rem);";
+      qLabel.textContent = `Tråd ${t + 1}: ${thread.questionText}`;
+      review.appendChild(qLabel);
+      thread.comments.forEach((c, i) => {
+        if (!ta[i]) return;
+        review.appendChild(buildReviewRow(c.text, c.isHuman, ta[i].choiceIsHuman));
+      });
+    });
+
+    const aHead = document.createElement("h3");
+    aHead.textContent = "Abstrakt";
+    aHead.style.cssText = "margin:1rem 0 0;font-size:clamp(1rem,2.6vw,1.15rem);";
+    review.appendChild(aHead);
+
+    effectiveQuestions.forEach((q, i) => {
+      if (!answers[i]) return;
+      const label = (q.title && q.title.trim()) ? q.title.trim() : q.text;
+      review.appendChild(buildReviewRow(label, q.isHuman, answers[i].choiceIsHuman));
+    });
+
+    els.commentsContainer.appendChild(review);
 
     // Reflection box
     const box = document.createElement("div");
@@ -1123,7 +1161,15 @@ function recordAnswer(choiceIsHuman) {
     hasAnsweredCurrent = true;
     globalQuestionIndex += 1;
     sendAnswerEvent();
-    renderCurrent();
+    // Auto-advance: jump straight to the next abstract (or the results page).
+    if (currentIndex === effectiveQuestions.length - 1) {
+      mode = "outro";
+      renderOutro();
+    } else {
+      currentIndex = clampIndex(currentIndex + 1);
+      hasAnsweredCurrent = !!answers[currentIndex];
+      renderQuestion();
+    }
     return;
   }
   if (mode === "reddit" && !redditShowingFeedback) {
@@ -1154,19 +1200,8 @@ function handleNext() {
     return;
   }
   if (mode === "reddit") {
-    if (redditShowingFeedback) {
-      redditShowingFeedback = false;
-      if (currentThreadIndex < THREADS.length - 1) {
-        currentThreadIndex += 1;
-        renderThread();
-        return;
-      }
-      mode = "transition";
-      renderTransition();
-      return;
-    }
-
-    // Submit all answers for this thread at once, then show feedback
+    // Submit all answers for this thread, then advance straight to the next thread
+    // (no intermediate review/confirmation screen).
     const thread = THREADS[currentThreadIndex];
     const threadAnswers = redditAnswers[currentThreadIndex] || [];
     for (let c = 0; c < thread.comments.length; c++) {
@@ -1177,8 +1212,13 @@ function handleNext() {
         sendAnswerEvent();
       }
     }
-    redditShowingFeedback = true;
-    renderThread();
+    if (currentThreadIndex < THREADS.length - 1) {
+      currentThreadIndex += 1;
+      renderThread();
+      return;
+    }
+    mode = "transition";
+    renderTransition();
     return;
   }
 
