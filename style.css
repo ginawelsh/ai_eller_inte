@@ -49,7 +49,7 @@ body {
 
 .app-shell {
   width: 100%;
-  max-width: 2400px;
+  max-width: 1100px;
   /* Never shrink below a width where text becomes unreadable */
   min-width: 0;
   background: var(--bg-elevated);
@@ -679,17 +679,18 @@ body {
   }
 }
 
-/* ================= Flashback-style thread view ================= */
-/* In thread mode the forum thread is the whole card — drop every surrounding box
-   (the question card AND the outer app-shell card) so only the forum console
-   shows, spanning almost the full page, with the PAGE as the only scroller. */
-.app-shell.theme-comments .question-card {
+/* ================= Wide list views (thread + abstracts) ================= */
+/* In the list views the console is the whole card — drop every surrounding box
+   (the question card AND the outer app-shell card) so only the console shows,
+   spanning almost the full page, with the PAGE as the only scroller. */
+.app-shell.wide-list .question-card {
   background: transparent;
   border: none;
   box-shadow: none;
   padding: 0;
 }
-.app-shell.theme-comments {
+.app-shell.wide-list {
+  max-width: 2400px;
   border: none;
   border-top: none;
   border-radius: 0;
@@ -697,8 +698,8 @@ body {
   box-shadow: none;
   padding: clamp(8px, 1.6vw, 16px) 2px;
 }
-/* Pull out to the page edges (cancel the body's side padding) in thread mode. */
-body:has(.app-shell.theme-comments) { padding-left: 4px; padding-right: 4px; }
+/* Pull out to the page edges (cancel the body's side padding) in list views. */
+body:has(.app-shell.wide-list) { padding-left: 4px; padding-right: 4px; }
 .comments-container.fb-mode {
   padding: 0;
   margin-top: 0;
@@ -807,8 +808,8 @@ body:has(.app-shell.theme-comments) { padding-left: 4px; padding-right: 4px; }
 }
 .fb-num { color: #c1272d; font-weight: 700; }
 .fb-body {
-  font-size: clamp(0.85rem, 2.5vw, 0.95rem);
-  line-height: 1.55;
+  font-size: clamp(0.76rem, 2vw, 0.84rem);
+  line-height: 1.5;
   color: #1a1a1a;
   white-space: pre-wrap;
   word-break: break-word;
@@ -884,7 +885,74 @@ body:has(.app-shell.theme-comments) { padding-left: 4px; padding-right: 4px; }
 }
 .fb-next--off { opacity: 0.4; cursor: not-allowed; }
 
+/* ===== DiVA / Google-Scholar-style abstract results list ===== */
+.comments-container.ab-mode {
+  padding: 0;
+  background: #f3f3f2;
+  border: 1px solid #d6d6d6;
+  border-radius: 8px;
+  font-family: Arial, Helvetica, "Segoe UI", sans-serif;
+  color: #222;
+}
+.ab-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #fff;
+  border-bottom: 2px solid var(--accent);
+  border-radius: 8px 8px 0 0;
+}
+.ab-head-title { font-size: 1.02rem; font-weight: 700; color: #1a1a1a; }
+.ab-head-count { font-size: 12px; color: #777; }
+.ab-item {
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  border-top: 1px solid #e6e6e6;
+}
+.ab-item:nth-child(even) { background: #fafafa; }
+.ab-main { flex: 1 1 auto; min-width: 0; padding: 12px 16px 14px; }
+.ab-title {
+  font-size: clamp(0.9rem, 2.3vw, 1rem);
+  color: #1a5a8a;
+  font-weight: 600;
+  line-height: 1.35;
+}
+.ab-meta { font-size: 12px; color: #3c7a3c; margin: 3px 0 8px; }
+.ab-abstract {
+  font-size: clamp(0.72rem, 1.9vw, 0.8rem);
+  line-height: 1.5;
+  color: #333;
+  max-width: 1050px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.ab-pager {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #ececec;
+  border-top: 1px solid #d6d6d6;
+  border-radius: 0 0 8px 8px;
+}
+.ab-done {
+  border: 1px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 9px 18px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.ab-done--off { opacity: 0.45; cursor: not-allowed; }
+
 @media (max-width: 720px) {
+  .fb-post, .ab-item { flex-wrap: wrap; }
   .fb-post { flex-wrap: wrap; }
   .fb-judge-col {
     flex-basis: 100%;

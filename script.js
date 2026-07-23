@@ -575,7 +575,7 @@ function renderIntro() {
     "<p><strong>Upplägg:</strong></p>" +
     "<ol>" +
     "<li> För varje text ska du avgöra om den är skriven av <strong>en människa</strong> eller av <strong> en AI. </strong></li>" +
-    "<li>Först får du bedöma kommentarer i en forumtråd (likt Reddit).</li>" +
+    "<li>Först får du bedöma kommentarer i en forumtråd (likt Reddit eller Flashback).</li>" +
     "<li>Därefter får du bedöma abstrakt från kandidatuppsatser.</li>" +
     "</ol>" +
     "<p>Du kan svara på så många frågor du vill, och du kan avsluta när som helst.</p>" +
@@ -910,9 +910,9 @@ function resetThreadChrome() {
   if (els.commentsContainer) els.commentsContainer.className = "comments-container";
   els.btnNext.hidden = false;
   els.btnNext.style.display = "";
-  // Leaving the thread view: drop the comments theme so the normal card returns.
+  // Leaving a list view: drop the wide/comments styling so the normal card returns.
   const shell = document.querySelector(".app-shell");
-  if (shell) shell.classList.remove("theme-comments");
+  if (shell) shell.classList.remove("theme-comments", "wide-list");
 }
 
 function renderThread() {
@@ -922,7 +922,7 @@ function renderThread() {
   hideChoices(true);
   // Ensure the comments theme is active (forward nav bypasses renderCurrent).
   const shell = document.querySelector(".app-shell");
-  if (shell) { shell.classList.add("theme-comments"); shell.classList.remove("theme-abstracts"); }
+  if (shell) { shell.classList.add("theme-comments", "wide-list"); shell.classList.remove("theme-abstracts"); }
   els.btnExit.hidden = false;
   els.btnExit.style.display = "";
   // The Flashback thread renders the question as the OP post, so hide the
@@ -1016,6 +1016,130 @@ function inlineRecordAnswer(commentIdx, choiceIsHuman) {
   }
   redditAnswers[currentThreadIndex][commentIdx] = { choiceIsHuman };
   renderThread();
+}
+
+// ---------- Abstracts as a DiVA/Scholar-style results list ----------
+function fbAbstractMeta(i) {
+  const year = 2010 + Math.floor(fbRand(i * 13 + 5) * 14); // 2010–2023
+  return `Kandidatuppsats · 15 hp · ${year}`;
+}
+
+function renderAbstractsList() {
+  hideChoices(true);
+  const shell = document.querySelector(".app-shell");
+  if (shell) { shell.classList.add("wide-list", "theme-abstracts"); shell.classList.remove("theme-comments"); }
+  els.btnExit.hidden = false;
+  els.btnExit.style.display = "";
+  if (els.questionHeader) els.questionHeader.style.display = "none";
+  if (els.questionTitle) els.questionTitle.hidden = true;
+  if (els.questionText) els.questionText.style.display = "none";
+  if (els.subtitle) {
+    els.subtitle.textContent =
+      "Bedöm varje abstrakt: skrivet av en människa eller av en AI.";
+  }
+
+  const total = effectiveQuestions.length;
+  const answeredCount = answers.filter(Boolean).length;
+  const allAnswered = answeredCount === total;
+
+  const c = els.commentsContainer;
+  if (c) {
+    c.className = "comments-container ab-mode";
+    c.innerHTML = "";
+
+    const head = document.createElement("div");
+    head.className = "ab-head";
+    head.innerHTML =
+      `<span class="ab-head-title">Sökresultat</span>` +
+      `<span class="ab-head-count">${total} träffar · kandidatuppsatser</span>`;
+    c.appendChild(head);
+
+    effectiveQuestions.forEach((q, i) => {
+      const ans = answers[i];
+      const item = document.createElement("article");
+      item.className = "ab-item";
+
+      const main = document.createElement("div");
+      main.className = "ab-main";
+      const title = document.createElement("div");
+      title.className = "ab-title";
+      title.textContent = (q.title && q.title.trim()) ? q.title.trim() : "Kandidatuppsats";
+      const meta = document.createElement("div");
+      meta.className = "ab-meta";
+      meta.textContent = fbAbstractMeta(i);
+      const body = document.createElement("div");
+      body.className = "ab-abstract";
+      body.textContent = q.text;
+      main.appendChild(title);
+      main.appendChild(meta);
+      main.appendChild(body);
+
+      const jcol = document.createElement("div");
+      jcol.className = "fb-judge-col";
+      const jt = document.createElement("div");
+      jt.className = "fb-judge-title";
+      jt.textContent = "Skrivet av?";
+      const bH = document.createElement("button");
+      bH.type = "button";
+      bH.className = "fb-judge-btn" + (ans && ans.choiceIsHuman === true ? " selected" : "");
+      bH.textContent = "Människa";
+      bH.addEventListener("click", () => inlineRecordAbstract(i, true));
+      const bA = document.createElement("button");
+      bA.type = "button";
+      bA.className = "fb-judge-btn" + (ans && ans.choiceIsHuman === false ? " selected" : "");
+      bA.textContent = "AI";
+      bA.addEventListener("click", () => inlineRecordAbstract(i, false));
+      jcol.appendChild(jt);
+      jcol.appendChild(bH);
+      jcol.appendChild(bA);
+
+      item.appendChild(main);
+      item.appendChild(jcol);
+      c.appendChild(item);
+    });
+
+    const pager = document.createElement("div");
+    pager.className = "ab-pager";
+    const info = document.createElement("span");
+    info.className = "fb-page-info";
+    info.textContent = allAnswered ? "Alla abstrakt bedömda" : `${answeredCount}/${total} bedömda`;
+    const done = document.createElement("button");
+    done.type = "button";
+    done.className = "ab-done" + (allAnswered ? "" : " ab-done--off");
+    done.disabled = !allAnswered;
+    done.textContent = "Se ditt resultat ›";
+    done.addEventListener("click", submitAbstracts);
+    pager.appendChild(info);
+    pager.appendChild(done);
+    c.appendChild(pager);
+  }
+
+  els.progressText.textContent = `Abstrakt · ${answeredCount}/${total} bedömda`;
+  els.progressBarInner.style.width = `${Math.round((answeredCount / Math.max(1, total)) * 100)}%`;
+  els.btnPrev.disabled = true;
+  els.btnNext.hidden = true;
+  els.btnNext.disabled = true;
+  els.btnNext.style.display = "none";
+  els.feedback.textContent = "";
+  els.feedback.classList.remove("correct", "incorrect");
+}
+
+function inlineRecordAbstract(idx, choiceIsHuman) {
+  answers[idx] = { choiceIsHuman };
+  renderAbstractsList();
+}
+
+function submitAbstracts() {
+  if (answers.filter(Boolean).length !== effectiveQuestions.length) return;
+  for (let i = 0; i < effectiveQuestions.length; i++) {
+    if (answers[i]) {
+      globalQuestionIndex += 1;
+      currentIndex = i;
+      sendAnswerEvent();
+    }
+  }
+  mode = "outro";
+  renderOutro();
 }
 
 function renderTransition() {
@@ -1271,7 +1395,7 @@ function renderCurrent() {
   } else if (mode === "outro") {
     renderOutro();
   } else {
-    renderQuestion();
+    renderAbstractsList();
   }
 }
 
@@ -1380,15 +1504,10 @@ function handleNext() {
   }
 
   if (mode === "transition") {
-    // Start abstracts part
+    // Start abstracts part (a single scrollable results list)
     mode = "abstracts";
     currentIndex = 0;
-    hasAnsweredCurrent = !!answers[currentIndex];
-    if (els.subtitle) {
-      els.subtitle.textContent =
-        "Läs abstraktet. Avgör om det är skrivet av en människa eller AI.";
-    }
-    renderQuestion();
+    renderAbstractsList();
     return;
   }
 
@@ -1485,16 +1604,6 @@ function handleKeydown(event) {
   } else if (event.key === "ArrowRight" || event.key === "Enter") {
     event.preventDefault();
     if (!els.btnNext.disabled) handleNext();
-  } else if (event.key.toLowerCase() === "h") {
-    event.preventDefault();
-    if (mode === "abstracts" && !answers[currentIndex]) {
-      recordAnswer(true);
-    }
-  } else if (event.key.toLowerCase() === "a") {
-    event.preventDefault();
-    if (mode === "abstracts" && !answers[currentIndex]) {
-      recordAnswer(false);
-    }
   }
 }
 
