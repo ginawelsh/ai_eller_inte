@@ -130,7 +130,28 @@ body {
   align-items: center;
   gap: 6px;
   width: 100%;
-  max-width: 420px;
+  max-width: 760px;
+}
+
+/* Two section progress bars, side by side on one line. */
+.progress-dual {
+  display: flex;
+  flex-direction: row;
+  gap: 18px;
+  width: 100%;
+}
+.progress-group {
+  flex: 1 1 0;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.progress-label {
+  font-size: clamp(0.7rem, 1.8vw, 0.8rem);
+  font-weight: 700;
+  color: var(--text-muted);
+  text-align: left;
 }
 
 .progress-text {
@@ -143,7 +164,7 @@ body {
 
 .progress-bar-outer {
   width: 100%;
-  height: 8px;
+  height: 12px;
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.08);
   overflow: hidden;
@@ -252,11 +273,10 @@ body {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  /* Fluid: never so tall it pushes controls off-screen, never so short
-     that comments are hidden; scroll within the container */
-  max-height: clamp(240px, 48vh, 520px);
-  overflow-y: auto;
-  padding-right: 4px;
+  /* No inner scroll: the container grows with its content and the whole page
+     scrolls (one vertically-expanding box). */
+  max-height: none;
+  overflow-y: visible;
 }
 
 .comments-container::-webkit-scrollbar { width: 6px; }
@@ -553,22 +573,32 @@ body {
     transform var(--transition-fast);
 }
 
+/* Primary (Starta) and Avsluta share the same size; Starta red, Avsluta blue. */
+.nav-button.primary,
+.nav-button.danger {
+  font-size: clamp(0.9rem, 2.2vw, 1.05rem);
+  font-weight: 800;
+  padding: clamp(9px, 2vw, 13px) clamp(18px, 4vw, 30px);
+}
+
 .nav-button.primary {
   background: var(--accent);
   border-color: var(--accent);
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
 }
 
 .nav-button.danger {
-  border-color: rgba(220, 38, 38, 0.5);
-  color: var(--danger);
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
 }
 
 .nav-button.danger:hover:not(:disabled) {
-  background: rgba(220, 38, 38, 0.08);
-  color: var(--danger);
-  border-color: rgba(220, 38, 38, 0.8);
+  background: #1d4ed8;
+  color: #ffffff;
+  border-color: #1d4ed8;
 }
 
 .nav-button:hover:not(:disabled) {
@@ -696,10 +726,13 @@ body {
   border-radius: 0;
   background: transparent;
   box-shadow: none;
-  padding: clamp(8px, 1.6vw, 16px) 2px;
+  padding: clamp(8px, 1.6vw, 16px) 0;
 }
-/* Pull out to the page edges (cancel the body's side padding) in list views. */
-body:has(.app-shell.wide-list) { padding-left: 4px; padding-right: 4px; }
+/* Leave ~1cm of breathing room at the sides of the page in list views. */
+body:has(.app-shell.wide-list) {
+  padding-left: clamp(10px, 2vw, 36px);
+  padding-right: clamp(10px, 2vw, 36px);
+}
 .comments-container.fb-mode {
   padding: 0;
   margin-top: 0;
@@ -841,7 +874,14 @@ body:has(.app-shell.wide-list) { padding-left: 4px; padding-right: 4px; }
   gap: 9px;
   justify-content: center;
 }
-.fb-judge-title { font-size: 12px; color: #555; text-align: center; margin-bottom: 2px; }
+.fb-judge-title {
+  font-size: 12.5px;
+  color: #1a1a1a;
+  font-weight: 700;
+  text-transform: none;
+  text-align: center;
+  margin-bottom: 3px;
+}
 .fb-judge-btn {
   border: 1.5px solid #b4b4b4;
   background: #fff;
@@ -855,7 +895,13 @@ body:has(.app-shell.wide-list) { padding-left: 4px; padding-right: 4px; }
   transition: background 120ms ease, border-color 120ms ease, color 120ms ease;
 }
 .fb-judge-btn:hover { background: #f2f2f2; }
-.fb-judge-btn.selected { background: #3a3a3a; border-color: #3a3a3a; color: #fff; }
+/* Distinct, high-contrast colours for the two choices: green = Människa, blue = AI. */
+.fb-judge-human { border-color: #2e7d32; color: #1f6b26; }
+.fb-judge-ai { border-color: #2563eb; color: #1d4ed8; }
+.fb-judge-human:hover { background: #eef7ee; }
+.fb-judge-ai:hover { background: #eef3ff; }
+.fb-judge-human.selected { background: #2e7d32; border-color: #2e7d32; color: #fff; }
+.fb-judge-ai.selected { background: #2563eb; border-color: #2563eb; color: #fff; }
 .fb-pager {
   display: flex;
   justify-content: flex-end;
@@ -868,22 +914,29 @@ body:has(.app-shell.wide-list) { padding-left: 4px; padding-right: 4px; }
 }
 .fb-page-info { font-size: 12px; color: #666; }
 .fb-next {
-  width: 40px; height: 32px;
-  border: 1px solid #b8b8b8;
-  background: #fff;
-  color: #333;
-  font-size: 22px;
+  min-width: 92px; height: 48px;
+  padding: 0 22px;
+  border: 2px solid var(--accent);
+  background: var(--accent);
+  color: #fff;
+  font-size: 30px;
+  font-weight: 800;
   line-height: 1;
-  border-radius: 3px;
+  border-radius: 6px;
   cursor: pointer;
   transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
 }
 .fb-next:not(.fb-next--off):hover {
-  background: #c1272d;
-  border-color: #c1272d;
+  background: var(--accent-dark);
+  border-color: var(--accent-dark);
   color: #fff;
 }
-.fb-next--off { opacity: 0.4; cursor: not-allowed; }
+.fb-next--off {
+  background: #f0f0f0;
+  border-color: #c4c4c4;
+  color: #999;
+  cursor: not-allowed;
+}
 
 /* ===== DiVA / Google-Scholar-style abstract results list ===== */
 .comments-container.ab-mode {
@@ -940,13 +993,13 @@ body:has(.app-shell.wide-list) { padding-left: 4px; padding-right: 4px; }
   border-radius: 0 0 8px 8px;
 }
 .ab-done {
-  border: 1px solid var(--accent);
+  border: 2px solid var(--accent);
   background: var(--accent);
   color: #fff;
-  font-size: 14px;
-  font-weight: 600;
-  padding: 9px 18px;
-  border-radius: 4px;
+  font-size: 17px;
+  font-weight: 800;
+  padding: 13px 32px;
+  border-radius: 6px;
   cursor: pointer;
 }
 .ab-done--off { opacity: 0.45; cursor: not-allowed; }

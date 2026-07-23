@@ -5,7 +5,7 @@
 // - type (optional): label such as "Thesis abstract", "Comment", etc.
 const QUESTIONS = [
   {
-    title: "Organiserat samarbete mellan lärare och kollegor inom IKT-baserad distansundervisning Blekinge Institute of Technology, School of Management. Blekinge Institute of Technology, School of Management.",
+    title: "Organiserat samarbete mellan lärare och kollegor inom IKT-baserad distansundervisning",
     text: "Abstrakt Detta är en hermeneutisk studie där vi använt oss av intervjuer som datainsamlingsmetod. Vi har studerat samarbete ur ett lärarperspektiv i distansundervisning på Blekinge Tekniska högskola (BTH). Vad vi fann var att lärarna och deras kollegor efterfrågade ett mer organiserat samarbete dem emellan. Två former för ett ökat samarbete är, samarbete i team och i distansnätverk, vilka kan existera parallellt med varandra. I nätverket ingår alla personer som arbetar med distanskurser, allt ifrån lärare till tekniker. Team är en mindre enhet för samarbete och är uppbyggd runt en specifik distanskurs. Deltagarna i teamet är experter på olika yrkesområden och kan komplettera och hjälpa varandra. Lärarna är experter på sitt område, vilket är undervisning, och vill inte behöva känna sig tvingade att bli experter på nya områden, för att kunna undervisa på distans. Undersökningen visar att de teammedlemmar som kan vara till hjälp för lärarna är: Andra lärare, Administratörer, Teknikpedagoger, Bibliotekarier, Inlånade kompetenser, Tekniker och Studentrepresentanter. Kursen och temadeltagarna, i huvudsak lärarna, avgör när och hur mycket de olika experterna behövs under kursen. Men det är viktigt att vara medveten om att alla inte vill arbeta i team eller anser att samarbete alltid är positivt. Samarbete och teamarbete ska ses som ett stöd för lärarnas i deras arbete.",
     isHuman: true,
     type: "Kandidatuppsats abstrakt",
@@ -82,7 +82,7 @@ const QUESTIONS = [
     condition: "detector_aware",
   },
   {
-    title: "Ickeverbal kommunikation: Hur kontakt kan skapas med demensdrabbade genom beröring och genom musik Blekinge Institute of Technology, School of Health Science. Blekinge Institute of Technology, School of Health Science.",
+    title: "Ickeverbal kommunikation: Hur kontakt kan skapas med demensdrabbade genom beröring och genom musik",
     text: "Bakgrund: Att skapa kontakt med demensdrabbade kan vara svårt om vårdaren inte har rätt kunskap i hur kontakt kan skapas. Den ickeverbala kommunikationen såsom beröring och musik kan vara av betydelse när kontakt ska skapas. Människan förknippar beröring med att vara omtyckt och genom detta ökar känslan av trygghet och tillit och på så sätt kan kontakt skapas. Ett annat sätt att skapa kontakt på är genom musik, där det har visat sig att minnet av sång och musik betyder mycket för människan och kan stärka kommunikationen. Syfte: Syftet med studien är att belysa hur kontakt kan skapas med demensdrabbade genom beröring och genom musik. Metod: En litteraturstudie som är baserad på åtta vetenskapliga artiklar. Artiklarna ar granskade och analyserade efter Burnards innehållsanalys. Orlandos omvårdnadsteori användes som teoretisk referensram och som b1.a. tar upp interaktionen mellan vårdare och patient. Resultat: I resultatet har det visat sig att genom beröring och genom musik kan vårdare få en ökad förståelse för den demensdrabbade. Kontakt och kommunikation skapar gemenskap mellan demensdrabbade och deras vårdare, känslor av välbefinnande bildas och minnesförmågan hos personer med demenssjukdom ökar.",
     isHuman: true,
     type: "Kandidatuppsats abstrakt",
@@ -393,7 +393,9 @@ const els = {
   controlsSection: document.querySelector(".controls"),
   subtitle: document.querySelector(".app-subtitle"),
   progressText: document.getElementById("progress-text"),
-  progressBarInner: document.getElementById("progress-bar-inner"),
+  progressContainer: document.querySelector(".progress-container"),
+  progressComments: document.getElementById("progress-comments"),
+  progressAbstracts: document.getElementById("progress-abstracts"),
   btnHuman: document.getElementById("btn-human"),
   btnAi: document.getElementById("btn-ai"),
   btnPrev: document.getElementById("btn-prev"),
@@ -559,6 +561,32 @@ function clampIndex(index) {
   return index;
 }
 
+function updateProgressBars() {
+  const commentsTotal = THREADS.reduce((n, t) => n + t.comments.length, 0);
+  let commentsAnswered = 0;
+  for (let t = 0; t < THREADS.length; t += 1) {
+    const ta = redditAnswers[t];
+    if (ta) commentsAnswered += ta.filter(Boolean).length;
+  }
+  const absAnswered = answers.filter(Boolean).length;
+  if (els.progressComments) {
+    els.progressComments.style.width =
+      `${Math.round((100 * commentsAnswered) / Math.max(1, commentsTotal))}%`;
+  }
+  if (els.progressAbstracts) {
+    els.progressAbstracts.style.width =
+      `${Math.round((100 * absAnswered) / Math.max(1, effectiveQuestions.length))}%`;
+  }
+}
+
+function showProgress(show) {
+  if (els.progressContainer) els.progressContainer.style.display = show ? "" : "none";
+}
+
+function goTop() {
+  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+}
+
 function renderIntro() {
   resetThreadChrome();
   hideChoices(true);
@@ -585,11 +613,11 @@ function renderIntro() {
   if (els.commentsContainer) els.commentsContainer.innerHTML = "";
 
   els.progressText.textContent = "";
-  els.progressBarInner.style.width = "0%";
+  updateProgressBars();
 
   els.btnPrev.disabled = true;
   els.btnNext.disabled = false;
-  els.btnNext.textContent = "Starta ▶";
+  els.btnNext.textContent = "Starta";
 }
 
 function renderDemographics() {
@@ -609,10 +637,10 @@ function renderDemographics() {
   els.questionText.innerHTML = "<p>Innan du börjar, svara på några korta frågor om dig själv.</p>";
 
   els.progressText.textContent = "";
-  els.progressBarInner.style.width = "0%";
+  updateProgressBars();
 
   els.btnPrev.disabled = true;
-  els.btnNext.textContent = "Fortsätt ▶";
+  els.btnNext.textContent = "Fortsätt";
 
   if (els.commentsContainer) {
     els.commentsContainer.innerHTML = "";
@@ -762,7 +790,7 @@ function renderQuestion() {
 
   els.progressText.textContent = `Fråga ${questionNumber} av ${total}`;
   const progressRatio = total > 0 ? questionNumber / total : 0;
-  els.progressBarInner.style.width = `${Math.round(progressRatio * 100)}%`;
+  updateProgressBars();
 
   // Abstracts auto-advance on selection, so no Nästa button is shown here.
   els.btnNext.hidden = true;
@@ -793,20 +821,19 @@ const FB_CATEGORIES = [
 
 function fbPad(n) { return (n < 10 ? "0" : "") + n; }
 
-function fbThreadDate(threadIdx) {
-  return {
-    year: 2017 + Math.floor(fbRand(threadIdx * 5 + 3) * 7), // 2017–2023
-    monthIdx: Math.floor(fbRand(threadIdx * 5 + 2) * 12),
-    day: 1 + Math.floor(fbRand(threadIdx * 5 + 1) * 27),
-  };
-}
+// Qualitative relative times (oldest → newest) so no absolute date can act as a
+// confound (e.g. pre-2020 dates). The OP is oldest; replies get progressively newer.
+const FB_RELTIME = [
+  "Förra månaden", "3 veckor sedan", "2 veckor sedan", "Förra veckan",
+  "6 dagar sedan", "4 dagar sedan", "3 dagar sedan", "2 dagar sedan", "Igår", "Idag",
+];
 
 function fbTimestamp(threadIdx, postIdx) {
-  const d = fbThreadDate(threadIdx);
-  let minutes = 9 * 60 + Math.floor(fbRand(threadIdx * 5 + 4) * 9 * 60);
-  for (let i = 0; i < postIdx; i++) minutes += 6 + Math.floor(fbRand(threadIdx * 40 + i) * 190);
-  minutes = minutes % (24 * 60);
-  return `${d.year}-${fbPad(d.monthIdx + 1)}-${fbPad(d.day)}, ${fbPad(Math.floor(minutes / 60))}:${fbPad(minutes % 60)}`;
+  const n = FB_RELTIME.length;
+  const start = Math.floor(fbRand(threadIdx * 7 + 2) * 4); // OP somewhere in the older range
+  let idx = start + postIdx * 2 + Math.floor(fbRand(threadIdx * 40 + postIdx) * 2);
+  if (idx > n - 1) idx = n - 1;
+  return FB_RELTIME[idx];
 }
 
 function fbThreadTitle(q) {
@@ -886,12 +913,12 @@ function fbPost(opts) {
     title.textContent = "Skrivet av?";
     const bH = document.createElement("button");
     bH.type = "button";
-    bH.className = "fb-judge-btn" + (ans && ans.choiceIsHuman === true ? " selected" : "");
+    bH.className = "fb-judge-btn fb-judge-human" + (ans && ans.choiceIsHuman === true ? " selected" : "");
     bH.textContent = "Människa";
     bH.addEventListener("click", () => inlineRecordAnswer(opts.commentIdx, true));
     const bA = document.createElement("button");
     bA.type = "button";
-    bA.className = "fb-judge-btn" + (ans && ans.choiceIsHuman === false ? " selected" : "");
+    bA.className = "fb-judge-btn fb-judge-ai" + (ans && ans.choiceIsHuman === false ? " selected" : "");
     bA.textContent = "AI";
     bA.addEventListener("click", () => inlineRecordAnswer(opts.commentIdx, false));
     jcol.appendChild(title);
@@ -913,6 +940,8 @@ function resetThreadChrome() {
   // Leaving a list view: drop the wide/comments styling so the normal card returns.
   const shell = document.querySelector(".app-shell");
   if (shell) shell.classList.remove("theme-comments", "wide-list");
+  // Progress bars only show during the two quiz sections, not intro/transition/outro.
+  showProgress(false);
 }
 
 function renderThread() {
@@ -932,15 +961,14 @@ function renderThread() {
   if (els.questionTitle) els.questionTitle.hidden = true;
   if (els.questionText) els.questionText.style.display = "none";
 
+  showProgress(true);
   if (!redditAnswers[currentThreadIndex]) {
     redditAnswers[currentThreadIndex] = thread.comments.map(() => null);
   }
   const threadAnswers = redditAnswers[currentThreadIndex];
 
-  if (els.subtitle) {
-    els.subtitle.textContent =
-      "Läs tråden. Avgör för varje inlägg om det är skrivet av en människa eller av en AI.";
-  }
+  // The instruction now lives on the comments start screen; keep the header clean.
+  if (els.subtitle) els.subtitle.textContent = "";
 
   const answeredCount = threadAnswers.filter(a => a !== null).length;
   const allAnswered = answeredCount === thread.comments.length;
@@ -1000,7 +1028,7 @@ function renderThread() {
 
   els.progressText.textContent = `Tråd ${currentThreadIndex + 1} av ${THREADS.length} · ${answeredCount}/${thread.comments.length} bedömda`;
   const progressRatio = thread.comments.length > 0 ? answeredCount / thread.comments.length : 0;
-  els.progressBarInner.style.width = `${Math.round(progressRatio * 100)}%`;
+  updateProgressBars();
   els.btnPrev.disabled = currentThreadIndex === 0;
   // The next control is now the bottom-right arrow inside the thread.
   els.btnNext.hidden = true;
@@ -1019,13 +1047,35 @@ function inlineRecordAnswer(commentIdx, choiceIsHuman) {
 }
 
 // ---------- Abstracts as a DiVA/Scholar-style results list ----------
-function fbAbstractMeta(i) {
-  const year = 2010 + Math.floor(fbRand(i * 13 + 5) * 14); // 2010–2023
-  return `Kandidatuppsats · 15 hp · ${year}`;
+const AB_STOPWORDS = new Set([
+  "och", "i", "av", "för", "med", "på", "till", "en", "ett", "som", "om", "den", "det",
+  "de", "inom", "mellan", "vid", "ur", "samt", "eller", "är", "hur", "att", "studie",
+  "genom", "från", "under", "över", "mot", "kan", "vad", "vår", "våra", "deras", "sin",
+  "sina", "när", "där", "här", "också", "bland", "utifrån", "perspektiv", "analys",
+  "undersökning", "sett", "samband",
+]);
+
+function fbKeywords(q) {
+  const words = String(q.title || "").toLowerCase().split(/[^a-zà-ÿ0-9-]+/i).filter(Boolean);
+  const kws = [];
+  for (const w of words) {
+    if (w.length < 4 || AB_STOPWORDS.has(w)) continue;
+    // skip near-duplicates (same 6-char stem) so keywords stay distinct
+    if (kws.some((k) => k.slice(0, 6) === w.slice(0, 6))) continue;
+    kws.push(w);
+    if (kws.length >= 3) break;
+  }
+  return kws.map((k) => k.charAt(0).toUpperCase() + k.slice(1)).join(", ");
+}
+
+function fbAbstractMeta(q) {
+  const kws = fbKeywords(q);
+  return kws ? `Kandidatuppsats · 15 hp · Nyckelord: ${kws}` : "Kandidatuppsats · 15 hp";
 }
 
 function renderAbstractsList() {
   hideChoices(true);
+  showProgress(true);
   const shell = document.querySelector(".app-shell");
   if (shell) { shell.classList.add("wide-list", "theme-abstracts"); shell.classList.remove("theme-comments"); }
   els.btnExit.hidden = false;
@@ -1033,10 +1083,7 @@ function renderAbstractsList() {
   if (els.questionHeader) els.questionHeader.style.display = "none";
   if (els.questionTitle) els.questionTitle.hidden = true;
   if (els.questionText) els.questionText.style.display = "none";
-  if (els.subtitle) {
-    els.subtitle.textContent =
-      "Bedöm varje abstrakt: skrivet av en människa eller av en AI.";
-  }
+  if (els.subtitle) els.subtitle.textContent = "";
 
   const total = effectiveQuestions.length;
   const answeredCount = answers.filter(Boolean).length;
@@ -1066,7 +1113,7 @@ function renderAbstractsList() {
       title.textContent = (q.title && q.title.trim()) ? q.title.trim() : "Kandidatuppsats";
       const meta = document.createElement("div");
       meta.className = "ab-meta";
-      meta.textContent = fbAbstractMeta(i);
+      meta.textContent = fbAbstractMeta(q);
       const body = document.createElement("div");
       body.className = "ab-abstract";
       body.textContent = q.text;
@@ -1081,12 +1128,12 @@ function renderAbstractsList() {
       jt.textContent = "Skrivet av?";
       const bH = document.createElement("button");
       bH.type = "button";
-      bH.className = "fb-judge-btn" + (ans && ans.choiceIsHuman === true ? " selected" : "");
+      bH.className = "fb-judge-btn fb-judge-human" + (ans && ans.choiceIsHuman === true ? " selected" : "");
       bH.textContent = "Människa";
       bH.addEventListener("click", () => inlineRecordAbstract(i, true));
       const bA = document.createElement("button");
       bA.type = "button";
-      bA.className = "fb-judge-btn" + (ans && ans.choiceIsHuman === false ? " selected" : "");
+      bA.className = "fb-judge-btn fb-judge-ai" + (ans && ans.choiceIsHuman === false ? " selected" : "");
       bA.textContent = "AI";
       bA.addEventListener("click", () => inlineRecordAbstract(i, false));
       jcol.appendChild(jt);
@@ -1115,7 +1162,7 @@ function renderAbstractsList() {
   }
 
   els.progressText.textContent = `Abstrakt · ${answeredCount}/${total} bedömda`;
-  els.progressBarInner.style.width = `${Math.round((answeredCount / Math.max(1, total)) * 100)}%`;
+  updateProgressBars();
   els.btnPrev.disabled = true;
   els.btnNext.hidden = true;
   els.btnNext.disabled = true;
@@ -1142,6 +1189,32 @@ function submitAbstracts() {
   renderOutro();
 }
 
+function renderCommentsIntro() {
+  resetThreadChrome();
+  els.btnExit.hidden = false;
+  els.btnExit.style.display = "";
+  if (els.subtitle) els.subtitle.textContent = "";
+  if (els.questionTitle) els.questionTitle.hidden = true;
+
+  els.questionLabel.textContent = "Del 1: Forumtrådar";
+  els.questionTag.textContent = "Instruktion";
+  els.questionText.classList.add("question-text--intro");
+  els.questionText.innerHTML =
+    "<p>Nu börjar första delen. Du får läsa forumtrådar (likt Reddit eller Flashback).</p>" +
+    "<p><strong>Läs tråden och avgör för varje inlägg om det är skrivet av en människa eller av en AI.</strong></p>" +
+    "<p>Klicka på <strong>Människa</strong> eller <strong>AI</strong> till höger om varje inlägg. När du har bedömt alla inlägg i en tråd går du vidare till nästa tråd med pilen längst ner till höger.</p>";
+
+  if (els.commentsContainer) els.commentsContainer.innerHTML = "";
+  els.progressText.textContent = "";
+  resetChoiceStyles();
+  els.feedback.textContent = "";
+  els.feedback.classList.remove("correct", "incorrect");
+  hideChoices(true);
+  els.btnPrev.disabled = true;
+  els.btnNext.disabled = false;
+  els.btnNext.textContent = "Starta";
+}
+
 function renderTransition() {
   resetThreadChrome();
   els.btnExit.hidden = false;
@@ -1163,7 +1236,7 @@ function renderTransition() {
   }
 
   els.progressText.textContent = "";
-  els.progressBarInner.style.width = "0%";
+  updateProgressBars();
 
   resetChoiceStyles();
   els.feedback.textContent = "";
@@ -1172,7 +1245,7 @@ function renderTransition() {
   hideChoices(true);
   els.btnPrev.disabled = false;
   els.btnNext.disabled = false;
-  els.btnNext.textContent = "Starta abstrakt-delen ▶";
+  els.btnNext.textContent = "Starta abstrakt-delen";
 
   updateScoreSummary();
 }
@@ -1356,7 +1429,7 @@ function renderOutro() {
   }
 
   els.progressText.textContent = "";
-  els.progressBarInner.style.width = "0%";
+  updateProgressBars();
 
   // Hide Nästa on the outro screen (renderCurrent already handles Tidigare and Avsluta)
   els.btnNext.hidden = true;
@@ -1388,6 +1461,8 @@ function renderCurrent() {
     renderIntro();
   } else if (mode === "demographics") {
     renderDemographics();
+  } else if (mode === "comments-intro") {
+    renderCommentsIntro();
   } else if (mode === "reddit") {
     renderThread();
   } else if (mode === "transition") {
@@ -1473,11 +1548,18 @@ function handleNext() {
   }
   if (mode === "demographics") {
     sendDemographicsEvent();
+    mode = "comments-intro";
+    renderCommentsIntro();
+    goTop();
+    return;
+  }
+  if (mode === "comments-intro") {
     mode = "reddit";
     currentThreadIndex = 0;
     currentCommentIndex = 0;
     redditShowingFeedback = false;
     renderThread();
+    goTop();
     return;
   }
   if (mode === "reddit") {
@@ -1496,10 +1578,12 @@ function handleNext() {
     if (currentThreadIndex < THREADS.length - 1) {
       currentThreadIndex += 1;
       renderThread();
+      goTop();
       return;
     }
     mode = "transition";
     renderTransition();
+    goTop();
     return;
   }
 
@@ -1508,6 +1592,7 @@ function handleNext() {
     mode = "abstracts";
     currentIndex = 0;
     renderAbstractsList();
+    goTop();
     return;
   }
 
