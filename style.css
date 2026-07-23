@@ -49,7 +49,7 @@ body {
 
 .app-shell {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1800px;
   /* Never shrink below a width where text becomes unreadable */
   min-width: 0;
   background: var(--bg-elevated);
@@ -691,8 +691,9 @@ body {
 .comments-container.fb-mode {
   padding: 0;
   margin-top: 0;
-  max-height: 68vh;
-  overflow-y: auto;
+  /* Let the thread grow with its content so the PAGE scrolls, not an inner box. */
+  max-height: none;
+  overflow-y: visible;
   background: #e9e9e7;
   border: 1px solid #cfcfcf;
   border-radius: 8px;
@@ -700,14 +701,12 @@ body {
   color: #222;
 }
 .fb-crumb {
-  position: sticky;
-  top: 0;
-  z-index: 2;
   background: #2f2f2f;
   color: #dcdcdc;
   font-size: 12px;
   padding: 8px 12px;
   border-bottom: 3px solid #c1272d;
+  border-radius: 8px 8px 0 0;
 }
 .fb-crumb-dot {
   display: inline-block;
@@ -846,8 +845,6 @@ body {
 .fb-judge-btn:hover { background: #f2f2f2; }
 .fb-judge-btn.selected { background: #3a3a3a; border-color: #3a3a3a; color: #fff; }
 .fb-pager {
-  position: sticky;
-  bottom: 0;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -855,6 +852,7 @@ body {
   padding: 10px 14px;
   background: #e4e4e2;
   border-top: 1px solid #d6d6d6;
+  border-radius: 0 0 8px 8px;
 }
 .fb-page-info { font-size: 12px; color: #666; }
 .fb-next {
