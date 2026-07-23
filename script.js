@@ -799,17 +799,6 @@ function fbThreadDate(threadIdx) {
   };
 }
 
-function fbUserMeta(seed, postYear) {
-  // Registration year is always before the post year, so "Reg" never looks later
-  // than the post date (which could read as an AI tell).
-  const span = Math.max(1, postYear - 1 - 2005);
-  const year = 2005 + Math.floor(fbRand(seed + 1) * span);
-  const month = FB_MONTHS[Math.floor(fbRand(seed + 2) * 12)];
-  const posts = 42 + Math.floor(fbRand(seed + 3) * 26000);
-  const cap = month.charAt(0).toUpperCase() + month.slice(1);
-  return { reg: `${cap} ${year}`, posts: posts.toLocaleString("sv-SE") };
-}
-
 function fbTimestamp(threadIdx, postIdx) {
   const d = fbThreadDate(threadIdx);
   let minutes = 9 * 60 + Math.floor(fbRand(threadIdx * 5 + 4) * 9 * 60);
@@ -826,15 +815,14 @@ function fbThreadTitle(q) {
   return t || "Tråd";
 }
 
-function fbAvatar(seed) {
-  const hue = Math.floor(fbRand(seed + 5) * 360);
+function fbAvatar(hue) {
   const wrap = document.createElement("div");
   wrap.className = "fb-avatar";
-  wrap.style.background = `hsl(${hue}, 22%, 80%)`;
+  wrap.style.background = `hsl(${hue}, 46%, 64%)`;
   wrap.innerHTML =
     '<svg viewBox="0 0 40 40" aria-hidden="true">' +
-    '<circle cx="20" cy="15" r="7.5" fill="#ffffff" opacity="0.9"/>' +
-    '<path d="M7 40c0-8 6-13 13-13s13 5 13 13z" fill="#ffffff" opacity="0.9"/></svg>';
+    '<circle cx="20" cy="15" r="7.5" fill="#ffffff" opacity="0.92"/>' +
+    '<path d="M7 40c0-8 6-13 13-13s13 5 13 13z" fill="#ffffff" opacity="0.92"/></svg>';
   return wrap;
 }
 
@@ -853,12 +841,8 @@ function fbPost(opts) {
   rank.className = "fb-rank";
   rank.innerHTML = '<span class="fb-online"></span> Medlem';
   side.appendChild(rank);
-  side.appendChild(fbAvatar(opts.seed));
-  const meta = fbUserMeta(opts.seed, fbThreadDate(opts.threadIdx).year);
-  const um = document.createElement("div");
-  um.className = "fb-usermeta";
-  um.innerHTML = `Reg: ${meta.reg}<br>Inlägg: ${meta.posts}`;
-  side.appendChild(um);
+  // Distinct avatar colour per user (hues spaced ~67° apart within a thread).
+  side.appendChild(fbAvatar((opts.threadIdx * 40 + opts.num * 67) % 360));
 
   const main = document.createElement("div");
   main.className = "fb-main";
