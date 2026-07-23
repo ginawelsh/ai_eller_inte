@@ -791,8 +791,19 @@ const FB_CATEGORIES = [
 
 function fbPad(n) { return (n < 10 ? "0" : "") + n; }
 
-function fbUserMeta(seed) {
-  const year = 2005 + Math.floor(fbRand(seed + 1) * 18);
+function fbThreadDate(threadIdx) {
+  return {
+    year: 2017 + Math.floor(fbRand(threadIdx * 5 + 3) * 7), // 2017–2023
+    monthIdx: Math.floor(fbRand(threadIdx * 5 + 2) * 12),
+    day: 1 + Math.floor(fbRand(threadIdx * 5 + 1) * 27),
+  };
+}
+
+function fbUserMeta(seed, postYear) {
+  // Registration year is always before the post year, so "Reg" never looks later
+  // than the post date (which could read as an AI tell).
+  const span = Math.max(1, postYear - 1 - 2005);
+  const year = 2005 + Math.floor(fbRand(seed + 1) * span);
   const month = FB_MONTHS[Math.floor(fbRand(seed + 2) * 12)];
   const posts = 42 + Math.floor(fbRand(seed + 3) * 26000);
   const cap = month.charAt(0).toUpperCase() + month.slice(1);
@@ -800,13 +811,11 @@ function fbUserMeta(seed) {
 }
 
 function fbTimestamp(threadIdx, postIdx) {
-  const day = 3 + Math.floor(fbRand(threadIdx * 5 + 1) * 25);
-  const monthIdx = Math.floor(fbRand(threadIdx * 5 + 2) * 12);
-  const year = 2014 + Math.floor(fbRand(threadIdx * 5 + 3) * 9);
+  const d = fbThreadDate(threadIdx);
   let minutes = 9 * 60 + Math.floor(fbRand(threadIdx * 5 + 4) * 9 * 60);
   for (let i = 0; i < postIdx; i++) minutes += 6 + Math.floor(fbRand(threadIdx * 40 + i) * 190);
   minutes = minutes % (24 * 60);
-  return `${year}-${fbPad(monthIdx + 1)}-${fbPad(day)}, ${fbPad(Math.floor(minutes / 60))}:${fbPad(minutes % 60)}`;
+  return `${d.year}-${fbPad(d.monthIdx + 1)}-${fbPad(d.day)}, ${fbPad(Math.floor(minutes / 60))}:${fbPad(minutes % 60)}`;
 }
 
 function fbThreadTitle(q) {
@@ -831,7 +840,8 @@ function fbAvatar(seed) {
 
 function fbPost(opts) {
   const post = document.createElement("article");
-  post.className = "fb-post" + (opts.num % 2 === 0 ? " fb-post--alt" : "");
+  post.className = "fb-post" + (opts.isOp ? " fb-post--op" : "") +
+    (opts.num % 2 === 0 ? " fb-post--alt" : "");
 
   const side = document.createElement("div");
   side.className = "fb-side";
@@ -844,7 +854,7 @@ function fbPost(opts) {
   rank.innerHTML = '<span class="fb-online"></span> Medlem';
   side.appendChild(rank);
   side.appendChild(fbAvatar(opts.seed));
-  const meta = fbUserMeta(opts.seed);
+  const meta = fbUserMeta(opts.seed, fbThreadDate(opts.threadIdx).year);
   const um = document.createElement("div");
   um.className = "fb-usermeta";
   um.innerHTML = `Reg: ${meta.reg}<br>Inlägg: ${meta.posts}`;
@@ -871,13 +881,23 @@ function fbPost(opts) {
 
   const foot = document.createElement("div");
   foot.className = "fb-post-foot";
+  const quote = document.createElement("span");
+  quote.className = "fb-quote";
+  quote.textContent = "Citera";
+  foot.appendChild(quote);
+  main.appendChild(foot);
+
+  post.appendChild(side);
+  post.appendChild(main);
+
+  // Reply posts get a prominent right-hand judgement column.
   if (typeof opts.commentIdx === "number") {
     const ans = opts.ans;
-    const judge = document.createElement("div");
-    judge.className = "fb-judge";
-    const label = document.createElement("span");
-    label.className = "fb-judge-label";
-    label.textContent = "Skrivet av:";
+    const jcol = document.createElement("div");
+    jcol.className = "fb-judge-col";
+    const title = document.createElement("div");
+    title.className = "fb-judge-title";
+    title.textContent = "Skrivet av?";
     const bH = document.createElement("button");
     bH.type = "button";
     bH.className = "fb-judge-btn" + (ans && ans.choiceIsHuman === true ? " selected" : "");
@@ -888,26 +908,19 @@ function fbPost(opts) {
     bA.className = "fb-judge-btn" + (ans && ans.choiceIsHuman === false ? " selected" : "");
     bA.textContent = "AI";
     bA.addEventListener("click", () => inlineRecordAnswer(opts.commentIdx, false));
-    judge.appendChild(label);
-    judge.appendChild(bH);
-    judge.appendChild(bA);
-    foot.appendChild(judge);
+    jcol.appendChild(title);
+    jcol.appendChild(bH);
+    jcol.appendChild(bA);
+    post.appendChild(jcol);
   }
-  const quote = document.createElement("span");
-  quote.className = "fb-quote";
-  quote.textContent = "Citera";
-  foot.appendChild(quote);
-  main.appendChild(foot);
 
-  post.appendChild(side);
-  post.appendChild(main);
   return post;
 }
 
 // Restore the standard question area / controls after leaving the thread view.
 function resetThreadChrome() {
-  if (els.questionHeader) els.questionHeader.hidden = false;
-  if (els.questionText) els.questionText.hidden = false;
+  if (els.questionHeader) els.questionHeader.style.display = "";
+  if (els.questionText) els.questionText.style.display = "";
   if (els.commentsContainer) els.commentsContainer.className = "comments-container";
   els.btnNext.hidden = false;
   els.btnNext.style.display = "";
@@ -921,10 +934,11 @@ function renderThread() {
   els.btnExit.hidden = false;
   els.btnExit.style.display = "";
   // The Flashback thread renders the question as the OP post, so hide the
-  // default question header/text area.
-  if (els.questionHeader) els.questionHeader.hidden = true;
+  // default question header/text area. Use style.display because .question-header
+  // sets display:flex, which would override the [hidden] attribute.
+  if (els.questionHeader) els.questionHeader.style.display = "none";
   if (els.questionTitle) els.questionTitle.hidden = true;
-  if (els.questionText) els.questionText.hidden = true;
+  if (els.questionText) els.questionText.style.display = "none";
 
   if (!redditAnswers[currentThreadIndex]) {
     redditAnswers[currentThreadIndex] = thread.comments.map(() => null);
@@ -956,15 +970,10 @@ function renderThread() {
     title.textContent = fbThreadTitle(thread.questionText);
     c.appendChild(title);
 
-    const bar = document.createElement("div");
-    bar.className = "fb-toolbar";
-    bar.innerHTML = `<span class="fb-reply">Svara</span><span class="fb-page">Sida 1 av 1</span>`;
-    c.appendChild(bar);
-
     // OP post = the thread question
     c.appendChild(fbPost({
       num: 1, name: "Trådskapare", seed: currentThreadIndex * 101 + 1,
-      threadIdx: currentThreadIndex, postIdx: 0, body: thread.questionText,
+      threadIdx: currentThreadIndex, postIdx: 0, body: thread.questionText, isOp: true,
     }));
 
     // Reply posts = the comments to judge
