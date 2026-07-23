@@ -741,6 +741,8 @@ async function sendDemographicsEvent() {
 
 function renderQuestion() {
   resetThreadChrome();
+  const shell = document.querySelector(".app-shell");
+  if (shell) shell.classList.add("theme-abstracts");
   els.btnExit.hidden = false;
   els.btnExit.style.display = "";
   hideChoices(false);
@@ -908,6 +910,9 @@ function resetThreadChrome() {
   if (els.commentsContainer) els.commentsContainer.className = "comments-container";
   els.btnNext.hidden = false;
   els.btnNext.style.display = "";
+  // Leaving the thread view: drop the comments theme so the normal card returns.
+  const shell = document.querySelector(".app-shell");
+  if (shell) shell.classList.remove("theme-comments");
 }
 
 function renderThread() {
@@ -915,6 +920,9 @@ function renderThread() {
   if (!thread) return;
 
   hideChoices(true);
+  // Ensure the comments theme is active (forward nav bypasses renderCurrent).
+  const shell = document.querySelector(".app-shell");
+  if (shell) { shell.classList.add("theme-comments"); shell.classList.remove("theme-abstracts"); }
   els.btnExit.hidden = false;
   els.btnExit.style.display = "";
   // The Flashback thread renders the question as the OP post, so hide the

@@ -680,14 +680,23 @@ body {
 }
 
 /* ================= Flashback-style thread view ================= */
-/* In thread mode the forum thread is the whole card — drop the surrounding box. */
+/* In thread mode the forum thread is the whole card — drop every surrounding box
+   (the question card AND the outer app-shell card) so only the forum console
+   shows, spanning almost the full page, with the PAGE as the only scroller. */
 .app-shell.theme-comments .question-card {
   background: transparent;
   border: none;
   box-shadow: none;
   padding: 0;
 }
-.app-shell.theme-comments { border-top: none; }
+.app-shell.theme-comments {
+  border: none;
+  border-top: none;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: clamp(8px, 1.6vw, 16px) clamp(6px, 1.2vw, 12px);
+}
 .comments-container.fb-mode {
   padding: 0;
   margin-top: 0;
