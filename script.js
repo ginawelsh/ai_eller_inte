@@ -1365,9 +1365,7 @@ function renderOutro() {
       review.appendChild(buildReviewRow(label, q.isHuman, answers[i].choiceIsHuman));
     });
 
-    els.commentsContainer.appendChild(review);
-
-    // Reflection box
+    // Reflection box — placed directly under the results bars, above the answer key.
     const box = document.createElement("div");
     box.className = "outro-box";
 
@@ -1426,6 +1424,9 @@ function renderOutro() {
     actions.appendChild(submit);
     box.appendChild(actions);
     els.commentsContainer.appendChild(box);
+
+    // Answer key (Facit) goes last, below the reflection box.
+    els.commentsContainer.appendChild(review);
   }
 
   els.progressText.textContent = "";
@@ -1434,6 +1435,9 @@ function renderOutro() {
   // Hide Nästa on the outro screen (renderCurrent already handles Tidigare and Avsluta)
   els.btnNext.hidden = true;
   els.btnNext.style.display = "none";
+
+  // Land at the top of the results page rather than wherever the quiz left off.
+  goTop();
 
   updateScoreSummary();
 }
