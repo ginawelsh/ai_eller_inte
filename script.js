@@ -560,6 +560,7 @@ function clampIndex(index) {
 }
 
 function renderIntro() {
+  resetThreadChrome();
   hideChoices(true);
   if (els.questionTitle) els.questionTitle.hidden = true;
   if (els.subtitle) {
@@ -592,6 +593,7 @@ function renderIntro() {
 }
 
 function renderDemographics() {
+  resetThreadChrome();
   hideChoices(true);
   if (els.questionTitle) els.questionTitle.hidden = true;
   els.btnExit.hidden = true;
@@ -738,6 +740,7 @@ async function sendDemographicsEvent() {
 }
 
 function renderQuestion() {
+  resetThreadChrome();
   els.btnExit.hidden = false;
   els.btnExit.style.display = "";
   hideChoices(false);
@@ -768,17 +771,160 @@ function renderQuestion() {
   updateScoreSummary();
 }
 
+// ---------- Flashback-style thread rendering ----------
+function fbRand(seed) {
+  const x = Math.sin(seed * 12.9898 + 78.233) * 43758.5453;
+  return x - Math.floor(x);
+}
+
+const FB_MONTHS = ["jan", "feb", "mar", "apr", "maj", "jun", "jul", "aug", "sep", "okt", "nov", "dec"];
+const FB_CATEGORIES = [
+  ["Hem, bostad & familj", "Mat och dryck"],
+  ["Livsstil", "Kropp och hälsa"],
+  ["Resor och semester", "Resmål och resetips"],
+  ["Dator och IT", "Hårdvara"],
+  ["Sport, hobby och fritid", "Sällskapsspel"],
+  ["Vardagsprat", "Off topic"],
+  ["Konsument", "Elektronik och prylar"],
+  ["Livsstil", "Träning och kost"],
+];
+
+function fbPad(n) { return (n < 10 ? "0" : "") + n; }
+
+function fbUserMeta(seed) {
+  const year = 2005 + Math.floor(fbRand(seed + 1) * 18);
+  const month = FB_MONTHS[Math.floor(fbRand(seed + 2) * 12)];
+  const posts = 42 + Math.floor(fbRand(seed + 3) * 26000);
+  const cap = month.charAt(0).toUpperCase() + month.slice(1);
+  return { reg: `${cap} ${year}`, posts: posts.toLocaleString("sv-SE") };
+}
+
+function fbTimestamp(threadIdx, postIdx) {
+  const day = 3 + Math.floor(fbRand(threadIdx * 5 + 1) * 25);
+  const monthIdx = Math.floor(fbRand(threadIdx * 5 + 2) * 12);
+  const year = 2014 + Math.floor(fbRand(threadIdx * 5 + 3) * 9);
+  let minutes = 9 * 60 + Math.floor(fbRand(threadIdx * 5 + 4) * 9 * 60);
+  for (let i = 0; i < postIdx; i++) minutes += 6 + Math.floor(fbRand(threadIdx * 40 + i) * 190);
+  minutes = minutes % (24 * 60);
+  return `${year}-${fbPad(monthIdx + 1)}-${fbPad(day)}, ${fbPad(Math.floor(minutes / 60))}:${fbPad(minutes % 60)}`;
+}
+
+function fbThreadTitle(q) {
+  const text = (q || "").trim().replace(/\s+/g, " ");
+  const m = text.match(/^.{0,85}?[.?!]/);
+  let t = (m ? m[0] : text).trim();
+  if (t.length > 80) t = t.slice(0, 78).trim() + "…";
+  return t || "Tråd";
+}
+
+function fbAvatar(seed) {
+  const hue = Math.floor(fbRand(seed + 5) * 360);
+  const wrap = document.createElement("div");
+  wrap.className = "fb-avatar";
+  wrap.style.background = `hsl(${hue}, 22%, 80%)`;
+  wrap.innerHTML =
+    '<svg viewBox="0 0 40 40" aria-hidden="true">' +
+    '<circle cx="20" cy="15" r="7.5" fill="#ffffff" opacity="0.9"/>' +
+    '<path d="M7 40c0-8 6-13 13-13s13 5 13 13z" fill="#ffffff" opacity="0.9"/></svg>';
+  return wrap;
+}
+
+function fbPost(opts) {
+  const post = document.createElement("article");
+  post.className = "fb-post" + (opts.num % 2 === 0 ? " fb-post--alt" : "");
+
+  const side = document.createElement("div");
+  side.className = "fb-side";
+  const uname = document.createElement("div");
+  uname.className = "fb-user";
+  uname.textContent = opts.name;
+  side.appendChild(uname);
+  const rank = document.createElement("div");
+  rank.className = "fb-rank";
+  rank.innerHTML = '<span class="fb-online"></span> Medlem';
+  side.appendChild(rank);
+  side.appendChild(fbAvatar(opts.seed));
+  const meta = fbUserMeta(opts.seed);
+  const um = document.createElement("div");
+  um.className = "fb-usermeta";
+  um.innerHTML = `Reg: ${meta.reg}<br>Inlägg: ${meta.posts}`;
+  side.appendChild(um);
+
+  const main = document.createElement("div");
+  main.className = "fb-main";
+  const head = document.createElement("div");
+  head.className = "fb-post-head";
+  const date = document.createElement("span");
+  date.className = "fb-date";
+  date.textContent = fbTimestamp(opts.threadIdx, opts.postIdx);
+  const num = document.createElement("span");
+  num.className = "fb-num";
+  num.textContent = "#" + opts.num;
+  head.appendChild(date);
+  head.appendChild(num);
+  main.appendChild(head);
+
+  const body = document.createElement("div");
+  body.className = "fb-body";
+  body.textContent = opts.body;
+  main.appendChild(body);
+
+  const foot = document.createElement("div");
+  foot.className = "fb-post-foot";
+  if (typeof opts.commentIdx === "number") {
+    const ans = opts.ans;
+    const judge = document.createElement("div");
+    judge.className = "fb-judge";
+    const label = document.createElement("span");
+    label.className = "fb-judge-label";
+    label.textContent = "Skrivet av:";
+    const bH = document.createElement("button");
+    bH.type = "button";
+    bH.className = "fb-judge-btn" + (ans && ans.choiceIsHuman === true ? " selected" : "");
+    bH.textContent = "Människa";
+    bH.addEventListener("click", () => inlineRecordAnswer(opts.commentIdx, true));
+    const bA = document.createElement("button");
+    bA.type = "button";
+    bA.className = "fb-judge-btn" + (ans && ans.choiceIsHuman === false ? " selected" : "");
+    bA.textContent = "AI";
+    bA.addEventListener("click", () => inlineRecordAnswer(opts.commentIdx, false));
+    judge.appendChild(label);
+    judge.appendChild(bH);
+    judge.appendChild(bA);
+    foot.appendChild(judge);
+  }
+  const quote = document.createElement("span");
+  quote.className = "fb-quote";
+  quote.textContent = "Citera";
+  foot.appendChild(quote);
+  main.appendChild(foot);
+
+  post.appendChild(side);
+  post.appendChild(main);
+  return post;
+}
+
+// Restore the standard question area / controls after leaving the thread view.
+function resetThreadChrome() {
+  if (els.questionHeader) els.questionHeader.hidden = false;
+  if (els.questionText) els.questionText.hidden = false;
+  if (els.commentsContainer) els.commentsContainer.className = "comments-container";
+  els.btnNext.hidden = false;
+  els.btnNext.style.display = "";
+}
+
 function renderThread() {
   const thread = THREADS[currentThreadIndex];
   if (!thread) return;
 
-  // All interaction is via per-comment inline buttons — hide global choice buttons
   hideChoices(true);
-  if (els.questionTitle) els.questionTitle.hidden = true;
-
-  // Ensure Avsluta is always visible during the survey (may have been hidden on intro screen)
   els.btnExit.hidden = false;
   els.btnExit.style.display = "";
+  // The Flashback thread renders the question as the OP post, so hide the
+  // default question header/text area.
+  if (els.questionHeader) els.questionHeader.hidden = true;
+  if (els.questionTitle) els.questionTitle.hidden = true;
+  if (els.questionText) els.questionText.hidden = true;
 
   if (!redditAnswers[currentThreadIndex]) {
     redditAnswers[currentThreadIndex] = thread.comments.map(() => null);
@@ -787,69 +933,77 @@ function renderThread() {
 
   if (els.subtitle) {
     els.subtitle.textContent =
-      "Läs kommentarerna. Avgör för varje kommentar om den är skriven av en människa eller AI.";
-  }
-
-  els.questionLabel.textContent = `Tråd ${currentThreadIndex + 1} av ${THREADS.length}`;
-  els.questionText.textContent = thread.questionText;
-
-  if (els.commentsContainer) {
-    els.commentsContainer.innerHTML = "";
-
-    thread.comments.forEach((comment, idx) => {
-      const ans = threadAnswers[idx];
-      const row = document.createElement("div");
-      let rowClass = "comment-row";
-
-      if (ans !== null && ans) {
-        rowClass += ans.choiceIsHuman ? " comment-row--picked-human" : " comment-row--picked-ai";
-      }
-
-      row.className = rowClass;
-
-      const meta = document.createElement("div");
-      meta.className = "comment-meta";
-      meta.textContent = `Kommentar ${idx + 1}`;
-      row.appendChild(meta);
-
-      const body = document.createElement("div");
-      body.className = "comment-body";
-      body.textContent = comment.text;
-      row.appendChild(body);
-
-      // Inline choice buttons for each comment
-      const btnRow = document.createElement("div");
-      btnRow.className = "comment-choice-buttons";
-
-      const btnH = document.createElement("button");
-      btnH.type = "button";
-      btnH.className = "comment-choice-btn comment-choice-human" + (ans && ans.choiceIsHuman === true ? " selected" : "");
-      btnH.textContent = 'Människa';
-      btnH.addEventListener("click", () => inlineRecordAnswer(idx, true));
-
-      const btnA = document.createElement("button");
-      btnA.type = "button";
-      btnA.className = "comment-choice-btn comment-choice-ai" + (ans && ans.choiceIsHuman === false ? " selected" : "");
-      btnA.textContent = 'AI';
-      btnA.addEventListener("click", () => inlineRecordAnswer(idx, false));
-
-      btnRow.appendChild(btnH);
-      btnRow.appendChild(btnA);
-      row.appendChild(btnRow);
-
-      els.commentsContainer.appendChild(row);
-    });
+      "Läs tråden. Avgör för varje inlägg om det är skrivet av en människa eller av en AI.";
   }
 
   const answeredCount = threadAnswers.filter(a => a !== null).length;
   const allAnswered = answeredCount === thread.comments.length;
 
+  const c = els.commentsContainer;
+  if (c) {
+    c.className = "comments-container fb-mode";
+    c.innerHTML = "";
+
+    const cat = FB_CATEGORIES[currentThreadIndex % FB_CATEGORIES.length];
+    const crumb = document.createElement("div");
+    crumb.className = "fb-crumb";
+    crumb.innerHTML =
+      `<span class="fb-crumb-dot"></span> ${cat[0]} <span class="fb-crumb-sep">/</span> ${cat[1]}`;
+    c.appendChild(crumb);
+
+    const title = document.createElement("h2");
+    title.className = "fb-title";
+    title.textContent = fbThreadTitle(thread.questionText);
+    c.appendChild(title);
+
+    const bar = document.createElement("div");
+    bar.className = "fb-toolbar";
+    bar.innerHTML = `<span class="fb-reply">Svara</span><span class="fb-page">Sida 1 av 1</span>`;
+    c.appendChild(bar);
+
+    // OP post = the thread question
+    c.appendChild(fbPost({
+      num: 1, name: "Trådskapare", seed: currentThreadIndex * 101 + 1,
+      threadIdx: currentThreadIndex, postIdx: 0, body: thread.questionText,
+    }));
+
+    // Reply posts = the comments to judge
+    thread.comments.forEach((comment, idx) => {
+      c.appendChild(fbPost({
+        num: idx + 2, name: "Användare " + (idx + 1), seed: currentThreadIndex * 101 + idx + 2,
+        threadIdx: currentThreadIndex, postIdx: idx + 1, body: comment.text,
+        commentIdx: idx, ans: threadAnswers[idx],
+      }));
+    });
+
+    // Bottom-right pager with the next-thread arrow
+    const pager = document.createElement("div");
+    pager.className = "fb-pager";
+    const info = document.createElement("span");
+    info.className = "fb-page-info";
+    info.textContent = allAnswered
+      ? (currentThreadIndex === THREADS.length - 1 ? "Alla inlägg bedömda" : "Alla inlägg bedömda – gå vidare")
+      : `${answeredCount}/${thread.comments.length} inlägg bedömda`;
+    const nextArrow = document.createElement("button");
+    nextArrow.type = "button";
+    nextArrow.className = "fb-next" + (allAnswered ? "" : " fb-next--off");
+    nextArrow.disabled = !allAnswered;
+    nextArrow.title = currentThreadIndex === THREADS.length - 1 ? "Nästa del" : "Nästa tråd";
+    nextArrow.setAttribute("aria-label", nextArrow.title);
+    nextArrow.textContent = "›";
+    nextArrow.addEventListener("click", handleNext);
+    pager.appendChild(info);
+    pager.appendChild(nextArrow);
+    c.appendChild(pager);
+  }
+
   els.progressText.textContent = `Tråd ${currentThreadIndex + 1} av ${THREADS.length} · ${answeredCount}/${thread.comments.length} bedömda`;
   const progressRatio = thread.comments.length > 0 ? answeredCount / thread.comments.length : 0;
   els.progressBarInner.style.width = `${Math.round(progressRatio * 100)}%`;
   els.btnPrev.disabled = currentThreadIndex === 0;
-  els.btnNext.disabled = !allAnswered;
-  els.btnNext.textContent = currentThreadIndex === THREADS.length - 1 ? "Nästa del ▶" : "Nästa tråd ▶";
+  // The next control is now the bottom-right arrow inside the thread.
+  els.btnNext.hidden = true;
+  els.btnNext.style.display = "none";
   els.feedback.textContent = "";
   els.feedback.classList.remove("correct", "incorrect");
 }
@@ -864,6 +1018,7 @@ function inlineRecordAnswer(commentIdx, choiceIsHuman) {
 }
 
 function renderTransition() {
+  resetThreadChrome();
   els.btnExit.hidden = false;
   els.btnExit.style.display = "";
 
@@ -924,6 +1079,7 @@ function makeScoreBar(label, correct, answered) {
 }
 
 function renderOutro() {
+  resetThreadChrome();
   hideChoices(true);
   if (els.questionTitle) els.questionTitle.hidden = true;
   els.btnExit.hidden = true;
