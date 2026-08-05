@@ -663,7 +663,7 @@ function renderIntro() {
     "<li>Därefter får du bedöma abstrakt från kandidatuppsatser.</li>" +
     "</ol>" +
     "<p>Du kan svara på så många frågor du vill, och du kan avsluta när som helst.</p>" +
-    "<p><strong>Obs!</strong> Det är möjligt att alla svar i en omgång är skrivna av AI – eller att alla är skrivna av en människa. Utgå inte från att det alltid är en blandning.</p>" +
+    "<p><strong>Obs!</strong> Det är möjligt att alla svar i en omgång är skrivna av AI eller att alla är skrivna av en människa. Utgå inte från att det alltid är en blandning.</p>" +
     "<p>Ingen identifierande information om dig sparas i resultatet (t.ex. namn, e-post eller IP-adress).</p>";
 
   if (els.commentsContainer) els.commentsContainer.innerHTML = "";
@@ -711,7 +711,7 @@ function renderDemographics() {
     ageQ.textContent = "Hur gammal är du?";
     ageGroup.appendChild(ageQ);
 
-    ["0–17", "18–34", "35–50", "51–75", "75+"].forEach(opt => {
+    ["yngre än 18", "18–24", "25-34", "35–44", "45–60", "60+"].forEach(opt => {
       const label = document.createElement("label");
       label.style.cssText = "display:flex;align-items:center;gap:0.5rem;cursor:pointer;margin-bottom:0.3rem;";
       const radio = document.createElement("input");
@@ -777,7 +777,7 @@ function renderDemographics() {
     sweQ.textContent = "Vilken nivå av svenska talar du?";
     sweGroup.appendChild(sweQ);
 
-    ["Modersmål", "Avancerad", "Mellannivå", "Grundläggande"].forEach(opt => {
+    ["Modersmål", "Avancerad", "Mellannivå"].forEach(opt => {
       const label = document.createElement("label");
       label.style.cssText = "display:flex;align-items:center;gap:0.5rem;cursor:pointer;margin-bottom:0.3rem;";
       const radio = document.createElement("input");
@@ -875,23 +875,6 @@ const FB_CATEGORIES = [
   ["Livsstil", "Träning och kost"],
 ];
 
-function fbPad(n) { return (n < 10 ? "0" : "") + n; }
-
-// Qualitative relative times (oldest → newest) so no absolute date can act as a
-// confound (e.g. pre-2020 dates). The OP is oldest; replies get progressively newer.
-const FB_RELTIME = [
-  "Förra månaden", "3 veckor sedan", "2 veckor sedan", "Förra veckan",
-  "6 dagar sedan", "4 dagar sedan", "3 dagar sedan", "2 dagar sedan", "Igår", "Idag",
-];
-
-function fbTimestamp(threadIdx, postIdx) {
-  const n = FB_RELTIME.length;
-  const start = Math.floor(fbRand(threadIdx * 7 + 2) * 4); // OP somewhere in the older range
-  let idx = start + postIdx * 2 + Math.floor(fbRand(threadIdx * 40 + postIdx) * 2);
-  if (idx > n - 1) idx = n - 1;
-  return FB_RELTIME[idx];
-}
-
 function fbThreadTitle(q) {
   const text = (q || "").trim().replace(/\s+/g, " ");
   const m = text.match(/^.{0,85}?[.?!]/);
@@ -933,13 +916,9 @@ function fbPost(opts) {
   main.className = "fb-main";
   const head = document.createElement("div");
   head.className = "fb-post-head";
-  const date = document.createElement("span");
-  date.className = "fb-date";
-  date.textContent = fbTimestamp(opts.threadIdx, opts.postIdx);
   const num = document.createElement("span");
   num.className = "fb-num";
   num.textContent = "#" + opts.num;
-  head.appendChild(date);
   head.appendChild(num);
   main.appendChild(head);
 
@@ -1049,14 +1028,14 @@ function renderThread() {
     // OP post = the thread question
     c.appendChild(fbPost({
       num: 1, name: "Trådskapare", seed: currentThreadIndex * 101 + 1,
-      threadIdx: currentThreadIndex, postIdx: 0, body: thread.questionText, isOp: true,
+      threadIdx: currentThreadIndex, body: thread.questionText, isOp: true,
     }));
 
     // Reply posts = the comments to judge
     thread.comments.forEach((comment, idx) => {
       c.appendChild(fbPost({
         num: idx + 2, name: "Användare " + (idx + 1), seed: currentThreadIndex * 101 + idx + 2,
-        threadIdx: currentThreadIndex, postIdx: idx + 1, body: comment.text,
+        threadIdx: currentThreadIndex, body: comment.text,
         commentIdx: idx, ans: threadAnswers[idx],
       }));
     });
@@ -1366,7 +1345,8 @@ function renderOutro() {
     els.commentsContainer.appendChild(scoresWrap);
 
     // ---- Answer key: reveal each item's true label and whether the guess was right ----
-    function buildReviewRow(text, actualIsHuman, guessIsHuman) {
+    // `title` is optional; abstracts show their title above the full text.
+    function buildReviewRow(text, actualIsHuman, guessIsHuman, title) {
       const isCorrect = guessIsHuman === actualIsHuman;
       const row = document.createElement("div");
       row.className = "comment-row " + (isCorrect ? "comment-row--correct" : "comment-row--incorrect");
@@ -1376,6 +1356,12 @@ function renderOutro() {
       const guess = guessIsHuman ? "Människa" : "AI";
       meta.textContent = `${isCorrect ? "Rätt" : "Fel"} — Rätt svar: ${actual} · Ditt svar: ${guess}`;
       row.appendChild(meta);
+      if (title) {
+        const head = document.createElement("div");
+        head.className = "comment-title";
+        head.textContent = title;
+        row.appendChild(head);
+      }
       const body = document.createElement("div");
       body.className = "comment-body";
       body.textContent = text;
@@ -1417,8 +1403,8 @@ function renderOutro() {
 
     effectiveQuestions.forEach((q, i) => {
       if (!answers[i]) return;
-      const label = (q.title && q.title.trim()) ? q.title.trim() : q.text;
-      review.appendChild(buildReviewRow(label, q.isHuman, answers[i].choiceIsHuman));
+      const title = (q.title && q.title.trim()) ? q.title.trim() : "";
+      review.appendChild(buildReviewRow(q.text, q.isHuman, answers[i].choiceIsHuman, title));
     });
 
     // Reflection box — placed directly under the results bars, above the answer key.

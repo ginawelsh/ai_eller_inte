@@ -322,6 +322,15 @@ body {
   overflow-wrap: break-word;
 }
 
+.comment-title {
+  font-size: clamp(0.84rem, 2.3vw, 0.94rem);
+  font-weight: 600;
+  line-height: 1.35;
+  color: var(--text);
+  margin-bottom: 5px;
+  overflow-wrap: break-word;
+}
+
 .comment-body {
   font-size: clamp(0.82rem, 2.2vw, 0.9rem);
   line-height: 1.5;
@@ -831,7 +840,7 @@ body:has(.app-shell.wide-list) {
 }
 .fb-post-head {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
   align-items: center;
   border-bottom: 1px solid #eee;
   padding-bottom: 6px;
