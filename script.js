@@ -896,8 +896,13 @@ function fbAvatar(hue) {
 
 function fbPost(opts) {
   const post = document.createElement("article");
+  // Once judged, the whole row picks up a faint tint of the chosen answer's
+  // colour (green = Människa, blue = AI) so answered posts are scannable.
+  const answeredClass = opts.ans
+    ? (opts.ans.choiceIsHuman ? " fb-post--ans-human" : " fb-post--ans-ai")
+    : "";
   post.className = "fb-post" + (opts.isOp ? " fb-post--op" : "") +
-    (opts.num % 2 === 0 ? " fb-post--alt" : "");
+    (opts.num % 2 === 0 ? " fb-post--alt" : "") + answeredClass;
 
   const side = document.createElement("div");
   side.className = "fb-side";
@@ -1040,21 +1045,31 @@ function renderThread() {
       }));
     });
 
-    // Bottom-right pager with the next-thread arrow
+    // Bottom pager: the line above is progress only, the call to action
+    // ("Gå vidare") lives inside the button itself.
     const pager = document.createElement("div");
     pager.className = "fb-pager";
     const info = document.createElement("span");
     info.className = "fb-page-info";
     info.textContent = allAnswered
-      ? (currentThreadIndex === THREADS.length - 1 ? "Alla inlägg bedömda" : "Alla inlägg bedömda, gå vidare")
+      ? "Alla inlägg bedömda"
       : `${answeredCount}/${thread.comments.length} inlägg bedömda`;
+    const isLastThread = currentThreadIndex === THREADS.length - 1;
     const nextArrow = document.createElement("button");
     nextArrow.type = "button";
     nextArrow.className = "fb-next" + (allAnswered ? "" : " fb-next--off");
     nextArrow.disabled = !allAnswered;
-    nextArrow.title = currentThreadIndex === THREADS.length - 1 ? "Nästa del" : "Nästa tråd";
-    nextArrow.setAttribute("aria-label", nextArrow.title);
-    nextArrow.textContent = "›";
+    nextArrow.title = isLastThread ? "Nästa del" : "Nästa tråd";
+    // Keep the visible words in the accessible name (WCAG "label in name").
+    nextArrow.setAttribute(
+      "aria-label",
+      isLastThread ? "Gå vidare till nästa del" : "Gå vidare till nästa tråd",
+    );
+    const chevron = document.createElement("span");
+    chevron.className = "fb-next-chevron";
+    chevron.textContent = "›";
+    chevron.setAttribute("aria-hidden", "true");
+    nextArrow.append("Gå vidare ", chevron);
     nextArrow.addEventListener("click", handleNext);
     pager.appendChild(info);
     pager.appendChild(nextArrow);
@@ -1139,7 +1154,9 @@ function renderAbstractsList() {
     effectiveQuestions.forEach((q, i) => {
       const ans = answers[i];
       const item = document.createElement("article");
-      item.className = "ab-item";
+      item.className = "ab-item" + (ans
+        ? (ans.choiceIsHuman ? " ab-item--ans-human" : " ab-item--ans-ai")
+        : "");
 
       const main = document.createElement("div");
       main.className = "ab-main";
@@ -1226,8 +1243,10 @@ function submitAbstracts() {
 
 function renderCommentsIntro() {
   resetThreadChrome();
-  els.btnExit.hidden = false;
-  els.btnExit.style.display = "";
+  // No Avsluta on the instruction screens — nothing has been judged yet, so the
+  // only action offered is starting the section.
+  els.btnExit.hidden = true;
+  els.btnExit.style.display = "none";
   if (els.subtitle) els.subtitle.textContent = "";
   if (els.questionTitle) els.questionTitle.hidden = true;
 
@@ -1252,8 +1271,10 @@ function renderCommentsIntro() {
 
 function renderTransition() {
   resetThreadChrome();
-  els.btnExit.hidden = false;
-  els.btnExit.style.display = "";
+  // No Avsluta here — this is a hand-off between the two sections, not a
+  // question, so the only action offered is carrying on to the next part.
+  els.btnExit.hidden = true;
+  els.btnExit.style.display = "none";
 
   if (els.subtitle) {
     els.subtitle.textContent =

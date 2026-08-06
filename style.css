@@ -23,9 +23,13 @@
 }
 
 html {
-  /* Prevent the page from ever being narrower than 320px —
-     below this, a phone is too small to usefully render anything */
-  min-width: 320px;
+  /* NO min-width here. Forcing one makes the layout wider than the viewport on
+     any narrow phone — a foldable's cover screen, or (far more common) any
+     phone with display zoom / large-text accessibility turned on — which is
+     exactly what forces the user to scroll sideways and pinch-zoom out.
+     Let the layout reflow down to whatever width the device gives us. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 html,
@@ -35,6 +39,9 @@ body {
   /* Let the body grow taller than the viewport so the shell can scroll on
      very short windows instead of collapsing */
   min-height: 100%;
+  /* Belt and braces: the page scrolls vertically, never sideways. */
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -243,9 +250,8 @@ body {
   font-size: clamp(0.85rem, 2.3vw, 0.95rem);
   line-height: 1.6;
   color: var(--text);
-  /* Fluid max-height: tall on large screens, shorter on small ones */
-  max-height: clamp(140px, 30vh, 220px);
-  overflow-y: auto;
+  /* No inner scroller. A capped, separately-scrolling text box inside a page
+     that also scrolls is painful on touch — the page is the only scroller. */
   padding-right: 4px;
   overflow-wrap: break-word;
 }
@@ -582,15 +588,13 @@ body {
     transform var(--transition-fast);
 }
 
-/* Primary (Starta) and Avsluta share the same size; Starta red, Avsluta blue. */
-.nav-button.primary,
-.nav-button.danger {
+/* Starta/Nästa is the primary action and stays large. Avsluta is the secondary
+   escape hatch, so it is deliberately smaller and lighter — still blue, still a
+   comfortable tap target, just not competing with the primary button. */
+.nav-button.primary {
   font-size: clamp(0.9rem, 2.2vw, 1.05rem);
   font-weight: 800;
   padding: clamp(9px, 2vw, 13px) clamp(18px, 4vw, 30px);
-}
-
-.nav-button.primary {
   background: var(--accent);
   border-color: var(--accent);
   color: #ffffff;
@@ -598,10 +602,13 @@ body {
 }
 
 .nav-button.danger {
+  font-size: clamp(0.72rem, 1.7vw, 0.8rem);
+  font-weight: 600;
+  padding: clamp(5px, 1.2vw, 7px) clamp(11px, 2.2vw, 15px);
   background: #2563eb;
   border-color: #2563eb;
   color: #ffffff;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.20);
 }
 
 .nav-button.danger:hover:not(:disabled) {
@@ -681,9 +688,78 @@ body {
     font-size: 0.78rem;
   }
 
+  /* The primary action takes the row; Avsluta stays a small, self-sized button */
+  .nav-button.primary {
+    flex: 1 1 auto;
+    justify-content: center;
+    padding: 11px 14px;
+  }
+
+  .nav-button.danger {
+    flex: 0 0 auto;
+    padding: 6px 12px;
+  }
+
   /* Let comment choice buttons stack if they don't fit side-by-side */
   .comment-choice-buttons {
     gap: 5px;
+  }
+
+  /* The two section progress bars stay side by side but stop hogging width */
+  .progress-dual {
+    gap: 10px;
+  }
+}
+
+/* ── Very narrow phones (foldable cover screens, display zoom on) ── */
+
+@media (max-width: 360px) {
+  body {
+    padding: 6px;
+  }
+
+  .app-shell {
+    padding: 10px 10px 8px;
+    border-radius: 14px;
+  }
+
+  /* Below this width two labelled bars side by side become unreadable stubs */
+  .progress-dual {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .nav-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .nav-button {
+    justify-content: center;
+  }
+
+  /* Avsluta stays small rather than stretching to the full column width */
+  .nav-button.danger {
+    align-self: center;
+  }
+}
+
+/* ── Touch devices: finger-sized targets everywhere ─────── */
+
+@media (pointer: coarse) {
+  .choice-button,
+  .nav-button,
+  .comment-choice-btn,
+  .fb-judge-btn,
+  .fb-next,
+  .ab-done {
+    min-height: 44px;
+  }
+
+  /* Avsluta is the one exception: it stays deliberately small. Being a little
+     harder to hit by accident is a feature for a button that ends the quiz. */
+  .nav-button.danger {
+    min-height: 34px;
   }
 }
 
@@ -698,23 +774,6 @@ body {
   .comments-container {
     max-height: none;
     overflow-y: visible;
-  }
-
-  .question-text {
-    max-height: none;
-    overflow-y: visible;
-  }
-}
-
-/* ── Very short viewports (landscape phone, small tablet) ── */
-
-@media (max-height: 500px) {
-  .question-text {
-    max-height: 100px;
-  }
-
-  .comments-container {
-    max-height: 200px;
   }
 }
 
@@ -911,6 +970,26 @@ body:has(.app-shell.wide-list) {
 .fb-judge-ai:hover { background: #eef3ff; }
 .fb-judge-human.selected { background: #2e7d32; border-color: #2e7d32; color: #fff; }
 .fb-judge-ai.selected { background: #2563eb; border-color: #2563eb; color: #fff; }
+
+/* ── Answered rows: a faint wash in the colour of the chosen answer ──
+   Green = Människa, blue = AI, matching the two judgement buttons. Kept very
+   low-alpha so the text stays comfortable to read; the author strip and the
+   judgement strip take a slightly stronger tint so the row reads as one block.
+   These come after .fb-post--alt / .ab-item:nth-child(even) so they win. */
+
+.fb-post--ans-human { background: rgba(46, 125, 50, 0.07); }
+.fb-post--ans-human .fb-side { background: rgba(46, 125, 50, 0.14); }
+.fb-post--ans-human .fb-judge-col { background: rgba(46, 125, 50, 0.10); }
+
+.fb-post--ans-ai { background: rgba(37, 99, 235, 0.07); }
+.fb-post--ans-ai .fb-side { background: rgba(37, 99, 235, 0.14); }
+.fb-post--ans-ai .fb-judge-col { background: rgba(37, 99, 235, 0.10); }
+
+.ab-item.ab-item--ans-human { background: rgba(46, 125, 50, 0.07); }
+.ab-item.ab-item--ans-human .fb-judge-col { background: rgba(46, 125, 50, 0.10); }
+
+.ab-item.ab-item--ans-ai { background: rgba(37, 99, 235, 0.07); }
+.ab-item.ab-item--ans-ai .fb-judge-col { background: rgba(37, 99, 235, 0.10); }
 .fb-pager {
   display: flex;
   justify-content: flex-end;
@@ -923,17 +1002,28 @@ body:has(.app-shell.wide-list) {
 }
 .fb-page-info { font-size: 12px; color: #666; }
 .fb-next {
-  min-width: 92px; height: 48px;
-  padding: 0 22px;
+  min-width: 92px;
+  min-height: 48px;
+  padding: 11px 26px;
   border: 2px solid var(--accent);
   background: var(--accent);
   color: #fff;
-  font-size: 30px;
+  font-size: clamp(0.95rem, 2.2vw, 1.05rem);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.1;
   border-radius: 6px;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
   transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+/* The chevron rides along at its old size, next to the label */
+.fb-next-chevron {
+  font-size: 1.5em;
+  line-height: 0.8;
 }
 .fb-next:not(.fb-next--off):hover {
   background: var(--accent-dark);
@@ -1015,7 +1105,6 @@ body:has(.app-shell.wide-list) {
 
 @media (max-width: 720px) {
   .fb-post, .ab-item { flex-wrap: wrap; }
-  .fb-post { flex-wrap: wrap; }
   .fb-judge-col {
     flex-basis: 100%;
     width: 100%;
@@ -1032,9 +1121,87 @@ body:has(.app-shell.wide-list) {
   .fb-judge-btn { width: auto; padding: 9px 18px; }
 }
 
+/* ── Phones: the forum post becomes a single stacked column ──
+   The desktop layout is three columns (author | post | judgement). Wrapping
+   those columns on a phone left the author box as a narrow stub with a large
+   empty gap beside it, and squeezed the text. Below 560px the author panel
+   turns into a compact horizontal byline instead, and everything runs the
+   full width of the screen. */
+
 @media (max-width: 560px) {
-  .fb-side { flex-basis: 96px; width: 96px; padding: 8px 6px; }
-  .fb-avatar { width: 42px; height: 42px; }
-  .fb-main { padding: 8px 10px 10px; }
-  .fb-user { font-size: 12px; }
+  .fb-post {
+    flex-direction: column;
+    flex-wrap: nowrap;
+  }
+
+  .fb-side {
+    flex: 0 0 auto;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 8px 12px;
+    border-right: none;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Avatar first, then name, with the rank pushed to the far right */
+  .fb-avatar {
+    order: -1;
+    flex: 0 0 auto;
+    width: 32px;
+    height: 32px;
+    margin-bottom: 0;
+  }
+  .fb-user { font-size: 13px; min-width: 0; }
+  .fb-rank { margin: 0 0 0 auto; flex: 0 0 auto; }
+  /* The "joined / posts" block is desktop chrome — drop it on a phone */
+  .fb-usermeta { display: none; }
+
+  .fb-main { padding: 10px 12px 12px; }
+  .fb-body { font-size: 0.875rem; }
+
+  /* Judgement: label on its own line, two equal thumb-sized buttons under it */
+  .fb-judge-col {
+    flex-wrap: wrap;
+    justify-content: stretch;
+    padding: 10px 12px 12px;
+  }
+  .fb-judge-title {
+    width: 100%;
+    margin: 0 0 2px;
+    text-align: left;
+  }
+  .fb-judge-btn {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+    padding: 12px 8px;
+  }
+
+  /* Abstract list rows get the same full-width treatment */
+  .ab-item { flex-direction: column; flex-wrap: nowrap; }
+  .ab-main { padding: 10px 12px 12px; }
+  .ab-head { padding: 10px 12px; flex-wrap: wrap; gap: 4px; }
+  .ab-abstract { font-size: 0.8rem; }
+
+  /* Pagers stack so the primary action is a full-width button */
+  .fb-pager,
+  .ab-pager {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 12px;
+  }
+  .fb-page-info { text-align: center; }
+  .fb-next,
+  .ab-done {
+    width: 100%;
+    min-width: 0;
+    padding: 0 12px;
+  }
+  .ab-done {
+    padding: 13px 12px;
+    font-size: 1rem;
+  }
 }
