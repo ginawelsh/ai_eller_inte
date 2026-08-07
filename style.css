@@ -466,9 +466,31 @@ body {
   border: 1px solid rgba(0, 0, 0, 0.18);
   background: #ffffff;
   color: var(--text);
-  font-size: clamp(0.85rem, 2.2vw, 0.95rem);
+  /* See the 16px rule below — anything smaller triggers iOS Safari's auto-zoom */
+  font-size: 16px;
+  font-family: inherit;
   line-height: 1.4;
   outline: none;
+}
+
+/* ── iOS auto-zoom guard ────────────────────────────────
+   Mobile Safari zooms the whole page in when a text field with a font smaller
+   than 16px receives focus, and it never zooms back out — the page is left
+   magnified and off-centre. 16px is the threshold, so every text control gets
+   at least that. (Never "fix" this with maximum-scale=1: that would disable
+   pinch-zoom for everyone who needs it.) */
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input:not([type]),
+textarea,
+select {
+  font-size: max(16px, 1rem);
+  font-family: inherit;
 }
 
 .outro-textarea:focus {

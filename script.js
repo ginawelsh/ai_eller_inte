@@ -430,6 +430,10 @@ let redditAnswers = [];
 // When true, we're showing correct/incorrect for the current thread after user finished all comments
 let redditShowingFeedback = false;
 
+// The abstracts section is paged: 5 abstracts per page, so 20 abstracts = 4 pages.
+const AB_PAGE_SIZE = 5;
+let currentAbstractPage = 0;
+
 // Demographics collected before the survey starts
 let demographics = { age: null, profession: "", llmUsage: null, swedishLevel: null };
 
@@ -740,7 +744,10 @@ function renderDemographics() {
     profInput.type = "text";
     profInput.placeholder = "Skriv ditt yrke här...";
     profInput.value = demographics.profession || "";
-    profInput.style.cssText = "width:100%;padding:0.3rem 0.5rem;font-size:inherit;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;";
+    // font-size must be >= 16px: iOS Safari auto-zooms into any focused input
+    // with smaller text and does not zoom back out, which leaves the page
+    // magnified and off-centre for the rest of the quiz.
+    profInput.style.cssText = "width:100%;padding:0.5rem 0.6rem;font-size:16px;border:1px solid #ccc;border-radius:4px;box-sizing:border-box;";
     profInput.addEventListener("input", () => { demographics.profession = profInput.value; });
     profGroup.appendChild(profInput);
     form.appendChild(profGroup);
@@ -1139,6 +1146,16 @@ function renderAbstractsList() {
   const answeredCount = answers.filter(Boolean).length;
   const allAnswered = answeredCount === total;
 
+  // Paging: 5 abstracts per page. Clamp in case the question count changes.
+  const totalPages = Math.max(1, Math.ceil(total / AB_PAGE_SIZE));
+  if (currentAbstractPage > totalPages - 1) currentAbstractPage = totalPages - 1;
+  if (currentAbstractPage < 0) currentAbstractPage = 0;
+  const pageStart = currentAbstractPage * AB_PAGE_SIZE;
+  const pageEnd = Math.min(pageStart + AB_PAGE_SIZE, total);
+  const pageItems = effectiveQuestions.slice(pageStart, pageEnd);
+  const pageAnswered = pageItems.every((_, j) => answers[pageStart + j]);
+  const isLastPage = currentAbstractPage === totalPages - 1;
+
   const c = els.commentsContainer;
   if (c) {
     c.className = "comments-container ab-mode";
@@ -1148,10 +1165,11 @@ function renderAbstractsList() {
     head.className = "ab-head";
     head.innerHTML =
       `<span class="ab-head-title">Sökresultat</span>` +
-      `<span class="ab-head-count">${total} träffar · kandidatuppsatser</span>`;
+      `<span class="ab-head-count">Visar ${pageStart + 1}–${pageEnd} av ${total} · sida ${currentAbstractPage + 1} av ${totalPages}</span>`;
     c.appendChild(head);
 
-    effectiveQuestions.forEach((q, i) => {
+    pageItems.forEach((q, j) => {
+      const i = pageStart + j;
       const ans = answers[i];
       const item = document.createElement("article");
       item.className = "ab-item" + (ans
@@ -1197,23 +1215,51 @@ function renderAbstractsList() {
       c.appendChild(item);
     });
 
+    // Same pager shape as the forum section: progress line, then one big
+    // "Gå vidare ›" button that unlocks when this page has been judged. The
+    // last page swaps it for "Se ditt resultat ›".
+    const pageAnsweredCount = pageItems.filter((_, j) => answers[pageStart + j]).length;
     const pager = document.createElement("div");
     pager.className = "ab-pager";
     const info = document.createElement("span");
     info.className = "fb-page-info";
-    info.textContent = allAnswered ? "Alla abstrakt bedömda" : `${answeredCount}/${total} bedömda`;
-    const done = document.createElement("button");
-    done.type = "button";
-    done.className = "ab-done" + (allAnswered ? "" : " ab-done--off");
-    done.disabled = !allAnswered;
-    done.textContent = "Se ditt resultat ›";
-    done.addEventListener("click", submitAbstracts);
+    info.textContent = pageAnswered
+      ? (isLastPage ? "Alla abstrakt bedömda" : "Alla abstrakt på sidan bedömda")
+      : `${pageAnsweredCount}/${pageItems.length} bedömda på denna sida`;
+
+    const nextBtn = document.createElement("button");
+    nextBtn.type = "button";
+    const ready = isLastPage ? allAnswered : pageAnswered;
+    nextBtn.className = "fb-next" + (ready ? "" : " fb-next--off");
+    nextBtn.disabled = !ready;
+    const chevron = document.createElement("span");
+    chevron.className = "fb-next-chevron";
+    chevron.textContent = "›";
+    chevron.setAttribute("aria-hidden", "true");
+    if (isLastPage) {
+      nextBtn.title = "Se ditt resultat";
+      nextBtn.setAttribute("aria-label", "Se ditt resultat");
+      nextBtn.append("Se ditt resultat ", chevron);
+      nextBtn.addEventListener("click", submitAbstracts);
+    } else {
+      nextBtn.title = "Nästa sida";
+      nextBtn.setAttribute("aria-label", "Gå vidare till nästa sida med abstrakt");
+      nextBtn.append("Gå vidare ", chevron);
+      nextBtn.addEventListener("click", () => {
+        currentAbstractPage += 1;
+        renderAbstractsList();
+        // A new page starts at the top, not wherever the last one was scrolled to.
+        window.scrollTo({ top: 0, behavior: "auto" });
+      });
+    }
+
     pager.appendChild(info);
-    pager.appendChild(done);
+    pager.appendChild(nextBtn);
     c.appendChild(pager);
   }
 
-  els.progressText.textContent = `Abstrakt · ${answeredCount}/${total} bedömda`;
+  els.progressText.textContent =
+    `Abstrakt · sida ${currentAbstractPage + 1} av ${totalPages} · ${answeredCount}/${total} bedömda`;
   updateProgressBars();
   els.btnPrev.disabled = true;
   els.btnNext.hidden = true;
@@ -1655,9 +1701,10 @@ function handleNext() {
   }
 
   if (mode === "transition") {
-    // Start abstracts part (a single scrollable results list)
+    // Start abstracts part (a paged results list, 5 abstracts per page)
     mode = "abstracts";
     currentIndex = 0;
+    currentAbstractPage = 0;
     renderAbstractsList();
     goTop();
     return;
