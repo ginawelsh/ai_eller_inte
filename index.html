@@ -9,7 +9,7 @@
     <title>AI eller inte? En spel</title>
     <!-- Bump ?v= whenever style.css/script.js change, so phones that already
          visited the site don't keep serving a cached copy. -->
-    <link rel="stylesheet" href="style.css?v=3" />
+    <link rel="stylesheet" href="style.css?v=4" />
   </head>
   <body>
     <div class="app-shell">
@@ -85,7 +85,39 @@
       </footer>
     </div>
 
-    <script src="script.js?v=3"></script>
+    <!--
+      Startup guard. This runs before script.js, so it survives that file
+      failing to download, failing to parse, or throwing on an API the phone
+      does not have. Without it a participant whose browser cannot run the quiz
+      just sees "Laddar fråga..." and dead buttons forever, with nothing to
+      explain it and no way for us to tell what happened.
+    -->
+    <script>
+      (function () {
+        var shown = false;
+        function showStartupFailure() {
+          if (shown) return;
+          shown = true;
+          var box = document.getElementById("question-text");
+          if (box) {
+            box.textContent =
+              "Tyvärr gick det inte att starta spelet i den här webbläsaren. " +
+              "Prova att öppna länken i Safari eller Chrome i stället för i " +
+              "Facebooks inbyggda webbläsare, eller uppdatera din telefon.";
+          }
+          // Hide the controls rather than leave buttons that do nothing.
+          var controls = document.querySelector(".controls");
+          if (controls) controls.style.display = "none";
+        }
+        window.addEventListener("error", showStartupFailure);
+        // Catches the silent cases too: script blocked, offline, truncated file.
+        window.setTimeout(function () {
+          var box = document.getElementById("question-text");
+          if (box && box.textContent.indexOf("Laddar fråga") !== -1) showStartupFailure();
+        }, 6000);
+      })();
+    </script>
+    <script src="script.js?v=4"></script>
   </body>
   </html>
 

@@ -1,3 +1,6 @@
+// Note: the "could not start" fallback lives in an inline script in index.html,
+// not here — it has to survive this file failing to load or parse at all.
+
 // Configure up to 50 questions here.
 // Each question has:
 // - text: the abstract or comment to show
@@ -440,7 +443,36 @@ let demographics = { age: null, profession: "", llmUsage: null, swedishLevel: nu
 
 const RESULTS_ENDPOINT = "https://script.google.com/macros/s/AKfycbwYpMGlHYUxKaRoFzfskyVaOviYLEU_MGqZX9ULjZKOgdViPbW-bHLNwRk_qbHUok4-Rw/exec"
 
-const PARTICIPANT_ID = crypto.randomUUID();
+// Generating a participant id must never be the thing that stops the quiz from
+// loading. crypto.randomUUID() only exists on iOS 15.4+ (and only in secure
+// contexts), so on an older iPhone — including Facebook's in-app browser, which
+// uses whatever WebKit the phone shipped with — it is undefined and calling it
+// throws, killing this whole script. Degrade instead of throwing.
+function makeParticipantId() {
+  try {
+    if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+      return crypto.randomUUID();
+    }
+    if (typeof crypto !== "undefined" && typeof crypto.getRandomValues === "function") {
+      // RFC 4122 v4, built by hand from getRandomValues (supported far wider).
+      var b = crypto.getRandomValues(new Uint8Array(16));
+      b[6] = (b[6] & 0x0f) | 0x40; // version 4
+      b[8] = (b[8] & 0x3f) | 0x80; // variant 10xx
+      var hex = "";
+      for (var i = 0; i < b.length; i++) hex += (b[i] + 0x100).toString(16).slice(1);
+      return hex.slice(0, 8) + "-" + hex.slice(8, 12) + "-" + hex.slice(12, 16) +
+        "-" + hex.slice(16, 20) + "-" + hex.slice(20);
+    }
+  } catch (err) {
+    // fall through to the Math.random path below
+  }
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (ch) {
+    var r = (Math.random() * 16) | 0;
+    return (ch === "x" ? r : (r & 0x3) | 0x8).toString(16);
+  });
+}
+
+const PARTICIPANT_ID = makeParticipantId();
 
 
 const els = {
@@ -644,7 +676,12 @@ function showProgress(show) {
 }
 
 function goTop() {
-  window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  // The options-object form of scrollTo is also newer than some phones we see.
+  try {
+    window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+  } catch (err) {
+    window.scrollTo(0, 0);
+  }
 }
 
 function renderIntro() {
@@ -1249,7 +1286,7 @@ function renderAbstractsList() {
         currentAbstractPage += 1;
         renderAbstractsList();
         // A new page starts at the top, not wherever the last one was scrolled to.
-        window.scrollTo({ top: 0, behavior: "auto" });
+        goTop();
       });
     }
 
