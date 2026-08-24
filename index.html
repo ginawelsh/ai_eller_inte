@@ -9,7 +9,7 @@
     <title>AI eller inte? En spel</title>
     <!-- Bump ?v= whenever style.css/script.js change, so phones that already
          visited the site don't keep serving a cached copy. -->
-    <link rel="stylesheet" href="style.css?v=4" />
+    <link rel="stylesheet" href="style.css?v=5" />
   </head>
   <body>
     <div class="app-shell">
@@ -68,6 +68,9 @@
             <button id="btn-prev" class="nav-button" type="button" disabled>
               Tidigare
             </button>
+            <button id="btn-skip" class="nav-button skip" type="button" hidden>
+              Hoppa till abstrakten
+            </button>
             <button id="btn-exit" class="nav-button danger" type="button">
               Avsluta
             </button>
@@ -117,7 +120,7 @@
         }, 6000);
       })();
     </script>
-    <script src="script.js?v=4"></script>
+    <script src="script.js?v=5"></script>
   </body>
   </html>
 

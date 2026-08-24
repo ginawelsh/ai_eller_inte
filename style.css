@@ -633,6 +633,17 @@ select {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.20);
 }
 
+/* Skip: an opt-out from the forum section straight into the abstracts. Kept
+   quiet — outlined, no fill — so it never competes with Nästa. */
+.nav-button.skip {
+  font-size: clamp(0.72rem, 1.7vw, 0.8rem);
+  font-weight: 600;
+  padding: clamp(5px, 1.2vw, 7px) clamp(11px, 2.2vw, 15px);
+  background: transparent;
+  border-color: rgba(0, 0, 0, 0.28);
+  color: var(--text-muted);
+}
+
 .nav-button.danger:hover:not(:disabled) {
   background: #1d4ed8;
   color: #ffffff;
@@ -718,6 +729,11 @@ select {
   }
 
   .nav-button.danger {
+    flex: 0 0 auto;
+    padding: 6px 12px;
+  }
+
+  .nav-button.skip {
     flex: 0 0 auto;
     padding: 6px 12px;
   }

@@ -492,6 +492,7 @@ const els = {
   btnAi: document.getElementById("btn-ai"),
   btnPrev: document.getElementById("btn-prev"),
   btnExit: document.getElementById("btn-exit"),
+  btnSkip: document.getElementById("btn-skip"),
   btnNext: document.getElementById("btn-next"),
   feedback: document.getElementById("feedback"),
   scoreCorrect: document.getElementById("score-correct"),
@@ -868,6 +869,7 @@ async function sendDemographicsEvent() {
 }
 
 function renderQuestion() {
+  updateSkipButton();
   resetThreadChrome();
   const shell = document.querySelector(".app-shell");
   if (shell) shell.classList.add("theme-abstracts");
@@ -1032,6 +1034,8 @@ function renderThread() {
   const thread = THREADS[currentThreadIndex];
   if (!thread) return;
 
+  updateSkipButton();
+
   hideChoices(true);
   // Ensure the comments theme is active (forward nav bypasses renderCurrent).
   const shell = document.querySelector(".app-shell");
@@ -1168,6 +1172,7 @@ function fbAbstractMeta(q) {
 }
 
 function renderAbstractsList() {
+  updateSkipButton();
   hideChoices(true);
   showProgress(true);
   const shell = document.querySelector(".app-shell");
@@ -1326,6 +1331,7 @@ function submitAbstracts() {
 
 function renderCommentsIntro() {
   resetThreadChrome();
+  updateSkipButton();
   // No Avsluta on the instruction screens — nothing has been judged yet, so the
   // only action offered is starting the section.
   els.btnExit.hidden = true;
@@ -1354,6 +1360,7 @@ function renderCommentsIntro() {
 
 function renderTransition() {
   resetThreadChrome();
+  updateSkipButton();
   // No Avsluta here — this is a hand-off between the two sections, not a
   // question, so the only action offered is carrying on to the next part.
   els.btnExit.hidden = true;
@@ -1417,6 +1424,7 @@ function makeScoreBar(label, correct, answered) {
 
 function renderOutro() {
   resetThreadChrome();
+  updateSkipButton();
   hideChoices(true);
   if (els.questionTitle) els.questionTitle.hidden = true;
   els.btnExit.hidden = true;
@@ -1458,7 +1466,7 @@ function renderOutro() {
       meta.className = "comment-meta";
       const actual = actualIsHuman ? "Människa" : "AI";
       const guess = guessIsHuman ? "Människa" : "AI";
-      meta.textContent = `${isCorrect ? "Rätt" : "Fel"} — Rätt svar: ${actual} · Ditt svar: ${guess}`;
+      meta.textContent = `${isCorrect ? "Rätt" : "Fel"}. Rätt svar: ${actual} · Ditt svar: ${guess}`;
       row.appendChild(meta);
       if (title) {
         const head = document.createElement("div");
@@ -1588,6 +1596,41 @@ function renderOutro() {
   updateScoreSummary();
 }
 
+// The skip button is an opt-out from the forum section for participants who
+// only want to do the abstracts. It is mode-driven and idempotent, so it can be
+// called from any render path — including the ones that bypass renderCurrent().
+function updateSkipButton() {
+  if (!els.btnSkip) return;
+  const show = mode === "comments-intro" || mode === "reddit";
+  els.btnSkip.hidden = !show;
+  els.btnSkip.style.display = show ? "" : "none";
+}
+
+function handleSkipToAbstracts() {
+  // Send whatever judgments were already made in the current thread, the same
+  // way advancing to the next thread does, so a skip never silently drops data.
+  if (mode === "reddit") {
+    const thread = THREADS[currentThreadIndex];
+    const threadAnswers = redditAnswers[currentThreadIndex] || [];
+    if (thread) {
+      for (let c = 0; c < thread.comments.length; c += 1) {
+        if (threadAnswers[c]) {
+          globalQuestionIndex += 1;
+          currentCommentIndex = c;
+          lastChoiceIsHuman = threadAnswers[c].choiceIsHuman;
+          sendAnswerEvent();
+        }
+      }
+    }
+    redditShowingFeedback = false;
+  }
+  mode = "abstracts";
+  currentIndex = 0;
+  currentAbstractPage = 0;
+  renderAbstractsList();
+  goTop();
+}
+
 function renderCurrent() {
   // Tidigare: always hidden on every screen
   els.btnPrev.hidden = true;
@@ -1601,6 +1644,8 @@ function renderCurrent() {
   // Nästa: always visible (individual render functions set disabled state)
   els.btnNext.hidden = false;
   els.btnNext.style.display = "";
+
+  updateSkipButton();
 
   const shell = document.querySelector(".app-shell");
   if (shell) {
@@ -1872,6 +1917,7 @@ function init() {
   });
 
   els.btnNext.addEventListener("click", handleNext);
+  if (els.btnSkip) els.btnSkip.addEventListener("click", handleSkipToAbstracts);
   els.btnPrev.addEventListener("click", handlePrev);
 
   document.addEventListener("keydown", handleKeydown);
